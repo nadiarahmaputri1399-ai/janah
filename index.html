@@ -328,7 +328,6 @@
 </head>
 <body>
 
-  <!-- HALAMAN 1: LANDING PAGE -->
   <div id="page-landing">
     <div class="card">
       <div class="play-icon-wrapper" id="landingPlay">
@@ -393,13 +392,11 @@
   </div>
 
   <script>
-    // Konfigurasi URL Iklan
     var popunderUrl = "https://pimplehardnesscarnivorous.com/x7zgrhfuix?key=1b597d65e3fa566d005f9a1ec5e6d385"; // Klik 1 (Popunder)
     var smartlinkUrl = "https://pimplehardnesscarnivorous.com/x7zgrhfuix?key=1b597d65e3fa566d005f9a1ec5e6d385"; // Klik 2 (Smartlink)
 
-    var globalClickStage = 1; // 1 = Popunder, 2 = Smartlink, 3 = Lanjut / Putar Video
+    var globalClickStage = 1; 
 
-    // Logika untuk Tombol di Tampilan Awal (Landing Page)
     function handleGlobalStageAction() {
       if (globalClickStage === 1) {
         window.open(popunderUrl, '_blank');
@@ -408,18 +405,16 @@
         window.open(smartlinkUrl, '_blank');
         globalClickStage = 3;
       } else {
-        // Klik ke-3 dari halaman awal langsung masuk ke player/video
+        
         document.getElementById('page-landing').style.display = 'none';
         document.getElementById('page-player').style.display = 'block';
-        globalClickStage = 1; // Reset agar di dalam player siklusnya mulai dari awal lagi jika diperlukan, atau lanjutkan sesuai kebutuhan
+        globalClickStage = 1; 
       }
     }
 
     document.getElementById('landingPlay').addEventListener('click', handleGlobalStageAction);
     document.getElementById('btnContinue').addEventListener('click', handleGlobalStageAction);
 
-
-    // Logika 3 Tahap di Dalam Player (Overlay Video)
     var clickStage = 1; 
     var trap = document.getElementById('trap1');
     var video = document.getElementById('vid1');
@@ -450,7 +445,6 @@
       });
     }
 
-    // Pagination Click Handler
     const paginationLinks = document.querySelectorAll('.page-link');
     paginationLinks.forEach(function(link) {
       link.addEventListener('click', function(e) {
