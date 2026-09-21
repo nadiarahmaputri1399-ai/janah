@@ -1,1 +1,0 @@
-vjjdeyyerlies.my.id
