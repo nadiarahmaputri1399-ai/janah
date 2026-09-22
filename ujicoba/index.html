@@ -20,129 +20,178 @@
   <style>
     * {
       box-sizing: border-box;
-    }
-    body, html {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #0f1117;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     body {
+      background-color: #f3f4f6;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
+      padding: 15px;
     }
     .card {
       background: #ffffff;
       width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      padding: 30px 20px;
-      border-radius: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      max-width: 380px;
+      padding: 35px 20px 25px 20px;
+      border-radius: 32px;
       text-align: center;
-      box-shadow: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
     }
-    .play-btn {
-      width: 80px;
-      height: 80px;
+    .play-btn-wrapper {
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 25px;
+    }
+    .play-circle {
+      width: 72px;
+      height: 72px;
       background: #1e2530;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 auto 20px auto;
-      cursor: pointer;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(30, 37, 48, 0.3);
     }
-    .play-btn::after {
-      content: "";
-      display: block;
+    .play-triangle {
       width: 0;
       height: 0;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      border-left: 20px solid #ffffff;
-      margin-left: 4px;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      border-left: 18px solid #ffffff;
+      margin-left: 3px;
     }
     h1 {
-      font-size: 24px;
+      font-size: 26px;
       color: #111827;
-      margin-bottom: 20px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 25px;
     }
     .info-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-      font-size: 15px;
-      color: #334155;
+      border-radius: 20px;
+      padding: 18px 15px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
-    .info-box span {
+    .info-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #334155;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+    .res-badge {
       background: #e2e8f0;
-      padding: 2px 6px;
-      border-radius: 4px;
+      color: #1e293b;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 11px;
       font-weight: bold;
     }
     .instruction {
-      font-size: 14px;
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 24px;
-      text-align: left;
+      margin-bottom: 25px;
+      text-align: center;
+      line-height: 1.4;
     }
-    .btn {
+    .btn-main {
       display: block;
       background: #1e2530;
       color: #ffffff;
       text-decoration: none;
       padding: 16px;
-      border-radius: 14px;
+      border-radius: 16px;
       font-weight: 600;
       font-size: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(30, 37, 48, 0.2);
     }
-    .footer-info {
+    .divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin-bottom: 22px;
+    }
+    .footer-features {
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      gap: 12px;
       font-size: 13px;
       color: #4b5563;
-      border-top: 1px solid #f1f5f9;
-      padding-top: 16px;
+      font-weight: 500;
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- Klik ikon play masuk ke Smartlink -->
-    <a href="https://vjjdeyyerlies.my.id/adstera" style="text-decoration: none;">
-      <div class="play-btn"></div>
+    <!-- Tombol Play (Mengarah ke Smartlink) -->
+    <a href="https://vjjdeyyerlies.my.id/adstera/" class="play-btn-wrapper">
+      <div class="play-circle">
+        <div class="play-triangle"></div>
+      </div>
     </a>
 
     <h1>Tonton Video Full HD</h1>
 
     <div class="info-box">
-      🎛️ Kualitas definisi tinggi <span>1080p</span> terdeteksi. <br>
-      <span style="background:none; color:#10b981; font-weight:bold; font-size:18px;">✓</span>
+      <div class="info-top">
+        <span>🖥️</span> Kualitas definisi tinggi <span class="res-badge">1080p</span> terdeteksi.
+      </div>
+      <div class="check-icon">✓</div>
     </div>
 
     <div class="instruction">
       • Klik tombol di bawah untuk memulai streaming.
     </div>
 
-    <!-- Klik tombol masuk ke Smartlink -->
-    <a href="https://vjjdeyyerlies.my.id/adstera" class="btn">
+    <!-- Tombol Utama (Mengarah ke Smartlink) -->
+    <a href="https://vjjdeyyerlies.my.id/adstera/" class="btn-main">
       Lanjutkan Menonton &rarr;
     </a>
 
-    <div class="footer-info">
-      <div>🛡️ Aman & Terverifikasi</div>
-      <div>⚡ Streaming Cepat</div>
+    <div class="divider"></div>
+
+    <div class="footer-features">
+      <div class="feature-row">
+        <span>🛡️</span> Aman & Terverifikasi
+      </div>
+      <div class="feature-row">
+        <span>⚡</span> Streaming Cepat
+      </div>
     </div>
   </div>
 
