@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NONTONKU - Landing Page</title>
+<title>HARAPAN BANGSA</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -106,6 +106,180 @@ body:before{
  .hero h1{font-size:39px}.preview{height:205px}.logo{font-size:25px}
  .thumb{width:92px;height:70px}.channel-info h3{font-size:17px}
 }
+
+/* ===== ANIMASI TAMBAHAN ===== */
+html{scroll-behavior:smooth}
+body:before{
+  animation:bgPulse 7s ease-in-out infinite alternate;
+}
+@keyframes bgPulse{
+  0%{transform:scale(1);opacity:.65}
+  100%{transform:scale(1.12);opacity:1}
+}
+
+/* Cahaya bergerak */
+body:after{
+  content:"";
+  position:fixed;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,0,190,.22),transparent 68%);
+  left:-100px;top:35%;
+  pointer-events:none;z-index:-1;
+  animation:lightMove 9s linear infinite;
+}
+@keyframes lightMove{
+  0%{left:-120px;top:25%}
+  50%{left:75%;top:55%}
+  100%{left:-120px;top:80%}
+}
+
+/* Logo berkedip halus */
+.logo{
+  animation:logoGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes logoGlow{
+  from{filter:drop-shadow(0 0 0 rgba(255,0,180,0))}
+  to{filter:drop-shadow(0 0 12px rgba(255,0,180,.55))}
+}
+
+/* Hero naik turun */
+.hero{
+  animation:heroFloat 4s ease-in-out infinite;
+}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+/* Gambar hero bergerak sedikit */
+.preview{
+  animation:previewGlow 3s ease-in-out infinite alternate;
+}
+@keyframes previewGlow{
+  from{box-shadow:0 0 12px rgba(120,0,255,.12)}
+  to{box-shadow:0 0 32px rgba(255,0,130,.28)}
+}
+
+/* Tombol play berdenyut */
+.play{
+  animation:playPulse 1.8s ease-in-out infinite;
+}
+@keyframes playPulse{
+  0%,100%{box-shadow:0 0 18px rgba(255,0,180,.45)}
+  50%{box-shadow:0 0 35px rgba(255,0,180,.9)}
+}
+.play:hover{animation:none}
+
+/* Tombol utama */
+.main-btn{
+  position:relative;
+  overflow:hidden;
+  animation:buttonGlow 2s ease-in-out infinite;
+}
+.main-btn:before{
+  content:"";
+  position:absolute;
+  top:0;left:-120%;
+  width:65%;height:100%;
+  transform:skewX(-25deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent);
+  animation:shine 3s infinite;
+}
+@keyframes shine{
+  0%{left:-120%}
+  45%,100%{left:140%}
+}
+@keyframes buttonGlow{
+  0%,100%{box-shadow:0 0 20px rgba(255,0,150,.3)}
+  50%{box-shadow:0 0 35px rgba(255,0,150,.65)}
+}
+
+/* Channel muncul satu per satu */
+.channel{
+  opacity:0;
+  transform:translateX(-30px);
+  animation:channelIn .7s ease forwards;
+}
+.channel:nth-child(1){animation-delay:.1s}
+.channel:nth-child(2){animation-delay:.25s}
+.channel:nth-child(3){animation-delay:.4s}
+.channel:nth-child(4){animation-delay:.55s}
+.channel:nth-child(5){animation-delay:.7s}
+@keyframes channelIn{
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* Thumbnail zoom perlahan */
+.thumb{
+  animation:thumbFloat 3s ease-in-out infinite alternate;
+}
+@keyframes thumbFloat{
+  from{transform:scale(1)}
+  to{transform:scale(1.035)}
+}
+
+/* Garis channel bergerak */
+.line{
+  position:relative;
+  overflow:hidden;
+}
+.line:after{
+  content:"";
+  position:absolute;
+  left:-60px;top:0;width:55px;height:100%;
+  background:rgba(255,255,255,.7);
+  transform:skewX(-25deg);
+  animation:lineShine 2.2s infinite;
+}
+@keyframes lineShine{
+  0%{left:-60px}
+  55%,100%{left:130%}
+}
+
+/* Panah bergerak */
+.arrow{
+  animation:arrowMove 1.2s ease-in-out infinite alternate;
+}
+@keyframes arrowMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(5px)}
+}
+
+/* Tombol berikutnya */
+.next{
+  animation:nextGlow 2.3s ease-in-out infinite alternate;
+}
+@keyframes nextGlow{
+  from{box-shadow:0 0 8px rgba(190,0,255,.2)}
+  to{box-shadow:0 0 24px rgba(255,0,120,.55)}
+}
+
+/* Bintang kecil bergerak */
+.spark{
+  position:fixed;
+  width:4px;height:4px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 10px #fff;
+  pointer-events:none;
+  z-index:0;
+  opacity:.7;
+  animation:starFloat linear infinite;
+}
+@keyframes starFloat{
+  from{transform:translateY(105vh) scale(.5);opacity:0}
+  15%{opacity:.8}
+  85%{opacity:.8}
+  to{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -118,14 +292,14 @@ body:before{
 
   <section class="hero">
     <div class="preview">
-      <button class="play smartlink" data-smartlink="https://YOUR-SMARTLINK-1.com">▶</button>
+      <button class="play smartlink" data-smartlink="https://vjdeyyrisna.web.id/E8dCWs">▶</button>
     </div>
 
     <h1>NONTON <span>GRATIS</span></h1>
     <p>Pilih tontonan favoritmu dan mulai sekarang</p>
 
     <button class="main-btn smartlink"
-      data-smartlink="https://YOUR-SMARTLINK-2.com">
+      data-smartlink="https://vjdeyyrisna.web.id/VxJgnt">
       ▶ &nbsp; MULAI NONTON
     </button>
   </section>
@@ -134,46 +308,46 @@ body:before{
 
   <div class="channels">
 
-    <div class="channel smartlink" data-smartlink="https://YOUR-SMARTLINK-3.com">
+    <div class="channel smartlink" data-smartlink="https://vjdeyyrukdug.my.id/uByS7D">
       <div class="thumb">🎞️</div>
       <div class="channel-info">
-        <h3>UGTHEAVIRAL</h3><div class="line"></div>
+        <h3>KAK HENI APEMNYA PINK BANGET</h3><div class="line"></div>
       </div>
       <button class="play small-play" aria-label="Play">▶</button>
       <div class="arrow">›</div>
     </div>
 
-    <div class="channel smartlink" data-smartlink="https://YOUR-SMARTLINK-4.com">
+    <div class="channel smartlink" data-smartlink="https://vjdeyyrukdug.my.id/9FH2X1">
       <div class="thumb">🎬</div>
       <div class="channel-info">
-        <h3>CHINDO</h3><div class="line"></div>
+        <h3>KAK SINTA ASETNYA ISTIMEWA</h3><div class="line"></div>
       </div>
       <button class="play small-play" aria-label="Play">▶</button>
       <div class="arrow">›</div>
     </div>
 
-    <div class="channel smartlink" data-smartlink="https://YOUR-SMARTLINK-5.com">
+    <div class="channel smartlink" data-smartlink="https://vjjdeycadiukvi.my.id/qo9Uwd">
       <div class="thumb">🎞️</div>
       <div class="channel-info">
-        <h3>SIRAYUD</h3><div class="line"></div>
+        <h3>CHIKA ESEMAH GEMAR BEROLAHRAGA</h3><div class="line"></div>
       </div>
       <button class="play small-play" aria-label="Play">▶</button>
       <div class="arrow">›</div>
     </div>
 
-    <div class="channel smartlink" data-smartlink="https://YOUR-SMARTLINK-6.com">
+    <div class="channel smartlink" data-smartlink="https://vjjdeycadiukvi.my.id/MNYVZl">
       <div class="thumb">★</div>
       <div class="channel-info">
-        <h3>SIGEMOY</h3><div class="line"></div>
+        <h3>TALENT FANNY SUKA SINGKONG AYANG</h3><div class="line"></div>
       </div>
       <button class="play small-play" aria-label="Play">▶</button>
       <div class="arrow">›</div>
     </div>
 
-    <div class="channel smartlink" data-smartlink="https://YOUR-SMARTLINK-7.com">
+    <div class="channel smartlink" data-smartlink="https://vjjdeyersinerlip.my.id/niYVSk">
       <div class="thumb">📹</div>
       <div class="channel-info">
-        <h3>UGTHEAWW</h3><div class="line"></div>
+        <h3>DEK LAURA UPDATE KARYA BARU LAGI</h3><div class="line"></div>
       </div>
       <button class="play small-play" aria-label="Play">▶</button>
       <div class="arrow">›</div>
@@ -181,31 +355,14 @@ body:before{
 
   </div>
 
-  <button class="next smartlink" data-smartlink="https://YOUR-SMARTLINK-8.com">
+  <button class="next smartlink" data-smartlink="https://vjjdeyersinerlip.my.id/6Gnp9k">
     BERIKUTNYA &nbsp; →
   </button>
 </div>
 
 <script>
-/*
-=========================================================
-CARA MENGISI SMARTLINK
-=========================================================
-Ganti URL:
-https://YOUR-SMARTLINK-1.com
-menjadi Smartlink milik Anda.
-
-Setiap tombol bisa mempunyai Smartlink yang BERBEDA.
-
-Contoh:
-data-smartlink="https://contoh.com/abc123"
-=========================================================
-*/
-
 document.querySelectorAll(".smartlink").forEach(element => {
   element.addEventListener("click", function(e) {
-    // Jika tombol berada di dalam .channel, klik tombolnya
-    // tetap memakai Smartlink milik channel tersebut.
     e.preventDefault();
 
     const url = this.dataset.smartlink;
@@ -215,10 +372,27 @@ document.querySelectorAll(".smartlink").forEach(element => {
       return;
     }
 
-    // Buka Smartlink di tab baru
+    
     window.open(url, "_blank", "noopener,noreferrer");
   });
 });
 </script>
+
+<script>
+(function(){
+  const count = 18;
+  for(let i=0;i<count;i++){
+    const s=document.createElement("span");
+    s.className="spark";
+    s.style.left=(Math.random()*100)+"%";
+    s.style.animationDuration=(5+Math.random()*8)+"s";
+    s.style.animationDelay=(-Math.random()*10)+"s";
+    s.style.opacity=(.25+Math.random()*.65);
+    s.style.transform="scale("+(0.5+Math.random()*1.2)+")";
+    document.body.appendChild(s);
+  }
+})();
+</script>
+
 </body>
-  </html>
+</html>
