@@ -298,7 +298,8 @@
           <div id="trap1" class="video-overlay">
             <div id="btn1" class="play-btn-icon"></div>
           </div>
-          <video id="vid1" playsinline preload="metadata" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
+          <!-- Tambahkan atribut poster di bawah ini untuk menampilkan gambar sampul -->
+          <video id="vid1" playsinline preload="auto" poster="../video/thumbnail1.jpg" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
           <a href="https://t.me/username_kamu" target="_blank" class="telegram-floating">
             <div class="telegram-icon-box">
               <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
@@ -314,7 +315,7 @@
           <div id="trap2" class="video-overlay">
             <div id="btn2" class="play-btn-icon"></div>
           </div>
-          <video id="vid2" playsinline preload="metadata" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
+          <video id="vid2" playsinline preload="auto" poster="../video/thumbnail2.jpg" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
           <a href="https://t.me/username_kamu" target="_blank" class="telegram-floating">
             <div class="telegram-icon-box">
               <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
@@ -330,7 +331,7 @@
           <div id="trap3" class="video-overlay">
             <div id="btn3" class="play-btn-icon"></div>
           </div>
-          <video id="vid3" playsinline preload="metadata" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
+          <video id="vid3" playsinline preload="auto" poster="../video/thumbnail3.jpg" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
           <a href="https://t.me/username_kamu" target="_blank" class="telegram-floating">
             <div class="telegram-icon-box">
               <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
@@ -370,7 +371,6 @@
 
     var clickStage = 1; 
 
-    // Fungsi setup interaksi video trap/iklan berurutan
     function setupVideoTrap(trapId, videoId, btnId) {
       var trap = document.getElementById(trapId);
       var video = document.getElementById(videoId);
@@ -402,7 +402,6 @@
       }
     }
 
-    // Inisialisasi ke-3 video
     setupVideoTrap('trap1', 'vid1', 'btn1');
     setupVideoTrap('trap2', 'vid2', 'btn2');
     setupVideoTrap('trap3', 'vid3', 'btn3');
@@ -424,4 +423,4 @@
     });
   </script>
 </body>
-</html>
+                </html>
