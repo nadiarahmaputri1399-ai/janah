@@ -96,6 +96,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     .phone {
@@ -154,10 +155,10 @@
       z-index: 2;
     }
 
-    /* === PERBAIKAN UTAMA PADA BAGIAN TELEGRAM FLOATING === */
+    /* === TOMBOL TELEGRAM UTAMA (TIDAK DIUBAH) === */
     .telegram-floating {
       position: absolute;
-      bottom: 20px; /* Konsisten berada di bawah agar rapi */
+      bottom: 20px;
       right: 16px;
       z-index: 100;
       display: flex;
@@ -211,7 +212,53 @@
       white-space: nowrap;
       text-transform: uppercase;
     }
-    /* ==================================================== */
+    /* =========================================== */
+
+    /* === TOMBOL KEREN DI BAGIAN YANG ANDA TANDAI (DIVIDER/BETWEEN VIDEOS) === */
+    .divider-badge-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: -10px 0;
+      z-index: 10;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .divider-badge-wrapper {
+        display: none; /* Hanya muncul di tampilan mobile vertikal seperti contoh gambar */
+      }
+    }
+
+    .divider-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #000000;
+      color: #22c55e;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1.5px solid var(--primary-green);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .divider-badge:hover {
+      background: var(--primary-green);
+      color: #000000;
+      transform: scale(1.05);
+    }
+
+    .divider-badge i {
+      font-size: 13px;
+    }
+    /* ===================================================================== */
     
     .pagination-container {
       display: flex;
@@ -321,6 +368,13 @@
         </div>
       </div>
 
+      <!-- Tombol Keren di Batas Antar Video 1 & 2 -->
+      <div class="divider-badge-wrapper">
+        <a href="#" class="divider-badge ad-redirect">
+          <i class="fas fa-fire"></i> Trending Video Lainnya <i class="fas fa-chevron-right"></i>
+        </a>
+      </div>
+
       <!-- Video Card 2 -->
       <div class="video-card">
         <div class="phone">
@@ -335,6 +389,13 @@
             <span class="telegram-text">JOIN TELEGRAM</span>
           </a>
         </div>
+      </div>
+
+      <!-- Tombol Keren di Batas Antar Video 2 & 3 -->
+      <div class="divider-badge-wrapper">
+        <a href="#" class="divider-badge ad-redirect">
+          <i class="fas fa-bolt"></i> Update Koleksi Terbaru <i class="fas fa-chevron-right"></i>
+        </a>
       </div>
 
       <!-- Video Card 3 -->
@@ -435,4 +496,4 @@
     });
   </script>
 </body>
-</html>
+            </html>
