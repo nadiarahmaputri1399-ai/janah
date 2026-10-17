@@ -1,41 +1,268 @@
-<html lang="id"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shortlink Saya</title>
-<link rel="stylesheet" href="/style.css">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Shortlink Saya</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --soft: #f4f4ff;
+      --text: #17172b;
+      --muted: #66667a;
+      --border: #dddded;
+      --success: #16a34a;
+      --danger: #b91c1c;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.18), transparent 28%),
+        linear-gradient(135deg, #4f46e5, #7c3aed);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 32px;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(22, 12, 70, .25);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 5vw, 29px);
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    textarea,
+    select,
+    input[type="text"] {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    textarea:focus,
+    select:focus,
+    input[type="text"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+    }
+
+    button {
+      min-height: 44px;
+      padding: 12px 14px;
+      color: #fff;
+      background: var(--primary);
+      border: 0;
+      border-radius: 10px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s, opacity .2s;
+    }
+
+    button:hover { background: var(--primary-dark); }
+    button:active { transform: scale(.99); }
+    button:disabled { opacity: .65; cursor: not-allowed; }
+
+    .result,
+    .bulk-result {
+      margin-top: 22px;
+      padding: 16px;
+      background: var(--soft);
+      border: 1px solid #e4e4ff;
+      border-radius: 12px;
+    }
+
+    .result > p { margin: 0; font-weight: 700; }
+
+    .short-url-box {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .short-url-box input { flex: 1; }
+    .short-url-box button { flex: 0 0 auto; }
+
+    .error {
+      margin-top: 16px;
+      padding: 12px 14px;
+      color: var(--danger);
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .hidden { display: none !important; }
+
+    .secondary-btn {
+      width: 100%;
+      margin-top: 12px;
+      color: var(--primary);
+      background: #fff;
+      border: 1px solid var(--primary);
+    }
+
+    .secondary-btn:hover { background: #ededff; }
+
+    .bulk-summary {
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .bulk-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .bulk-item {
+      padding: 11px 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid #9ca3af;
+      border-radius: 9px;
+      font-size: 14px;
+    }
+
+    .bulk-item.success { border-left-color: var(--success); }
+    .bulk-item.error { border-left-color: #ef4444; }
+
+    .bulk-item-long {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .bulk-item-short {
+      color: var(--primary);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .bulk-item-error-msg {
+      color: var(--danger);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 12px; align-items: flex-start; }
+      .container { margin: auto 0; padding: 23px 18px; border-radius: 16px; }
+      .short-url-box { flex-direction: column; }
+      .short-url-box button { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <main class="container">
     <h1>🔗 Pemendek Tautan</h1>
     <p class="subtitle">Ubah URL panjang jadi pendek. Bisa banyak sekaligus, satu URL per baris.</p>
 
     <form id="shorten-form">
-      <textarea id="urls" rows="4" placeholder="https://contoh.com/artikel-1
-https://contoh.com/artikel-2
-https://contoh.com/artikel-3" required=""></textarea>
-      <select id="domain">
+      <textarea id="urls" rows="4" placeholder="https://contoh.com/artikel-1&#10;https://contoh.com/artikel-2&#10;https://contoh.com/artikel-3" required></textarea>
+
+      <select id="domain" aria-label="Pilih domain">
         <option value="">Domain default</option>
-      <option value="shortgen.blog">shortgen.blog</option><option value="accimg.co">accimg.co</option><option value="acfimg.top">acfimg.top</option><option value="asupan.videoviral.ink">asupan.videoviral.ink</option><option value="baru.videowikwik.lol">baru.videowikwik.lol</option><option value="cdn.accimg.co">cdn.accimg.co</option><option value="cdn.genshortpro.tech">cdn.genshortpro.tech</option><option value="cdn2.acfimg.top">cdn2.acfimg.top</option><option value="cdn2.videv.ink">cdn2.videv.ink</option><option value="cdn2.vldev.cc">cdn2.vldev.cc</option><option value="genshortpro.tech">genshortpro.tech</option><option value="ih.tongkepo.lat">ih.tongkepo.lat</option><option value="jingkrung.baby">jingkrung.baby</option><option value="melaksugan.bond">melaksugan.bond</option><option value="mudah2an.melaksugan.bond">mudah2an.melaksugan.bond</option><option value="nomok.jingkrung.baby">nomok.jingkrung.baby</option><option value="tongkepo.lat">tongkepo.lat</option><option value="video.viralnew.fun">video.viralnew.fun</option><option value="videoviral.ink">videoviral.ink</option><option value="videowikwik.lol">videowikwik.lol</option><option value="videv.ink">videv.ink</option><option value="vidiey.fans">vidiey.fans</option><option value="viralnew.fun">viralnew.fun</option><option value="vldev.cc">vldev.cc</option></select>
-      <input type="text" id="custom_code" placeholder="Kode custom (opsional, hanya jika 1 URL)">
+        <option value="shortgen.blog">shortgen.blog</option>
+        <option value="accimg.co">accimg.co</option>
+        <option value="acfimg.top">acfimg.top</option>
+        <option value="asupan.videoviral.ink">asupan.videoviral.ink</option>
+        <option value="baru.videowikwik.lol">baru.videowikwik.lol</option>
+        <option value="cdn.accimg.co">cdn.accimg.co</option>
+        <option value="cdn.genshortpro.tech">cdn.genshortpro.tech</option>
+        <option value="cdn2.acfimg.top">cdn2.acfimg.top</option>
+        <option value="cdn2.videv.ink">cdn2.videv.ink</option>
+        <option value="cdn2.vldev.cc">cdn2.vldev.cc</option>
+        <option value="genshortpro.tech">genshortpro.tech</option>
+        <option value="ih.tongkepo.lat">ih.tongkepo.lat</option>
+        <option value="jingkrung.baby">jingkrung.baby</option>
+        <option value="melaksugan.bond">melaksugan.bond</option>
+        <option value="mudah2an.melaksugan.bond">mudah2an.melaksugan.bond</option>
+        <option value="nomok.jingkrung.baby">nomok.jingkrung.baby</option>
+        <option value="tongkepo.lat">tongkepo.lat</option>
+        <option value="video.viralnew.fun">video.viralnew.fun</option>
+        <option value="videoviral.ink">videoviral.ink</option>
+        <option value="videowikwik.lol">videowikwik.lol</option>
+        <option value="videv.ink">videv.ink</option>
+        <option value="vidiey.fans">vidiey.fans</option>
+        <option value="viralnew.fun">viralnew.fun</option>
+        <option value="vldev.cc">vldev.cc</option>
+      </select>
+
+      <input type="text" id="custom_code" placeholder="Kode custom (opsional, hanya jika 1 URL)" autocomplete="off">
       <button type="submit" id="submit-btn">Pendekkan</button>
     </form>
 
-    <div id="result" class="result hidden">
+    <section id="result" class="result hidden" aria-live="polite">
       <p>Tautan pendek kamu:</p>
       <div class="short-url-box">
-        <input type="text" id="short-url-output" readonly="">
-        <button id="copy-btn">Salin</button>
+        <input type="text" id="short-url-output" readonly aria-label="Tautan pendek">
+        <button type="button" id="copy-btn">Salin</button>
       </div>
-    </div>
+    </section>
 
-    <div id="bulk-result" class="bulk-result hidden">
+    <section id="bulk-result" class="bulk-result hidden" aria-live="polite">
       <div class="bulk-summary" id="bulk-summary"></div>
       <div id="bulk-list" class="bulk-list"></div>
       <button id="copy-all-btn" class="secondary-btn" type="button">📋 Salin Semua yang Berhasil</button>
-    </div>
+    </section>
 
-    <div id="error" class="error hidden"></div>
-  </div>
+    <div id="error" class="error hidden" role="alert"></div>
+  </main>
 
   <script>
     const form = document.getElementById('shorten-form');
@@ -53,49 +280,112 @@ https://contoh.com/artikel-3" required=""></textarea>
     let lastBulkResults = [];
 
     fetch('/api/domains')
-      .then((r) => r.json())
+      .then((response) => {
+        if (!response.ok) throw new Error('Tidak dapat mengambil domain');
+        return response.json();
+      })
       .then((data) => {
-        (data.domains || []).forEach((d) => {
-          const opt = document.createElement('option');
-          opt.value = d;
-          opt.textContent = d;
-          domainSelect.appendChild(opt);
+        (Array.isArray(data.domains) ? data.domains : []).forEach((domain) => {
+          if ([...domainSelect.options].some((option) => option.value === domain)) return;
+          const option = document.createElement('option');
+          option.value = domain;
+          option.textContent = domain;
+          domainSelect.appendChild(option);
         });
       })
-      .catch(() => {});
+      .catch(() => {
+        // Domain bawaan tetap bisa dipilih jika API domain tidak tersedia.
+      });
 
     function resetBoxes() {
       errorBox.classList.add('hidden');
       resultBox.classList.add('hidden');
       bulkResultBox.classList.add('hidden');
+      errorBox.textContent = '';
+    }
+
+    function showError(message) {
+      errorBox.textContent = message || 'Terjadi kesalahan.';
+      errorBox.classList.remove('hidden');
+    }
+
+    function makeBulkItem(className, longUrl, detail, detailClass) {
+      const item = document.createElement('div');
+      item.className = 'bulk-item ' + className;
+
+      const long = document.createElement('div');
+      long.className = 'bulk-item-long';
+      long.textContent = longUrl || '';
+      item.appendChild(long);
+
+      const result = document.createElement('div');
+      result.className = detailClass;
+      result.textContent = detail || '';
+      item.appendChild(result);
+
+      return item;
     }
 
     function renderBulkResults(data) {
-      bulkSummary.textContent = 'Berhasil ' + data.success + ' dari ' + data.total + ' URL.';
-      bulkList.innerHTML = data.results.map(function (r) {
-        if (r.success) {
-          return '<div class="bulk-item success"><div class="bulk-item-long">' + r.longUrl + '</div><div class="bulk-item-short">' + r.shortUrl + '</div></div>';
+      const results = Array.isArray(data.results) ? data.results : [];
+      bulkSummary.textContent = 'Berhasil ' + (Number(data.success) || 0) +
+        ' dari ' + (Number(data.total) || results.length) + ' URL.';
+      bulkList.replaceChildren();
+
+      results.forEach((item) => {
+        if (item.success) {
+          bulkList.appendChild(makeBulkItem('success', item.longUrl, item.shortUrl, 'bulk-item-short'));
+        } else {
+          bulkList.appendChild(makeBulkItem('error', item.longUrl, item.error || 'Gagal', 'bulk-item-error-msg'));
         }
-        return '<div class="bulk-item error"><div class="bulk-item-long">' + r.longUrl + '</div><div class="bulk-item-error-msg">' + (r.error || 'Gagal') + '</div></div>';
-      }).join('');
+      });
+
       bulkResultBox.classList.remove('hidden');
     }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    async function readJson(response) {
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error('Respons server tidak valid. Periksa backend API.');
+      }
+      return data;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
       resetBoxes();
 
       const rawUrls = document.getElementById('urls').value
-        .split('\n')
-        .map((u) => u.trim())
-        .filter((u) => u);
+        .split(/\r?\n/)
+        .map((url) => url.trim())
+        .filter(Boolean);
 
-      const custom_code = document.getElementById('custom_code').value;
+      const custom_code = document.getElementById('custom_code').value.trim();
       const domain = domainSelect.value;
 
       if (rawUrls.length === 0) {
-        errorBox.textContent = 'Masukkan minimal satu URL.';
-        errorBox.classList.remove('hidden');
+        showError('Masukkan minimal satu URL.');
+        return;
+      }
+
+      const invalidUrl = rawUrls.find((url) => {
+        try {
+          const parsed = new URL(url);
+          return !['http:', 'https:'].includes(parsed.protocol);
+        } catch {
+          return true;
+        }
+      });
+
+      if (invalidUrl) {
+        showError('URL tidak valid: ' + invalidUrl + '. Gunakan URL yang diawali http:// atau https://.');
+        return;
+      }
+
+      if (custom_code && rawUrls.length > 1) {
+        showError('Kode custom hanya bisa digunakan jika memasukkan satu URL.');
         return;
       }
 
@@ -103,64 +393,93 @@ https://contoh.com/artikel-3" required=""></textarea>
       submitBtn.textContent = 'Memproses...';
 
       try {
-        if (rawUrls.length === 1) {
-          const res = await fetch('/api/shorten', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: rawUrls[0], custom_code, domain })
-          });
-          const data = await res.json();
+        const endpoint = rawUrls.length === 1 ? '/api/shorten' : '/api/shorten-bulk';
+        const payload = rawUrls.length === 1
+          ? { url: rawUrls[0], custom_code, domain }
+          : { urls: rawUrls, domain };
 
-          if (!res.ok) {
-            errorBox.textContent = data.error || 'Terjadi kesalahan.';
-            errorBox.classList.remove('hidden');
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await readJson(response);
+
+        if (!response.ok) {
+          showError(data.error || 'Terjadi kesalahan saat memendekkan URL.');
+          return;
+        }
+
+        if (rawUrls.length === 1) {
+          if (!data.short_url) {
+            showError('Server tidak mengembalikan tautan pendek.');
             return;
           }
-
           shortUrlOutput.value = data.short_url;
           resultBox.classList.remove('hidden');
         } else {
-          const res = await fetch('/api/shorten-bulk', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ urls: rawUrls, domain })
-          });
-          const data = await res.json();
-
-          if (!res.ok) {
-            errorBox.textContent = data.error || 'Terjadi kesalahan.';
-            errorBox.classList.remove('hidden');
-            return;
-          }
-
-          lastBulkResults = data.results;
+          lastBulkResults = Array.isArray(data.results) ? data.results : [];
           renderBulkResults(data);
         }
-      } catch (err) {
-        errorBox.textContent = 'Gagal terhubung ke server.';
-        errorBox.classList.remove('hidden');
+      } catch (error) {
+        showError(error.message === 'Failed to fetch'
+          ? 'Gagal terhubung ke server. Pastikan backend API tersedia.'
+          : (error.message || 'Gagal terhubung ke server.'));
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Pendekkan';
       }
     });
 
-    copyBtn.addEventListener('click', () => {
-      shortUrlOutput.select();
-      document.execCommand('copy');
-      copyBtn.textContent = 'Tersalin!';
-      setTimeout(() => (copyBtn.textContent = 'Salin'), 1500);
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const temporary = document.createElement('textarea');
+      temporary.value = text;
+      temporary.style.position = 'fixed';
+      temporary.style.opacity = '0';
+      document.body.appendChild(temporary);
+      temporary.select();
+      const copied = document.execCommand('copy');
+      temporary.remove();
+      if (!copied) throw new Error('Salin otomatis gagal. Silakan salin teks secara manual.');
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      if (!shortUrlOutput.value) return;
+      try {
+        await copyText(shortUrlOutput.value);
+        copyBtn.textContent = 'Tersalin!';
+      } catch (error) {
+        showError(error.message);
+      }
+      setTimeout(() => { copyBtn.textContent = 'Salin'; }, 1500);
     });
 
-    copyAllBtn.addEventListener('click', () => {
-      const text = lastBulkResults.filter((r) => r.success).map((r) => r.shortUrl).join('\n');
-      if (!text) return;
-      navigator.clipboard.writeText(text).then(() => {
+    copyAllBtn.addEventListener('click', async () => {
+      const text = lastBulkResults
+        .filter((item) => item.success && item.shortUrl)
+        .map((item) => item.shortUrl)
+        .join('\n');
+
+      if (!text) {
+        showError('Belum ada tautan berhasil yang bisa disalin.');
+        return;
+      }
+
+      try {
+        await copyText(text);
         copyAllBtn.textContent = 'Tersalin!';
-        setTimeout(() => (copyAllBtn.textContent = '📋 Salin Semua yang Berhasil'), 1500);
-      });
+      } catch (error) {
+        showError(error.message);
+      }
+      setTimeout(() => {
+        copyAllBtn.textContent = '📋 Salin Semua yang Berhasil';
+      }, 1500);
     });
   </script>
-
-
-</body></html>
+</body>
+  </html>
