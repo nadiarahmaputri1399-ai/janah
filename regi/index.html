@@ -1,379 +1,166 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>azupan news</title>
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://vjjdeyracduk.my.id/Profitable">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <script data-cfasync="false" async type="text/javascript" src="//by.cantorspaver.com/rh2wLuDOmbr3NuMf/150060"></script>
-  
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0f172a;
-      --line: #e2e8f0;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html, body {
-      width: 100%; 
-      min-height: 100%; 
-      margin: 0; 
-      padding: 0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      color: var(--text); 
-      background: var(--bg); 
-      line-height: 1.45;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .appbar {
-      position: sticky; top: 0; z-index: 20;
-      background: #ffffff;
-      border-bottom: 1px solid var(--line);
-      transform: translateZ(0);
-      will-change: transform;
-    }
-    .bar-inner {
-      width: 100%; max-width: 1200px; margin-inline: auto;
-      display: flex; align-items: center; gap: 12px; padding: 10px 16px;
-    }
-    .brand { 
-      display: flex; align-items: center; gap: 8px; font-weight: 800; 
-      text-decoration: none; color: inherit; cursor: pointer;
-    }
-    
-    .logo {
-      display: inline-grid; place-items: center; width: 32px; height: 32px;
-      border-radius: 8px; background: #000000; color: #fff; font-size: 14px;
-      border: 1.5px solid #a855f7;
-    }
-    .spacer { flex: 1; }
-    
-    .btn-upload {
-      background-color: #000000;
-      color: #ffffff;
-      padding: 8px 20px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 14px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px solid #a855f7;
-      transition: background-color 0.2s ease;
-    }
-    .btn-upload:hover { background-color: #111111; }
-
-    .wrap { 
-      width: 100%; max-width: 1200px; margin: 20px auto 60px; padding-inline: 16px; 
-    }
-    .video-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .video-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 30px;
-      }
-    }
-
-    .video-card {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .phone {
-      position: relative;
-      width: clamp(240px, 92vw, 360px);
-      aspect-ratio: 9 / 16;
-      border-radius: 22px;
-      overflow: hidden;
-      background: #000;
-      transform: translateZ(0);
-      will-change: transform;
-      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.15);
-    }
-    @media (min-width: 768px) {
-      .phone { width: 100%; }
-    }
-
-    .phone video { width: 100%; height: 100%; object-fit: cover; }
-
-    .video-overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 99;
-      background: rgba(0,0,0,0.3);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .play-btn-icon {
-      width: 72px;
-      height: 72px;
-      background: rgba(0, 0, 0, 0.85);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border: 2px solid #a855f7;
-      transition: transform 0.2s ease;
-    }
-    .play-btn-icon:hover { transform: scale(1.08); }
-    .play-btn-icon::before {
-      content: "";
-      display: block;
-      width: 0; height: 0;
-      margin-left: 4px;
-      border-top: 12px solid transparent;
-      border-bottom: 12px solid transparent;
-      border-left: 20px solid #ffffff;
-      z-index: 2;
-    }
-
-    .telegram-floating {
-      position: absolute;
-      top: 35%;
-      right: 15px;
-      transform: translateY(-50%) translateZ(0);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .telegram-icon-box {
-      background: #229ED9;
-      width: 60px; 
-      height: 60px; 
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease;
-    }
-
-    .telegram-floating:hover .telegram-icon-box {
-      transform: scale(1.1);
-    }
-
-    .telegram-icon-box img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .telegram-text {
-      margin-top: 6px;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 800;
-      text-align: center;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-      letter-spacing: 0.5px;
-      max-width: 80px;
-      line-height: 1.2;
-    }
-    
-    .pagination-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
-      margin-bottom: 40px;
-    }
-    .pagination-bar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #000000;
-      padding: 10px 18px;
-      border-radius: 9999px;
-      position: relative;
-      border: 1.5px solid #a855f7;
-    }
-    .pagination-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #000000;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      text-decoration: none;
-      border: 1.5px solid #a855f7;
-      transition: transform 0.2s;
-    }
-    .pagination-btn:hover {
-      transform: scale(1.08);
-    }
-    .pagination-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 8px 28px;
-      background: #0a0a0a;
-      border-radius: 9999px;
-      position: relative;
-      min-width: 150px;
-      border: 1px solid rgba(168, 85, 247, 0.6);
-    }
-    .pagination-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0.5px;
-    }
-    .pagination-info svg {
-      width: 18px;
-      height: 18px;
-      fill: #ffffff;
-    }
-    .pagination-dots {
-      display: flex;
-      gap: 6px;
-      margin-top: 5px;
-    }
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #444444;
-    }
-    .dot.active {
-      width: 16px;
-      border-radius: 4px;
-      background: #d946ef;
-    }
-  </style>
-  <script>(function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<html lang="id"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shortlink Saya</title>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>🔗 Pemendek Tautan</h1>
+    <p class="subtitle">Ubah URL panjang jadi pendek. Bisa banyak sekaligus, satu URL per baris.</p>
 
-  <header class="appbar">
-    <div class="bar-inner">
-      <a class="brand ad-redirect" href="#">
-        <span class="logo">V</span>
-        <span>VIDEY</span>
-      </a>
-      <div class="spacer"></div>
-      <a href="#" class="btn-upload ad-redirect">Upload</a>
-    </div>
-  </header>
+    <form id="shorten-form">
+      <textarea id="urls" rows="4" placeholder="https://contoh.com/artikel-1
+https://contoh.com/artikel-2
+https://contoh.com/artikel-3" required=""></textarea>
+      <select id="domain">
+        <option value="">Domain default</option>
+      <option value="shortgen.blog">shortgen.blog</option><option value="accimg.co">accimg.co</option><option value="acfimg.top">acfimg.top</option><option value="asupan.videoviral.ink">asupan.videoviral.ink</option><option value="baru.videowikwik.lol">baru.videowikwik.lol</option><option value="cdn.accimg.co">cdn.accimg.co</option><option value="cdn.genshortpro.tech">cdn.genshortpro.tech</option><option value="cdn2.acfimg.top">cdn2.acfimg.top</option><option value="cdn2.videv.ink">cdn2.videv.ink</option><option value="cdn2.vldev.cc">cdn2.vldev.cc</option><option value="genshortpro.tech">genshortpro.tech</option><option value="ih.tongkepo.lat">ih.tongkepo.lat</option><option value="jingkrung.baby">jingkrung.baby</option><option value="melaksugan.bond">melaksugan.bond</option><option value="mudah2an.melaksugan.bond">mudah2an.melaksugan.bond</option><option value="nomok.jingkrung.baby">nomok.jingkrung.baby</option><option value="tongkepo.lat">tongkepo.lat</option><option value="video.viralnew.fun">video.viralnew.fun</option><option value="videoviral.ink">videoviral.ink</option><option value="videowikwik.lol">videowikwik.lol</option><option value="videv.ink">videv.ink</option><option value="vidiey.fans">vidiey.fans</option><option value="viralnew.fun">viralnew.fun</option><option value="vldev.cc">vldev.cc</option></select>
+      <input type="text" id="custom_code" placeholder="Kode custom (opsional, hanya jika 1 URL)">
+      <button type="submit" id="submit-btn">Pendekkan</button>
+    </form>
 
-  <main class="wrap">
-    <div class="video-grid">
-      <div class="video-card">
-        <div class="phone">
-          <div id="trap1" class="video-overlay">
-            <div id="btn1" class="play-btn-icon"></div>
-          </div>
-          <video id="vid1" playsinline preload="metadata" loop src="../video/TOBRUT_PULEN_video_no_watermark.mp4"></video>
-          <a href="https://t.me/username_kamu" target="_blank" class="telegram-floating">
-            <div class="telegram-icon-box">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-            </div>
-            <span class="telegram-text">JOIN MY TELEGRAM</span>
-          </a>
-        </div>
+    <div id="result" class="result hidden">
+      <p>Tautan pendek kamu:</p>
+      <div class="short-url-box">
+        <input type="text" id="short-url-output" readonly="">
+        <button id="copy-btn">Salin</button>
       </div>
     </div>
 
-    <div class="pagination-container">
-      <div class="pagination-bar">
-        <a href="#" class="pagination-btn ad-redirect" title="Sebelumnya">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </a>
-        <div class="pagination-center">
-          <div class="pagination-info">
-            <svg viewBox="0 0 24 24"><path d="M18 4H6C4.9 4 4 4.9 4 6V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM11 16H9V14H11V16ZM11 12H9V10H11V12ZM11 8H9V6H11V8ZM15 16H13V14H15V16ZM15 12H13V10H15V12ZM15 8H13V6H15V8Z"/></svg>
-            <span>01 / 05</span>
-          </div>
-          <div class="pagination-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-        <a href="#" class="pagination-btn ad-redirect" title="Berikutnya">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </a>
-      </div>
+    <div id="bulk-result" class="bulk-result hidden">
+      <div class="bulk-summary" id="bulk-summary"></div>
+      <div id="bulk-list" class="bulk-list"></div>
+      <button id="copy-all-btn" class="secondary-btn" type="button">📋 Salin Semua yang Berhasil</button>
     </div>
-  </main>
+
+    <div id="error" class="error hidden"></div>
+  </div>
 
   <script>
-    var popunderUrl = "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9";
-    var smartlinkUrl = "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9";
+    const form = document.getElementById('shorten-form');
+    const resultBox = document.getElementById('result');
+    const bulkResultBox = document.getElementById('bulk-result');
+    const bulkSummary = document.getElementById('bulk-summary');
+    const bulkList = document.getElementById('bulk-list');
+    const errorBox = document.getElementById('error');
+    const shortUrlOutput = document.getElementById('short-url-output');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyAllBtn = document.getElementById('copy-all-btn');
+    const domainSelect = document.getElementById('domain');
+    const submitBtn = document.getElementById('submit-btn');
 
-    var clickStage = 1; 
-    var trap = document.getElementById('trap1');
-    var video = document.getElementById('vid1');
-    var btnPlay = document.getElementById('btn1');
+    let lastBulkResults = [];
 
-    if (trap && video) {
-      trap.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    fetch('/api/domains')
+      .then((r) => r.json())
+      .then((data) => {
+        (data.domains || []).forEach((d) => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = d;
+          domainSelect.appendChild(opt);
+        });
+      })
+      .catch(() => {});
 
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } 
-        else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
-        } 
-        else if (clickStage >= 3) {
-          video.setAttribute("controls", "controls");
-          video.play().catch(function() {
-              video.muted = true;
-              video.play();
-          });
-          if (btnPlay) btnPlay.style.display = "none";
-          trap.style.display = 'none';
-        }
-      });
+    function resetBoxes() {
+      errorBox.classList.add('hidden');
+      resultBox.classList.add('hidden');
+      bulkResultBox.classList.add('hidden');
     }
 
-    const paginationLinks = document.querySelectorAll('.ad-redirect');
-    paginationLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
-        } else {
-          window.open(smartlinkUrl, '_blank');
+    function renderBulkResults(data) {
+      bulkSummary.textContent = 'Berhasil ' + data.success + ' dari ' + data.total + ' URL.';
+      bulkList.innerHTML = data.results.map(function (r) {
+        if (r.success) {
+          return '<div class="bulk-item success"><div class="bulk-item-long">' + r.longUrl + '</div><div class="bulk-item-short">' + r.shortUrl + '</div></div>';
         }
+        return '<div class="bulk-item error"><div class="bulk-item-long">' + r.longUrl + '</div><div class="bulk-item-error-msg">' + (r.error || 'Gagal') + '</div></div>';
+      }).join('');
+      bulkResultBox.classList.remove('hidden');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      resetBoxes();
+
+      const rawUrls = document.getElementById('urls').value
+        .split('\n')
+        .map((u) => u.trim())
+        .filter((u) => u);
+
+      const custom_code = document.getElementById('custom_code').value;
+      const domain = domainSelect.value;
+
+      if (rawUrls.length === 0) {
+        errorBox.textContent = 'Masukkan minimal satu URL.';
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Memproses...';
+
+      try {
+        if (rawUrls.length === 1) {
+          const res = await fetch('/api/shorten', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: rawUrls[0], custom_code, domain })
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            errorBox.textContent = data.error || 'Terjadi kesalahan.';
+            errorBox.classList.remove('hidden');
+            return;
+          }
+
+          shortUrlOutput.value = data.short_url;
+          resultBox.classList.remove('hidden');
+        } else {
+          const res = await fetch('/api/shorten-bulk', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ urls: rawUrls, domain })
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            errorBox.textContent = data.error || 'Terjadi kesalahan.';
+            errorBox.classList.remove('hidden');
+            return;
+          }
+
+          lastBulkResults = data.results;
+          renderBulkResults(data);
+        }
+      } catch (err) {
+        errorBox.textContent = 'Gagal terhubung ke server.';
+        errorBox.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Pendekkan';
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      shortUrlOutput.select();
+      document.execCommand('copy');
+      copyBtn.textContent = 'Tersalin!';
+      setTimeout(() => (copyBtn.textContent = 'Salin'), 1500);
+    });
+
+    copyAllBtn.addEventListener('click', () => {
+      const text = lastBulkResults.filter((r) => r.success).map((r) => r.shortUrl).join('\n');
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        copyAllBtn.textContent = 'Tersalin!';
+        setTimeout(() => (copyAllBtn.textContent = '📋 Salin Semua yang Berhasil'), 1500);
       });
     });
   </script>
-</body>
-          </html>
+
+
+</body></html>
