@@ -1,485 +1,422 @@
-<!DOCTYPE html>
+const HTML = String.raw`<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#4f46e5">
-  <title>Shortlink Saya</title>
+  <title>Link Singkat, Mudah Dibagikan</title>
   <style>
     * { box-sizing: border-box; }
-
     :root {
-      --primary: #4f46e5;
-      --primary-dark: #4338ca;
-      --soft: #f4f4ff;
-      --text: #17172b;
-      --muted: #66667a;
-      --border: #dddded;
-      --success: #16a34a;
-      --danger: #b91c1c;
+      --bg:#edf3ee; --ink:#161b19; --muted:#6b7570; --line:#e1e6e3;
+      --slate:#5b7694; --slate-soft:#eef2f7; --sage:#8fb09a; --sage-dark:#78a085;
+      --ok:#2f7d4f; --danger:#b42318;
     }
-
     body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 15%, rgba(255,255,255,.18), transparent 28%),
-        linear-gradient(135deg, #4f46e5, #7c3aed);
+      margin:0; min-height:100vh; padding:40px 18px 56px;
+      display:flex; flex-direction:column; align-items:center;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      color:var(--ink); background:var(--bg);
     }
+    .hero { text-align:center; margin-bottom:26px; }
+    .hero-icon { width:84px; height:84px; color:var(--slate); }
+    .badges { margin:14px 0 10px; font-size:15px; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; }
+    .badges svg { width:16px; height:16px; vertical-align:-2px; margin-right:4px; }
+    .dot { width:4px; height:4px; background:var(--ink); border-radius:50%; }
+    h1 { margin:0; font-size:clamp(26px,6vw,40px); font-weight:500; letter-spacing:-.02em; }
 
-    .container {
-      width: 100%;
-      max-width: 520px;
-      padding: 32px;
-      background: #fff;
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(22, 12, 70, .25);
+    .card {
+      width:100%; max-width:560px; padding:20px; background:#fff; border-radius:26px;
+      box-shadow:0 18px 50px rgba(40,60,50,.12), 0 2px 6px rgba(40,60,50,.06);
     }
+    .card-head { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+    .circle { flex:none; width:56px; height:56px; border-radius:50%; background:var(--slate-soft); color:var(--slate); display:grid; place-items:center; }
+    .circle svg { width:26px; height:26px; }
+    .card-head span { font-size:20px; font-weight:500; }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 5vw, 29px);
-      line-height: 1.2;
-      text-align: center;
-    }
-
-    .subtitle {
-      margin: 0 0 26px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    textarea,
-    select,
-    input[type="text"] {
-      width: 100%;
-      min-width: 0;
-      padding: 12px 14px;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font: inherit;
-      font-size: 15px;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
+    .url-box { display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border:1px solid var(--line); border-radius:18px; color:var(--slate); }
+    .url-box svg { flex:none; width:24px; height:24px; margin-top:2px; }
     textarea {
-      min-height: 112px;
-      resize: vertical;
-      line-height: 1.5;
+      flex:1; width:100%; min-height:30px; max-height:220px; padding:2px 0; border:0; outline:0; resize:none;
+      font:inherit; font-size:16px; line-height:1.5; color:var(--ink); background:transparent;
+    }
+    textarea::placeholder, input::placeholder { color:#8b948f; }
+
+    .options { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0; }
+    .opt { display:flex; align-items:center; gap:12px; padding:12px; border:1px solid var(--line); border-radius:18px; min-width:0; }
+    .opt:focus-within, .url-box:focus-within { border-color:var(--sage-dark); box-shadow:0 0 0 3px rgba(143,176,154,.25); }
+    .opt .circle { width:44px; height:44px; }
+    .opt .circle svg { width:22px; height:22px; }
+    .opt-body { min-width:0; flex:1; }
+    .opt-body label { display:block; font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .opt-body select, .opt-body input {
+      width:100%; padding:2px 0; border:0; outline:0; background:transparent; color:var(--muted);
+      font:inherit; font-size:15px; text-overflow:ellipsis;
     }
 
-    textarea:focus,
-    select:focus,
-    input[type="text"]:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+    .submit {
+      width:100%; min-height:58px; padding:0 22px; display:flex; align-items:center; justify-content:center; gap:12px; position:relative;
+      color:#fff; background:var(--sage); border:0; border-radius:18px; font:inherit; font-size:17px; cursor:pointer;
+      transition:background .15s;
     }
+    .submit:hover { background:var(--sage-dark); }
+    .submit:focus-visible, .copy:focus-visible, .ghost:focus-visible { outline:3px solid var(--slate); outline-offset:2px; }
+    .submit:disabled { opacity:.7; cursor:progress; }
+    .submit svg { width:24px; height:24px; }
+    .submit .arrow { position:absolute; right:22px; }
 
-    button {
-      min-height: 44px;
-      padding: 12px 14px;
-      color: #fff;
-      background: var(--primary);
-      border: 0;
-      border-radius: 10px;
-      font: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s, transform .15s, opacity .2s;
+    .msg-error { margin-top:14px; padding:12px 14px; color:var(--danger); background:#fdecea; border:1px solid #f5c6c1; border-radius:14px; font-size:14px; overflow-wrap:anywhere; }
+    .hidden { display:none !important; }
+
+    .results { margin-top:18px; }
+    .summary { margin:0 0 10px; font-size:14px; font-weight:600; color:var(--muted); }
+    .list { display:flex; flex-direction:column; gap:10px; max-height:380px; overflow-y:auto; }
+    .row { display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-left:4px solid var(--ok); border-radius:14px; background:#fbfcfb; }
+    .row.fail { border-left-color:#e5483a; }
+    .row-main { flex:1; min-width:0; }
+    .row-long { font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .row-short { margin-top:3px; font-size:16px; font-weight:600; color:var(--slate); text-decoration:none; overflow-wrap:anywhere; }
+    .row-err { margin-top:3px; font-size:13px; color:var(--danger); }
+    .copy, .ghost { flex:none; min-height:38px; padding:0 14px; border-radius:12px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+    .copy { color:#fff; background:var(--slate); border:0; }
+    .ghost { width:100%; margin-top:12px; min-height:46px; color:var(--slate); background:#fff; border:1px solid var(--slate); }
+
+    @media (max-width:520px) {
+      .options { grid-template-columns:1fr; }
     }
-
-    button:hover { background: var(--primary-dark); }
-    button:active { transform: scale(.99); }
-    button:disabled { opacity: .65; cursor: not-allowed; }
-
-    .result,
-    .bulk-result {
-      margin-top: 22px;
-      padding: 16px;
-      background: var(--soft);
-      border: 1px solid #e4e4ff;
-      border-radius: 12px;
-    }
-
-    .result > p { margin: 0; font-weight: 700; }
-
-    .short-url-box {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .short-url-box input { flex: 1; }
-    .short-url-box button { flex: 0 0 auto; }
-
-    .error {
-      margin-top: 16px;
-      padding: 12px 14px;
-      color: var(--danger);
-      background: #fee2e2;
-      border: 1px solid #fecaca;
-      border-radius: 10px;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    .hidden { display: none !important; }
-
-    .secondary-btn {
-      width: 100%;
-      margin-top: 12px;
-      color: var(--primary);
-      background: #fff;
-      border: 1px solid var(--primary);
-    }
-
-    .secondary-btn:hover { background: #ededff; }
-
-    .bulk-summary {
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .bulk-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    .bulk-item {
-      padding: 11px 12px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-left: 4px solid #9ca3af;
-      border-radius: 9px;
-      font-size: 14px;
-    }
-
-    .bulk-item.success { border-left-color: var(--success); }
-    .bulk-item.error { border-left-color: #ef4444; }
-
-    .bulk-item-long {
-      margin-bottom: 5px;
-      color: var(--muted);
-      font-size: 12px;
-      overflow-wrap: anywhere;
-    }
-
-    .bulk-item-short {
-      color: var(--primary);
-      font-weight: 700;
-      overflow-wrap: anywhere;
-    }
-
-    .bulk-item-error-msg {
-      color: var(--danger);
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    @media (max-width: 480px) {
-      body { padding: 12px; align-items: flex-start; }
-      .container { margin: auto 0; padding: 23px 18px; border-radius: 16px; }
-      .short-url-box { flex-direction: column; }
-      .short-url-box button { width: 100%; }
-    }
+    @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
   </style>
 </head>
 <body>
-  <main class="container">
-    <h1>🔗 Pemendek Tautan</h1>
-    <p class="subtitle">Ubah URL panjang jadi pendek. Bisa banyak sekaligus, satu URL per baris.</p>
+  <header class="hero">
+    <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+    <div class="badges">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cepat</span>
+      <i class="dot"></i><span>Aman</span><i class="dot"></i><span>Gratis</span>
+    </div>
+    <h1>Link Singkat, Mudah Dibagikan</h1>
+  </header>
 
-    <form id="shorten-form">
-      <textarea id="urls" rows="4" placeholder="https://contoh.com/artikel-1&#10;https://contoh.com/artikel-2&#10;https://contoh.com/artikel-3" required></textarea>
+  <main class="card">
+    <div class="card-head">
+      <div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+      <span>Tautan Anda</span>
+    </div>
 
-      <select id="domain" aria-label="Pilih domain">
-        <option value="">Domain default</option>
-        <option value="shortgen.blog">shortgen.blog</option>
-        <option value="accimg.co">accimg.co</option>
-        <option value="acfimg.top">acfimg.top</option>
-        <option value="asupan.videoviral.ink">asupan.videoviral.ink</option>
-        <option value="baru.videowikwik.lol">baru.videowikwik.lol</option>
-        <option value="cdn.accimg.co">cdn.accimg.co</option>
-        <option value="cdn.genshortpro.tech">cdn.genshortpro.tech</option>
-        <option value="cdn2.acfimg.top">cdn2.acfimg.top</option>
-        <option value="cdn2.videv.ink">cdn2.videv.ink</option>
-        <option value="cdn2.vldev.cc">cdn2.vldev.cc</option>
-        <option value="genshortpro.tech">genshortpro.tech</option>
-        <option value="ih.tongkepo.lat">ih.tongkepo.lat</option>
-        <option value="jingkrung.baby">jingkrung.baby</option>
-        <option value="melaksugan.bond">melaksugan.bond</option>
-        <option value="mudah2an.melaksugan.bond">mudah2an.melaksugan.bond</option>
-        <option value="nomok.jingkrung.baby">nomok.jingkrung.baby</option>
-        <option value="tongkepo.lat">tongkepo.lat</option>
-        <option value="video.viralnew.fun">video.viralnew.fun</option>
-        <option value="videoviral.ink">videoviral.ink</option>
-        <option value="videowikwik.lol">videowikwik.lol</option>
-        <option value="videv.ink">videv.ink</option>
-        <option value="vidiey.fans">vidiey.fans</option>
-        <option value="viralnew.fun">viralnew.fun</option>
-        <option value="vldev.cc">vldev.cc</option>
-      </select>
+    <form id="form" novalidate>
+      <div class="url-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <textarea id="urls" rows="1" placeholder="Tempel URL Anda... (satu URL per baris untuk banyak sekaligus)" aria-label="URL yang akan dipendekkan"></textarea>
+      </div>
 
-      <input type="text" id="custom_code" placeholder="Kode custom (opsional, hanya jika 1 URL)" autocomplete="off">
-      <button type="submit" id="submit-btn">Pendekkan</button>
+      <div class="options">
+        <div class="opt">
+          <div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
+          <div class="opt-body">
+            <label for="domain">Domain Default:</label>
+            <select id="domain"></select>
+          </div>
+        </div>
+        <div class="opt">
+          <div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/><path d="m14 4-4 16"/></svg></div>
+          <div class="opt-body">
+            <label for="code">Kode Kustom (Opsional)</label>
+            <input id="code" type="text" placeholder="abct23" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30">
+          </div>
+        </div>
+      </div>
+
+      <button class="submit" id="submit" type="submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span id="submit-label">Singkatkan URL</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </button>
     </form>
 
-    <section id="result" class="result hidden" aria-live="polite">
-      <p>Tautan pendek kamu:</p>
-      <div class="short-url-box">
-        <input type="text" id="short-url-output" readonly aria-label="Tautan pendek">
-        <button type="button" id="copy-btn">Salin</button>
-      </div>
-    </section>
+    <div id="error" class="msg-error hidden" role="alert"></div>
 
-    <section id="bulk-result" class="bulk-result hidden" aria-live="polite">
-      <div class="bulk-summary" id="bulk-summary"></div>
-      <div id="bulk-list" class="bulk-list"></div>
-      <button id="copy-all-btn" class="secondary-btn" type="button">📋 Salin Semua yang Berhasil</button>
+    <section id="results" class="results hidden" aria-live="polite">
+      <p class="summary" id="summary"></p>
+      <div class="list" id="list"></div>
+      <button type="button" class="ghost" id="copy-all">Salin semua yang berhasil</button>
     </section>
-
-    <div id="error" class="error hidden" role="alert"></div>
   </main>
 
   <script>
-    const form = document.getElementById('shorten-form');
-    const resultBox = document.getElementById('result');
-    const bulkResultBox = document.getElementById('bulk-result');
-    const bulkSummary = document.getElementById('bulk-summary');
-    const bulkList = document.getElementById('bulk-list');
-    const errorBox = document.getElementById('error');
-    const shortUrlOutput = document.getElementById('short-url-output');
-    const copyBtn = document.getElementById('copy-btn');
-    const copyAllBtn = document.getElementById('copy-all-btn');
-    const domainSelect = document.getElementById('domain');
-    const submitBtn = document.getElementById('submit-btn');
+    var $ = function (id) { return document.getElementById(id); };
+    var urlsEl = $('urls'), codeEl = $('code'), domainEl = $('domain');
+    var errorEl = $('error'), resultsEl = $('results'), listEl = $('list'), summaryEl = $('summary');
+    var submitBtn = $('submit'), submitLabel = $('submit-label'), copyAllBtn = $('copy-all');
+    var lastResults = [];
 
-    let lastBulkResults = [];
-
-    fetch('/api/domains')
-      .then((response) => {
-        if (!response.ok) throw new Error('Tidak dapat mengambil domain');
-        return response.json();
-      })
-      .then((data) => {
-        (Array.isArray(data.domains) ? data.domains : []).forEach((domain) => {
-          if ([...domainSelect.options].some((option) => option.value === domain)) return;
-          const option = document.createElement('option');
-          option.value = domain;
-          option.textContent = domain;
-          domainSelect.appendChild(option);
-        });
-      })
-      .catch(() => {
-        // Domain bawaan tetap bisa dipilih jika API domain tidak tersedia.
+    // Domain: pilihan pertama = domain default (domain tempat halaman ini dibuka)
+    function addDomain(value, label) {
+      var o = document.createElement('option');
+      o.value = value; o.textContent = label;
+      domainEl.appendChild(o);
+    }
+    addDomain('', location.host);
+    fetch('/api/domains').then(function (r) { return r.json(); }).then(function (d) {
+      (Array.isArray(d.domains) ? d.domains : []).forEach(function (x) {
+        if (x !== location.host) addDomain(x, x);
       });
+    }).catch(function () {});
 
-    function resetBoxes() {
-      errorBox.classList.add('hidden');
-      resultBox.classList.add('hidden');
-      bulkResultBox.classList.add('hidden');
-      errorBox.textContent = '';
+    // Kolom URL tumbuh otomatis saat banyak baris
+    function grow() {
+      urlsEl.style.height = 'auto';
+      urlsEl.style.height = Math.min(urlsEl.scrollHeight, 220) + 'px';
     }
+    urlsEl.addEventListener('input', grow);
 
-    function showError(message) {
-      errorBox.textContent = message || 'Terjadi kesalahan.';
-      errorBox.classList.remove('hidden');
+    function showError(msg) { errorEl.textContent = msg; errorEl.classList.remove('hidden'); }
+    function clearAll() { errorEl.classList.add('hidden'); errorEl.textContent = ''; }
+
+    // Tambahkan https:// otomatis jika lupa
+    function normalize(u) {
+      u = u.trim();
+      if (!u) return '';
+      if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(u)) u = 'https://' + u;
+      return u;
     }
-
-    function makeBulkItem(className, longUrl, detail, detailClass) {
-      const item = document.createElement('div');
-      item.className = 'bulk-item ' + className;
-
-      const long = document.createElement('div');
-      long.className = 'bulk-item-long';
-      long.textContent = longUrl || '';
-      item.appendChild(long);
-
-      const result = document.createElement('div');
-      result.className = detailClass;
-      result.textContent = detail || '';
-      item.appendChild(result);
-
-      return item;
+    function isValid(u) {
+      try { var p = new URL(u); return p.protocol === 'http:' || p.protocol === 'https:'; }
+      catch (e) { return false; }
     }
-
-    function renderBulkResults(data) {
-      const results = Array.isArray(data.results) ? data.results : [];
-      bulkSummary.textContent = 'Berhasil ' + (Number(data.success) || 0) +
-        ' dari ' + (Number(data.total) || results.length) + ' URL.';
-      bulkList.replaceChildren();
-
-      results.forEach((item) => {
-        if (item.success) {
-          bulkList.appendChild(makeBulkItem('success', item.longUrl, item.shortUrl, 'bulk-item-short'));
-        } else {
-          bulkList.appendChild(makeBulkItem('error', item.longUrl, item.error || 'Gagal', 'bulk-item-error-msg'));
-        }
-      });
-
-      bulkResultBox.classList.remove('hidden');
-    }
-
-    async function readJson(response) {
-      let data;
-      try {
-        data = await response.json();
-      } catch {
-        throw new Error('Respons server tidak valid. Periksa backend API.');
-      }
-      return data;
-    }
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      resetBoxes();
-
-      const rawUrls = document.getElementById('urls').value
-        .split(/\r?\n/)
-        .map((url) => url.trim())
-        .filter(Boolean);
-
-      const custom_code = document.getElementById('custom_code').value.trim();
-      const domain = domainSelect.value;
-
-      if (rawUrls.length === 0) {
-        showError('Masukkan minimal satu URL.');
-        return;
-      }
-
-      const invalidUrl = rawUrls.find((url) => {
-        try {
-          const parsed = new URL(url);
-          return !['http:', 'https:'].includes(parsed.protocol);
-        } catch {
-          return true;
-        }
-      });
-
-      if (invalidUrl) {
-        showError('URL tidak valid: ' + invalidUrl + '. Gunakan URL yang diawali http:// atau https://.');
-        return;
-      }
-
-      if (custom_code && rawUrls.length > 1) {
-        showError('Kode custom hanya bisa digunakan jika memasukkan satu URL.');
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Memproses...';
-
-      try {
-        const endpoint = rawUrls.length === 1 ? '/api/shorten' : '/api/shorten-bulk';
-        const payload = rawUrls.length === 1
-          ? { url: rawUrls[0], custom_code, domain }
-          : { urls: rawUrls, domain };
-
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await readJson(response);
-
-        if (!response.ok) {
-          showError(data.error || 'Terjadi kesalahan saat memendekkan URL.');
-          return;
-        }
-
-        if (rawUrls.length === 1) {
-          if (!data.short_url) {
-            showError('Server tidak mengembalikan tautan pendek.');
-            return;
-          }
-          shortUrlOutput.value = data.short_url;
-          resultBox.classList.remove('hidden');
-        } else {
-          lastBulkResults = Array.isArray(data.results) ? data.results : [];
-          renderBulkResults(data);
-        }
-      } catch (error) {
-        showError(error.message === 'Failed to fetch'
-          ? 'Gagal terhubung ke server. Pastikan backend API tersedia.'
-          : (error.message || 'Gagal terhubung ke server.'));
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Pendekkan';
-      }
-    });
 
     async function copyText(text) {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
         return;
       }
-
-      const temporary = document.createElement('textarea');
-      temporary.value = text;
-      temporary.style.position = 'fixed';
-      temporary.style.opacity = '0';
-      document.body.appendChild(temporary);
-      temporary.select();
-      const copied = document.execCommand('copy');
-      temporary.remove();
-      if (!copied) throw new Error('Salin otomatis gagal. Silakan salin teks secara manual.');
+      var t = document.createElement('textarea');
+      t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      var ok = document.execCommand('copy');
+      t.remove();
+      if (!ok) throw new Error('Salin otomatis gagal. Silakan salin manual.');
     }
 
-    copyBtn.addEventListener('click', async () => {
-      if (!shortUrlOutput.value) return;
+    function flash(btn, text, original) {
+      btn.textContent = text;
+      setTimeout(function () { btn.textContent = original; }, 1500);
+    }
+
+    function render(data) {
+      lastResults = Array.isArray(data.results) ? data.results : [];
+      var ok = lastResults.filter(function (r) { return r.success; }).length;
+      summaryEl.textContent = lastResults.length === 1
+        ? (ok ? 'Tautan pendek kamu:' : 'Gagal membuat tautan.')
+        : 'Berhasil ' + ok + ' dari ' + lastResults.length + ' URL.';
+      listEl.replaceChildren();
+
+      lastResults.forEach(function (r) {
+        var row = document.createElement('div');
+        row.className = 'row' + (r.success ? '' : ' fail');
+        var main = document.createElement('div');
+        main.className = 'row-main';
+        var long = document.createElement('div');
+        long.className = 'row-long'; long.textContent = r.longUrl || '';
+        main.appendChild(long);
+
+        if (r.success) {
+          var a = document.createElement('a');
+          a.className = 'row-short'; a.href = r.shortUrl; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = r.shortUrl;
+          main.appendChild(a);
+          row.appendChild(main);
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'copy'; b.textContent = 'Salin';
+          b.addEventListener('click', async function () {
+            try { await copyText(r.shortUrl); flash(b, 'Tersalin!', 'Salin'); }
+            catch (e) { showError(e.message); }
+          });
+          row.appendChild(b);
+        } else {
+          var er = document.createElement('div');
+          er.className = 'row-err'; er.textContent = r.error || 'Gagal';
+          main.appendChild(er);
+          row.appendChild(main);
+        }
+        listEl.appendChild(row);
+      });
+
+      copyAllBtn.classList.toggle('hidden', ok < 2);
+      resultsEl.classList.remove('hidden');
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    $('form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearAll();
+      resultsEl.classList.add('hidden');
+
+      // Link yang sama boleh dimasukkan berkali-kali: sengaja TIDAK dihapus duplikatnya
+      var urls = urlsEl.value.split(/[\s,]+/).map(normalize).filter(Boolean);
+      var code = codeEl.value.trim();
+
+      if (!urls.length) { showError('Masukkan minimal satu URL.'); return; }
+      var bad = urls.find(function (u) { return !isValid(u); });
+      if (bad) { showError('URL tidak valid: ' + bad); return; }
+      if (code && urls.length > 1) { showError('Kode kustom hanya bisa dipakai untuk satu URL. Kosongkan kode kustom atau masukkan satu URL saja.'); return; }
+      if (urls.length > 50) { showError('Maksimal 50 URL sekaligus.'); return; }
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Memproses...';
       try {
-        await copyText(shortUrlOutput.value);
-        copyBtn.textContent = 'Tersalin!';
-      } catch (error) {
-        showError(error.message);
+        var res = await fetch('/api/shorten-bulk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ urls: urls, domain: domainEl.value, custom_code: code })
+        });
+        var data;
+        try { data = await res.json(); } catch (x) { throw new Error('Respons server tidak valid.'); }
+        if (!res.ok) { showError(data.error || 'Terjadi kesalahan.'); return; }
+        render(data);
+      } catch (err) {
+        showError(err.message || 'Gagal terhubung ke server.');
+      } finally {
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Singkatkan URL';
       }
-      setTimeout(() => { copyBtn.textContent = 'Salin'; }, 1500);
     });
 
-    copyAllBtn.addEventListener('click', async () => {
-      const text = lastBulkResults
-        .filter((item) => item.success && item.shortUrl)
-        .map((item) => item.shortUrl)
-        .join('\n');
-
-      if (!text) {
-        showError('Belum ada tautan berhasil yang bisa disalin.');
-        return;
-      }
-
-      try {
-        await copyText(text);
-        copyAllBtn.textContent = 'Tersalin!';
-      } catch (error) {
-        showError(error.message);
-      }
-      setTimeout(() => {
-        copyAllBtn.textContent = '📋 Salin Semua yang Berhasil';
-      }, 1500);
+    copyAllBtn.addEventListener('click', async function () {
+      var text = lastResults.filter(function (r) { return r.success; }).map(function (r) { return r.shortUrl; }).join('\n');
+      if (!text) return;
+      try { await copyText(text); flash(copyAllBtn, 'Tersalin!', 'Salin semua yang berhasil'); }
+      catch (e) { showError(e.message); }
     });
   </script>
 </body>
-  </html>
+</html>`;
+
+// Daftar domain tambahan yang muncul di pilihan.
+// Domain harus sudah diarahkan (route) ke Worker ini di Cloudflare.
+// Contoh: const DOMAINS = ['pendek.id', 'link.contoh.com'];
+const DOMAINS = [
+  'domain1.com',
+  'domain2.com',
+  'domain3.com',
+];
+
+const RESERVED = ['api', 'admin', 'index', 'favicon.ico', 'robots.txt'];
+const CODE_RE = /^[A-Za-z0-9_-]{3,30}$/;
+const MAX_BULK = 50;
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+  });
+}
+
+function randomCode(len = 6) {
+  const chars = 'abcdefghijkmnpqrstuvwxyz23456789';
+  const bytes = crypto.getRandomValues(new Uint8Array(len));
+  return Array.from(bytes, (b) => chars[b % chars.length]).join('');
+}
+
+function validUrl(u) {
+  try {
+    const p = new URL(u);
+    return p.protocol === 'http:' || p.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+// Membuat satu tautan pendek.
+// Catatan: URL yang sama SELALU dibuatkan kode baru (tidak ada pengecekan duplikat),
+// jadi satu link bisa dipendekkan berkali-kali.
+async function createLink(env, url, customCode, domain, host) {
+  if (!validUrl(url)) throw new Error('URL tidak valid');
+
+  // Domain hanya boleh domain default (host) atau yang ada di daftar DOMAINS
+  if (domain && domain !== host && !DOMAINS.includes(domain)) {
+    throw new Error('Domain tidak diizinkan');
+  }
+
+  let code = customCode;
+  if (code) {
+    if (!CODE_RE.test(code)) throw new Error('Kode kustom: 3-30 karakter (huruf, angka, - atau _)');
+    if (RESERVED.includes(code.toLowerCase())) throw new Error('Kode ini tidak boleh dipakai');
+    if (await env.LINKS.get(code)) throw new Error('Kode sudah dipakai, coba kode lain');
+  } else {
+    for (let i = 0; i < 8; i++) {
+      const c = randomCode();
+      if (!(await env.LINKS.get(c))) { code = c; break; }
+    }
+    if (!code) throw new Error('Gagal membuat kode, coba lagi');
+  }
+
+  await env.LINKS.put(code, url);
+  return 'https://' + (domain || host) + '/' + code;
+}
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const path = url.pathname;
+    const host = url.host;
+
+    if (request.method === 'GET' && path === '/') {
+      return new Response(HTML, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+    }
+
+    if (request.method === 'GET' && path === '/api/domains') {
+      return json({ domains: DOMAINS, default: host });
+    }
+
+    // Satu URL (kompatibel dengan versi lama)
+    if (request.method === 'POST' && path === '/api/shorten') {
+      try {
+        const { url: longUrl, custom_code, domain } = await request.json();
+        const short_url = await createLink(env, longUrl, (custom_code || '').trim(), domain, host);
+        return json({ short_url });
+      } catch (e) {
+        return json({ error: e.message }, 400);
+      }
+    }
+
+    // Banyak URL sekaligus (juga dipakai untuk 1 URL + kode kustom)
+    if (request.method === 'POST' && path === '/api/shorten-bulk') {
+      try {
+        const { urls, domain, custom_code } = await request.json();
+        if (!Array.isArray(urls) || urls.length === 0) return json({ error: 'Daftar URL kosong' }, 400);
+        if (urls.length > MAX_BULK) return json({ error: 'Maksimal ' + MAX_BULK + ' URL sekaligus' }, 400);
+
+        const code = (custom_code || '').trim();
+        if (code && urls.length > 1) return json({ error: 'Kode kustom hanya untuk satu URL' }, 400);
+
+        const results = [];
+        for (const longUrl of urls) {
+          try {
+            const shortUrl = await createLink(env, longUrl, code || null, domain, host);
+            results.push({ success: true, longUrl, shortUrl });
+          } catch (e) {
+            results.push({ success: false, longUrl, error: e.message });
+          }
+        }
+        return json({
+          success: results.filter((r) => r.success).length,
+          total: urls.length,
+          results,
+        });
+      } catch (e) {
+        return json({ error: e.message }, 400);
+      }
+    }
+
+    // Redirect tautan pendek
+    if (request.method === 'GET' && path.length > 1) {
+      const target = await env.LINKS.get(decodeURIComponent(path.slice(1)));
+      if (target) return Response.redirect(target, 302);
+      return new Response('Tautan tidak ditemukan', { status: 404 });
+    }
+
+    return new Response('Not found', { status: 404 });
+  },
+};
