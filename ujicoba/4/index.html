@@ -1,189 +1,105 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>azupan news</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    body {
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 10px;
-    }
-    .card {
-      background: #ffffff;
-      width: 100%;
-      max-width: 410px;
-      /* Membuat card panjang ke bawah dengan padding besar */
-      padding: 50px 24px 60px 24px;
-      border-radius: 36px;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      border: 1px solid #f0f0f0;
-    }
-    .play-btn-wrapper {
-      display: inline-block;
-      text-decoration: none;
-      cursor: pointer;
-      margin-bottom: 35px;
-    }
-    .play-circle {
-      width: 80px;
-      height: 80px;
-      background: #1e2530;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      box-shadow: 0 6px 16px rgba(30, 37, 48, 0.3);
-    }
-    .play-triangle {
-      width: 0;
-      height: 0;
-      border-top: 13px solid transparent;
-      border-bottom: 13px solid transparent;
-      border-left: 20px solid #ffffff;
-      margin-left: 4px;
-    }
-    h1 {
-      font-size: 28px;
-      color: #111827;
-      font-weight: 800;
-      line-height: 1.3;
-      margin-bottom: 30px;
-    }
-    .info-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 20px 15px;
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .info-top {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14.5px;
-      color: #334155;
-      font-weight: 500;
-      flex-wrap: wrap;
-    }
-    .res-badge {
-      background: #e2e8f0;
-      color: #1e293b;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .check-icon {
-      width: 22px;
-      height: 22px;
-      background: #22c55e;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    .instruction {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 35px;
-      text-align: center;
-      line-height: 1.4;
-    }
-    .btn-main {
-      display: block;
-      background: #1e2530;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 18px;
-      border-radius: 16px;
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 15px rgba(30, 37, 48, 0.25);
-    }
-    .divider {
-      height: 1px;
-      background: #f1f5f9;
-      margin-bottom: 25px;
-    }
-    .footer-features {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      font-size: 13.5px;
-      color: #4b5563;
-      font-weight: 500;
-    }
-    .feature-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nonton Sekarang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="bg">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
 
-  <div class="card">
-    <!-- Tombol Play (Mengarah ke Smartlink) -->
-    <a href="https://vjjdeyyerlies.my.id/ujicoba2/4" class="play-btn-wrapper">
-      <div class="play-circle">
-        <div class="play-triangle"></div>
+<main class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo">
+        <div class="logo-spin"></div>
+        <div class="logo-in">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+        </div>
       </div>
-    </a>
-
-    <h1>Tonton Video Full HD</h1>
-
-    <div class="info-box">
-      <div class="info-top">
-        <span>🎛️</span> Kualitas definisi tinggi <span class="res-badge">1080p</span> terdeteksi.
-      </div>
-      <div class="check-icon">✓</div>
+      <span class="gtext brand-name" id="namaSitus">NAMA SITUS</span>
     </div>
+    <span class="live"><span class="dot blink"></span>LIVE</span>
+  </header>
 
-    <div class="instruction">
-      • Klik tombol di bawah untuk memulai streaming.
-    </div>
-
-    <!-- Tombol Utama (Mengarah ke Smartlink) -->
-    <a href="https://vjjdeyyerlies.my.id/ujicoba2/4" class="btn-main">
-      Lanjutkan Menonton &rarr;
-    </a>
-
-    <div class="divider"></div>
-
-    <div class="footer-features">
-      <div class="feature-row">
-        <span>🛡️</span> Aman & Terverifikasi
-      </div>
-      <div class="feature-row">
-        <span>⚡</span> Streaming Cepat
-      </div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>UPDATE TIAP HARI</span><b class="s1">✦</b><span>9 SERVER AKTIF</span><b class="s2">✦</b><span>TANPA RIBET</span><b class="s3">✦</b><span>KUALITAS HD</span><b class="s4">✦</b>
+      <span>UPDATE TIAP HARI</span><b class="s1">✦</b><span>9 SERVER AKTIF</span><b class="s2">✦</b><span>TANPA RIBET</span><b class="s3">✦</b><span>KUALITAS HD</span><b class="s4">✦</b>
     </div>
   </div>
+  <section class="sec">
+    <div class="hero">
+      <div class="hero-spin"></div>
+      <div class="hero-in">
+        <span class="pill">LINK UTAMA • TERCEPAT</span>
+        <div class="play-big">
+          <span class="ring r1 pulse"></span>
+          <span class="ring r2 pulse2"></span>
+          <div class="play-grad shine">
+            <div class="play-core">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </div>
+        <h1 class="gtext hero-title">TONTON<br>SEKARANG</h1>
+        <p class="hero-sub">Server utama paling kencang &amp; stabil. Klik ini duluan.</p>
+        <a id="linkUtama" href="#" class="btn-main shine lift">
+          BUKA LINK
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="sec sec-gap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">CADANGAN</span>
+        <h2 class="sec-title">8 Server Lain</h2>
+      </div>
+      <span class="online"><span class="dot dot-on blink"></span>Semua online</span>
+    </div>
+    <div class="grid" id="gridServer"></div>
+  </section>
+  <section class="sec sec-gap stack">
+    <a id="linkAplikasi" href="#" class="cta cta-app lift">
+      <div class="cta-circle"></div>
+      <div class="cta-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7"/><path d="m9 11 3 3 3-3"/></svg>
+      </div>
+      <div class="cta-text">
+        <span class="cta-title">Install Aplikasi</span>
+        <span class="cta-sub">Buka langsung dari layar HP</span>
+      </div>
+      <span class="cta-btn">PASANG</span>
+    </a>
+    <a id="linkTelegram" href="#" class="cta cta-tg lift">
+      <div class="cta-circle"></div>
+      <div class="cta-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M21.5 3.6 2.9 10.8c-1.1.4-1.1 1.9.1 2.2l4.7 1.5 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.9 3.6c.8.6 1.9.1 2.1-.8l3.1-15.6c.2-1.1-.8-2-1.9-1.5zM9.5 14.4l8.6-7.3-6.8 8.5-.3 3.3z"/></svg>
+      </div>
+      <div class="cta-text">
+        <span class="cta-title">Channel Telegram</span>
+        <span class="cta-sub">Info link baru tiap hari</span>
+      </div>
+      <span class="cta-btn">GABUNG</span>
+    </a>
+  </section>
 
+  <footer class="foot">
+    <span>Link utama error? Pakai server cadangan.</span>
+    <span>© <span id="tahun"></span> <span id="namaFooter">NAMA SITUS</span></span>
+  </footer>
+</main>
+
+<script src="script.js"></script>
 </body>
-</html>
+ </html>
