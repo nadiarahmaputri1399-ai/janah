@@ -1,32 +1,20 @@
 const CONFIG = {
   namaSitus: "TontonanPluss",
-
-
-  linkUtama: "https://vjjdeyyerlies.my.id/ris/1",
-
-
+  linkUtama: "https://vjjdeyyerlies.my.id/ris",
   linkCadangan: [
+    "https://vjjdeyyerlies.my.id/ris/1",
+    "https://vjjdeyycelinari.my.id/ri/1",
     "https://vjjdeyyerlies.my.id/ris/2",
     "https://vjjdeyycelinari.my.id/ri/1",
     "https://vjjdeyyerlies.my.id/ris/3",
     "https://vjjdeyycelinari.my.id/ri/1",
     "https://vjjdeyyerlies.my.id/ris/4",
-    "https://vjjdeyycelinari.my.id/ri/1",
-    "https://vjjdeyyerlies.my.id/ris/5",
     "https://vjjdeyycelinari.my.id/ri/1"
   ],
-
-  
-  telegram: "https://t.me/username_channel",
-
-
-  aplikasi: "https://link-aplikasi.com",
-
-  
+  telegram: "https://t.me/harapanbangsaterbaru",
+  aplikasi: "https://vjjdeyyerlies.my.id/ris/5",
   tabBaru: true
 };
-
-
 function pasangLink(el, url) {
   if (!el) return;
   el.href = url;
@@ -35,7 +23,6 @@ function pasangLink(el, url) {
     el.rel = "noopener";
   }
 }
-
 function buatKartu(url, i) {
   const kartu = document.createElement("a");
   kartu.className = "card c" + ((i % 8) + 1) + " lift";
@@ -65,17 +52,14 @@ function buatKartu(url, i) {
   pasangLink(kartu, url);
   return kartu;
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("namaSitus").textContent = CONFIG.namaSitus;
   document.getElementById("namaFooter").textContent = CONFIG.namaSitus;
   document.getElementById("tahun").textContent = new Date().getFullYear();
   document.title = CONFIG.namaSitus;
-
   pasangLink(document.getElementById("linkUtama"), CONFIG.linkUtama);
   pasangLink(document.getElementById("linkTelegram"), CONFIG.telegram);
   pasangLink(document.getElementById("linkAplikasi"), CONFIG.aplikasi);
-
   const grid = document.getElementById("gridServer");
   CONFIG.linkCadangan.forEach((url, i) => grid.appendChild(buatKartu(url, i)));
 });
