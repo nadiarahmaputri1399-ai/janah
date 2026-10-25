@@ -3,40 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>azupan news</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Nonton Sekarang</title>
   
   <style>
     :root {
       --bg: #ffffff;
       --text: #0f172a;
       --line: #e2e8f0;
-      --btn: #111827;
-      --btnText: #ffffff;
-      --btnHover: #000000;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
-      width: 100%; height: 100%; margin: 0; padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text); background: var(--bg); line-height: 1.45; overflow-x: hidden;
+      width: 100%; 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text); 
+      background: var(--bg); 
+      line-height: 1.45;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* HALAMAN PLAYER (UTAMA) */
-    #page-player {
-      width: 100%;
-      min-height: 100vh;
-      background: #ffffff;
-    }
-
-    /* APPBAR MODERN */
     .appbar {
       position: sticky; top: 0; z-index: 20;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: saturate(180%) blur(8px);
+      background: #ffffff;
       border-bottom: 1px solid var(--line);
+      transform: translateZ(0);
+      will-change: transform;
     }
     .bar-inner {
       width: 100%; max-width: 1200px; margin-inline: auto;
@@ -46,13 +43,16 @@
       display: flex; align-items: center; gap: 8px; font-weight: 800; 
       text-decoration: none; color: inherit; cursor: pointer;
     }
+    
     .logo {
-      display: inline-grid; place-items: center; width: 28px; height: 28px;
-      border-radius: 6px; background: #111827; color: #fff; font-size: 14px;
+      display: inline-grid; place-items: center; width: 32px; height: 32px;
+      border-radius: 8px; background: #000000; color: #fff; font-size: 14px;
+      border: 1.5px solid #431F6F;
     }
     .spacer { flex: 1; }
+    
     .btn-upload {
-      background-color: #0f172a;
+      background-color: #000000;
       color: #ffffff;
       padding: 8px 20px;
       border-radius: 12px;
@@ -62,13 +62,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      border: 1.5px solid #431F6F;
       transition: background-color 0.2s ease;
     }
-    .btn-upload:hover { background-color: #000000; }
+    .btn-upload:hover { background-color: #111111; }
 
-    /* GRID & VIDEO LAYOUT */
     .wrap { 
-      width: 100%; max-width: 1200px; margin: 20px auto 40px; padding-inline: 16px; 
+      width: 100%; max-width: 1200px; margin: 20px auto 60px; padding-inline: 16px; 
     }
     .video-grid {
       display: flex;
@@ -99,7 +99,8 @@
       border-radius: 22px;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.15);
+      transform: translateZ(0);
+      will-change: transform;
     }
     @media (min-width: 768px) {
       .phone { width: 100%; }
@@ -107,11 +108,10 @@
 
     .phone video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* OVERLAY & TRAP */
     .video-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 999;
+      z-index: 99;
       background: rgba(0,0,0,0.3);
       cursor: pointer;
       display: flex;
@@ -120,137 +120,217 @@
     }
 
     .play-btn-icon {
-      width: 68px;
-      height: 68px;
-      background: rgba(17, 24, 39, 0.85);
+      width: 72px;
+      height: 72px;
+      background: rgba(0, 0, 0, 0.85);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease;
+      position: relative;
+      border: 2px solid #431F6F;
     }
     .play-btn-icon:hover { transform: scale(1.08); }
     .play-btn-icon::before {
       content: "";
       display: block;
       width: 0; height: 0;
-      margin-left: 5px;
+      margin-left: 4px;
       border-top: 12px solid transparent;
       border-bottom: 12px solid transparent;
       border-left: 20px solid #ffffff;
+      z-index: 2;
     }
-
-    /* PAGINATION */
-    .pagination {
+    
+    .pagination-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       margin-top: 50px;
-      margin-bottom: 20px;
-      gap: 15px;
+      margin-bottom: 40px;
     }
-    .pagination a {
-      color: var(--text);
-      background: #f1f5f9;
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #000000;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      position: relative;
+      border: 1.5px solid #431F6F;
+    }
+    .pagination-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #000000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
       text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background 0.3s, transform 0.3s;
+      border: 1.5px solid #431F6F;
+      transition: transform 0.2s;
     }
-    .pagination a:hover {
-      background: #e2e8f0;
-      transform: scale(1.05);
+    .pagination-btn:hover {
+      transform: scale(1.08);
+    }
+    .pagination-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 28px;
+      background: #0a0a0a;
+      border-radius: 9999px;
+      position: relative;
+      min-width: 150px;
+      border: 1px solid #431F6F;
+    }
+    .pagination-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+    .pagination-info svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+    }
+    .pagination-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 5px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #444444;
+    }
+    .dot.active {
+      width: 16px;
+      border-radius: 4px;
+      background: #431F6F;
     }
   </style>
-  <script src="https://advancementportermallow.com/d1/01/ca/d101ca05eb20975a6b8c6a27b1417b5f.js"></script>
+  <script data-cfasync="false" src="https://benchform.org/1/d101ca05eb20975a6b8c6a27b1417b5f"></script>
 </head>
 <body>
 
-  <!-- HALAMAN PLAYER (LANGSUNG TAMPIL) -->
-  <div id="page-player">
-    <header class="appbar">
-      <div class="bar-inner">
-        <a class="brand" href="#" target="_blank">
-          <span class="logo">V</span>
-          <span>VIDEY</span>
-        </a>
-        <div class="spacer"></div>
-        <a href="#" target="_blank" class="btn-upload">Upload</a>
-      </div>
-    </header>
+  <header class="appbar">
+    <div class="bar-inner">
+      <a class="brand ad-redirect" href="#" data-url="https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba">
+        <span class="logo">V</span>
+        <span>VIDEY</span>
+      </a>
+      <div class="spacer"></div>
+      <a href="#" class="btn-upload ad-redirect" data-url="https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba">Upload</a>
+    </div>
+  </header>
 
-    <main class="wrap">
-      <div class="video-grid">
-        <div class="video-card">
-          <div class="phone">
-            <div id="trap1" class="video-overlay">
-              <div id="btn1" class="play-btn-icon"></div>
-            </div>
-            <video id="vid1" playsinline preload="metadata" loop src="../../video/keyyshit_aja1_video_no_watermark.mp4"></video>
+  <main class="wrap">
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="phone">
+          <div id="trap1" class="video-overlay" data-url="https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba">
+            <div id="btn1" class="play-btn-icon"></div>
           </div>
+          <video id="vid1" playsinline preload="metadata" loop src="../../video/keyyshit_aja1_video_no_watermark.mp4"></video>
         </div>
       </div>
+    </div>
 
-      <div class="pagination">
-          <a href="#" class="page-link" data-stage="1">1</a>
-          <a href="#" class="page-link" data-stage="2">2</a>
-          <a href="#" class="page-link" data-stage="3">3</a>
-          <a href="#" class="page-link" data-stage="1">»</a>
+    <div class="pagination-container">
+      <div class="pagination-bar">
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba" title="Sebelumnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <div class="pagination-center">
+          <div class="pagination-info">
+            <svg viewBox="0 0 24 24"><path d="M18 4H6C4.9 4 4 4.9 4 6V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM11 16H9V14H11V16ZM11 12H9V10H11V12ZM11 8H9V6H11V8ZM15 16H13V14H15V16ZM15 12H13V10H15V12ZM15 8H13V6H15V8Z"/></svg>
+            <span>01 / 03</span>
+          </div>
+          <div class="pagination-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba" title="Berikutnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 
   <script>
-    var popunderUrl = "https://advancementportermallow.com/hjqzamya?key=5b2ebc879d26c5fdc3cfc191cfe9aaba";
-    var smartlinkUrl = "https://advancementportermallow.com/hjqzamya?key=5b2ebc879d26c5fdc3cfc191cfe9aaba";
+    var totalKlikCurrent = 0;     
+    var requiredClicks = 1;      
+    var isCoolDownActive = false;   
+    var allTraps = ['trap1']; 
 
-    var clickStage = 1; 
-    var trap = document.getElementById('trap1');
-    var video = document.getElementById('vid1');
-    var btnPlay = document.getElementById('btn1');
+    
+    document.querySelectorAll('.ad-redirect').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            var adUrl = el.getAttribute('data-url') || "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba";
+            window.open(adUrl, '_blank');
+        });
+    });
 
-    if (trap && video) {
-      trap.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    function pasangTrapVideoGacor(trapId, vidId, btnId) {
+        var trap = document.getElementById(trapId);
+        var video = document.getElementById(vidId);
+        var btnPlay = document.getElementById(btnId);
+        if (!trap || !video) return;
 
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } 
-        else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
-        } 
-        else if (clickStage >= 3) {
-          video.setAttribute("controls", "controls");
-          video.play().catch(function() {
-              video.muted = true;
-              video.play();
-          });
-          if (btnPlay) btnPlay.style.display = "none";
-          trap.style.display = 'none';
-        }
-      });
+        var adUrl = trap.getAttribute('data-url');
+
+        trap.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isCoolDownActive) return;
+
+            totalKlikCurrent++;
+            window.open(adUrl, '_blank');
+
+            if (totalKlikCurrent < requiredClicks) {
+                
+                trap.style.display = 'none';
+                setTimeout(function() {
+                    trap.style.display = 'flex';
+                }, 200);
+            } else {
+                
+                trap.style.display = 'none';
+                isCoolDownActive = true;
+
+                video.setAttribute("controls", "controls"); 
+                video.play().catch(function() {
+                    video.muted = true;
+                    video.play();
+                });
+                if(btnPlay) btnPlay.style.display = "none";
+
+                setTimeout(function() {
+                    isCoolDownActive = false;  
+                    totalKlikCurrent = 0;
+                    allTraps.forEach(function(id) {
+                        var targetTrack = document.getElementById(id);
+                        if (targetTrack) targetTrack.style.display = 'flex';
+                    });
+                }, 10000);
+            }
+        });
     }
 
-    const paginationLinks = document.querySelectorAll('.page-link');
-    paginationLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
-        } else {
-          window.open(smartlinkUrl, '_blank');
-        }
-      });
+    window.addEventListener('load', function() {
+        pasangTrapVideoGacor('trap1', 'vid1', 'btn1');
     });
   </script>
 </body>
