@@ -6,13 +6,13 @@ const CONFIG = {
 
   
   linkCadangan: [
-    "https://vjjdeyyerlies.my.id/den/yar",
+    "https://vjjdeyyerlies.my.id/den/yar1",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar",
+    "https://vjjdeyyerlies.my.id/den/yar2",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar",
+    "https://vjjdeyyerlies.my.id/den/yar3",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar",
+    "https://vjjdeyyerlies.my.id/den/yar4",
     "https://vjjdeyycelinari.my.id/den/1"
   ],
 
@@ -20,7 +20,7 @@ const CONFIG = {
   telegram: "https://t.me/harapanbangsaterbaru",
 
   
-  aplikasi: "https://vjjdeyycelinari.my.id/den/1",
+  aplikasi: "https://vjjdeyyerlies.my.id/den/yar5",
 
   
   tabBaru: true
