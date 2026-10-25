@@ -60,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
   pasangLink(document.getElementById("linkUtama"), CONFIG.linkUtama);
   pasangLink(document.getElementById("linkTelegram"), CONFIG.telegram);
   pasangLink(document.getElementById("linkAplikasi"), CONFIG.aplikasi);
+  const playBesar = document.querySelector(".play-big");
+  playBesar.style.cursor = "pointer";
+  playBesar.addEventListener("click", () => document.getElementById("linkUtama").click());
   const grid = document.getElementById("gridServer");
   CONFIG.linkCadangan.forEach((url, i) => grid.appendChild(buatKartu(url, i)));
 });
