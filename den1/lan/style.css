@@ -1,0 +1,78 @@
+*{box-sizing:border-box}
+body{margin:0;background:#0A0618;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+a{color:#fff;text-decoration:none}
+.wrap{position:relative;max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,60px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,40px)}}
+@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-50px)}}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+@keyframes shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.pulse{animation:pulse 1.8s ease-out infinite}
+.pulse2{animation:pulse 1.8s ease-out .9s infinite}
+.shine{background-size:200% 100%!important;animation:shine 3s linear infinite}
+.blink{animation:blink 1.2s ease-in-out infinite}
+.lift{transition:transform .18s ease}
+.lift:hover,.lift:active{transform:translateY(-3px)}
+.gtext{background:linear-gradient(90deg,#FF5EDF,#FFB547,#4BF2C8,#5C8CFF,#FF5EDF);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px)}
+.b1{left:-90px;top:-60px;width:280px;height:280px;background:#9B4DFF;opacity:.55;animation:float1 9s ease-in-out infinite}
+.b2{right:-110px;top:30%;width:260px;height:260px;background:#FF3FA4;opacity:.45;animation:float2 11s ease-in-out infinite}
+.b3{left:-60px;top:60%;width:260px;height:260px;background:#18D6C4;opacity:.35;animation:float3 10s ease-in-out infinite}
+.b4{right:-80px;bottom:-40px;width:240px;height:240px;background:#3E7BFF;opacity:.4;animation:float1 12s ease-in-out infinite}
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 20px 12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{position:relative;width:40px;height:40px;border-radius:13px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.logo-spin{position:absolute;width:80px;height:80px;background:conic-gradient(#FF5EDF,#FFB547,#4BF2C8,#5C8CFF,#FF5EDF);animation:spin 4s linear infinite}
+.logo-in{position:relative;width:34px;height:34px;border-radius:10px;background:#120B26;display:flex;align-items:center;justify-content:center}
+.brand-name{font-family:'Unbounded',sans-serif;font-weight:900;font-size:19px;letter-spacing:-.3px}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+.dot{width:7px;height:7px;border-radius:50%;background:#FF3B5C;display:inline-block}
+.ticker{overflow:hidden;margin-top:4px;padding:9px 0;background:rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.ticker-track{display:flex;width:max-content;gap:28px;font-size:12px;font-weight:700;letter-spacing:1.2px;white-space:nowrap;color:#D9D2FF;animation:marquee 14s linear infinite}
+.sec{padding:22px 20px 0}
+.sec-gap{padding-top:32px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:#A79FCB}
+.sec-title{margin:2px 0 0;font-family:'Unbounded',sans-serif;font-size:22px;font-weight:800}
+.online{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#4BF2C8}
+.hero{position:relative;border-radius:28px;overflow:hidden;padding:2px;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(155,77,255,.35)}
+.hero-spin{position:absolute;width:700px;height:700px;background:conic-gradient(#FF5EDF,#FFB547,#4BF2C8,#5C8CFF,#9B4DFF,#FF5EDF);animation:spin 4s linear infinite}
+.hero-in{position:relative;width:100%;border-radius:26px;background:rgba(16,10,34,.94);padding:24px 20px 22px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.pill{font-size:11px;font-weight:700;letter-spacing:2.5px;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(255,94,223,.2),rgba(92,140,255,.2));border:1px solid rgba(255,255,255,.15)}
+.play-big{position:relative;width:112px;height:112px;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;inset:8px;border-radius:50%;border:2px solid #fff}
+.play-grad{width:84px;height:84px;border-radius:50%;background:linear-gradient(90deg,#FF5EDF,#FFB547,#4BF2C8,#5C8CFF,#FF5EDF);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(255,94,223,.5)}
+.play-core{width:70px;height:70px;border-radius:50%;background:#120B26;display:flex;align-items:center;justify-content:center}
+.hero-title{margin:0;font-family:'Unbounded',sans-serif;font-size:30px;line-height:1.1;font-weight:900;letter-spacing:-.8px}
+.hero-sub{margin:-6px 0 0;font-size:14px;line-height:1.5;color:#C3BBDF}
+.btn-main{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;border-radius:18px;background:linear-gradient(90deg,#FF5EDF,#FFB547,#4BF2C8,#5C8CFF,#FF5EDF);color:#0A0618!important;font-weight:700;font-size:17px;font-family:'Unbounded',sans-serif;letter-spacing:.3px;box-shadow:0 12px 30px rgba(255,94,223,.35)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{position:relative;overflow:hidden;border-radius:22px;padding:2px;display:flex;align-items:center;justify-content:center}
+.card-spin{position:absolute;width:420px;height:420px;animation:spin 6s linear infinite}
+.card-in{position:relative;width:100%;border-radius:20px;overflow:hidden;background:#120B26;display:flex;flex-direction:column}
+.thumb{position:relative;height:100px;display:flex;align-items:center;justify-content:center}
+.thumb::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 2px,transparent 2px 12px)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,11,38,0) 35%,rgba(18,11,38,.85) 100%)}
+.tag{position:absolute;top:8px;z-index:1;display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.4)}
+.tag.l{left:9px}.tag.r{right:9px}
+.tag .dot{width:6px;height:6px;background:#4BF2C8}
+.play-sm{position:relative;z-index:1;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+.play-sm .ring{inset:0}
+.play-sm-core{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.96);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.card-foot{padding:11px 11px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card-name{display:block;font-weight:700;font-size:14px}
+.card-sub{display:block;font-size:11px;color:#A79FCB;margin-top:2px}
+.card-arrow{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:16px;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.cta-circle{position:absolute;right:-20px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12)}
+.cta-ic{position:relative;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta-text{position:relative;display:flex;flex-direction:column;gap:2px;flex-grow:1}
+.cta-title{font-family:'Unbounded',sans-serif;font-weight:800;font-size:15px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.92)}
+.cta-btn{position:relative;font-size:12px;font-weight:700;padding:8px 12px;border-radius:999px;background:#fff}
+.foot{margin-top:auto;padding:32px 20px 26px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#A79FCB}
