@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090b1b">
+<title>Special Edition — Temukan Saluran</title>
+<style>
+:root{
+  --bg:#090b1b; --panel:rgba(18,20,48,.84); --text:#f8f7ff;
+  --muted:#b9bdd5; --pink:#d45bff; --blue:#64b8ff; --line:rgba(140,139,255,.48);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(ellipse at 0% 12%,rgba(173,44,220,.28),transparent 38%),
+    radial-gradient(ellipse at 100% 36%,rgba(32,119,255,.25),transparent 42%),
+    radial-gradient(ellipse at 45% 100%,rgba(91,39,185,.23),transparent 45%),
+    var(--bg);
+  padding-bottom:94px;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.38;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:73px 83px;mask-image:linear-gradient(transparent,#000 20%,#000 85%,transparent);z-index:-1}
+button,input{font:inherit}
+button{cursor:pointer}
+.topbar{
+  position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+  padding:17px 20px;background:rgba(9,11,27,.8);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07)
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.4px;font-size:clamp(18px,4.5vw,25px);line-height:1.02}
+.brand-mark{font-size:34px;color:white;text-shadow:0 0 18px var(--pink)}
+.brand span span{display:block;color:#e46aff}
+.top-actions{display:flex;gap:8px}
+.icon-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.1);border-radius:14px;color:white;background:rgba(255,255,255,.06);display:grid;place-items:center}
+.icon-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+main{width:min(100% - 28px,760px);margin:0 auto}
+.intro{padding:28px 2px 19px}
+.eyebrow{font-size:11px;letter-spacing:2.2px;text-transform:uppercase;color:#c7a0ff;font-weight:800}
+h1{font-size:clamp(25px,6vw,36px);line-height:1.1;margin:9px 0 10px;letter-spacing:-.7px}
+.intro p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.search-wrap{display:none;margin:0 0 16px}
+.search-wrap.open{display:block}
+.search-wrap input{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:15px;background:#11142b;color:white;outline:none}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:9px 2px 15px}
+.section-head h2{font-size:14px;letter-spacing:1.2px;margin:0}
+.count{color:#d4c4ff;font-size:12px;border:1px solid rgba(203,147,255,.3);background:rgba(173,74,255,.1);padding:6px 10px;border-radius:999px}
+.channels{display:grid;gap:14px}
+.channel{
+  position:relative;overflow:hidden;display:grid;grid-template-columns:94px minmax(0,1fr) 48px;gap:14px;align-items:center;
+  min-height:132px;padding:13px;border:1px solid rgba(137,157,255,.64);border-radius:25px;
+  background:linear-gradient(120deg,rgba(30,21,58,.95),rgba(17,25,55,.94));
+  box-shadow:0 0 0 1px rgba(211,91,255,.09),0 8px 26px rgba(0,0,0,.22),inset 0 0 25px rgba(123,74,255,.08);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.channel:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--pink),var(--blue));opacity:.9}
+.channel:hover{transform:translateY(-2px);border-color:#d19cff;box-shadow:0 0 24px rgba(151,88,255,.2)}
+.thumb{width:94px;height:94px;border-radius:17px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#523e80,#192d57);border:1px solid rgba(255,255,255,.13)}
+.thumb svg{width:53px;height:53px;opacity:.9;stroke:#fff;fill:none;stroke-width:1.5}
+.channel-copy{min-width:0}
+.channel h3{font-size:clamp(15px,3.7vw,21px);line-height:1.2;margin:0 0 7px;font-weight:850;letter-spacing:.1px}
+.channel p{font-size:13px;line-height:1.45;color:#c4c7dc;margin:0}
+.tag{display:inline-block;margin-top:8px;font-size:10px;color:#e0b8ff;background:rgba(194,104,255,.12);border:1px solid rgba(194,104,255,.23);padding:4px 7px;border-radius:7px}
+.play{height:46px;width:46px;border:0;border-radius:50%;display:grid;place-items:center;color:#6334b7;background:linear-gradient(145deg,#fff,#e8e4ff);box-shadow:0 0 20px rgba(208,130,255,.28);transition:transform .2s}
+.play:hover{transform:scale(1.08)}
+.play svg{width:21px;height:21px;fill:currentColor;margin-left:2px}
+.empty{display:none;text-align:center;padding:30px 10px;color:var(--muted)}
+.bottom-nav{position:fixed;z-index:20;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);padding:10px 7px calc(10px + env(safe-area-inset-bottom));background:rgba(12,13,31,.92);backdrop-filter:blur(20px);border-top:1px solid rgba(190,160,255,.22);box-shadow:0 -8px 28px rgba(0,0,0,.2)}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:5px;color:#9ca1bf;text-decoration:none;font-size:11px;background:none;border:0;padding:3px 0}
+.nav-item svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8}
+.nav-item.active{color:#fff}
+.nav-item.active svg{color:#e2a0ff;filter:drop-shadow(0 0 7px #a54cff)}
+.toast{position:fixed;z-index:30;left:50%;bottom:100px;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#f6edff;color:#25113c;padding:11px 16px;border-radius:12px;font-size:13px;font-weight:700;transition:.25s;white-space:nowrap;box-shadow:0 8px 28px #0005}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.overlay{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:22px;background:rgba(3,4,15,.75);backdrop-filter:blur(9px)}
+.overlay.show{display:grid}
+.modal{width:min(100%,420px);padding:23px;border:1px solid rgba(193,136,255,.55);border-radius:24px;background:linear-gradient(145deg,#21163b,#10172e);box-shadow:0 0 40px #a94aff25}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.modal h2{font-size:21px;margin:0}
+.modal p{color:var(--muted);font-size:14px;line-height:1.6}
+.close{border:0;color:white;background:#ffffff14;border-radius:10px;width:36px;height:36px;font-size:23px}
+.primary{border:0;border-radius:13px;padding:12px 17px;color:#160c2b;background:linear-gradient(100deg,#efb5ff,#a9d5ff);font-weight:800}
+@media(min-width:600px){main{width:min(100% - 44px,760px)}.intro{padding-top:37px}.channel{grid-template-columns:108px minmax(0,1fr) 52px;padding:15px 17px;min-height:150px}.thumb{width:108px;height:108px}.play{width:50px;height:50px}.channel p{font-size:14px}}
+@media(max-width:370px){.channel{grid-template-columns:75px minmax(0,1fr) 39px;gap:10px;padding:10px;border-radius:20px}.thumb{width:75px;height:75px;border-radius:13px}.play{width:38px;height:38px}.channel h3{font-size:14px}.channel p{font-size:12px}.tag{font-size:9px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">▶</span><span>SPECIAL<span>EDITION</span></span></div>
+  <div class="top-actions">
+    <button class="icon-btn" id="searchToggle" aria-label="Cari saluran" title="Cari saluran"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg></button>
+    <button class="icon-btn" id="menuToggle" aria-label="Menu" title="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+<main>
+  <section class="intro">
+    <div class="eyebrow">Pilihan editor · Edisi terbaru</div>
+    <h1>TEMUKAN SALURAN<br>TERBAIK ANDA</h1>
+    <p>Jelajahi kreator pilihan, temukan inspirasi baru, dan nikmati konten favoritmu di satu tempat.</p>
+  </section>
+  <div class="search-wrap" id="searchWrap"><input id="searchInput" type="search" placeholder="Cari nama atau kategori saluran..." aria-label="Cari saluran"></div>
+  <div class="section-head"><h2>SALURAN PILIHAN</h2><span class="count" id="count">05 SALURAN</span></div>
+  <section class="channels" id="channels">
+    <article class="channel" data-name="Vlog Gaya Hidup Heni Petualangan Tips Perjalanan">
+      <div class="thumb"><svg viewBox="0 0 64 64"><path d="M6 47 23 22l10 13 8-10 17 22H6Z"/><path d="M8 53h48M14 43l9-12 6 8M38 33l4-5 12 15"/><circle cx="44" cy="14" r="6"/><path d="M28 53V43m-5 5 5-5 5 5"/></svg></div>
+      <div class="channel-copy"><h3>VLOG GAYA HIDUP HENI</h3><p>Petualangan &amp; Tips Perjalanan</p><span class="tag">TRAVEL &amp; LIFESTYLE</span></div>
+      <button class="play" data-channel="Vlog Gaya Hidup Heni" aria-label="Buka Vlog Gaya Hidup Heni"><svg viewBox="0 0 24 24"><path d="M6 3.8c0-.8.9-1.3 1.6-.8l12.1 7.9c.7.5.7 1.5 0 2L7.6 20.8c-.7.5-1.6 0-1.6-.8V3.8Z"/></svg></button>
+    </article>
+    <article class="channel" data-name="Dibalik Layar Bersama Sinta Proses Produksi Film Pendek">
+      <div class="thumb"><svg viewBox="0 0 64 64"><rect x="9" y="20" width="31" height="23" rx="3"/><path d="m40 27 14-7v23l-14-7M15 48h24M22 43v5M31 43v5"/><circle cx="24" cy="31.5" r="6"/><path d="M24 25.5v12"/></svg></div>
+      <div class="channel-copy"><h3>DIBALIK LAYAR BERSAMA SINTA</h3><p>Proses Produksi Film Pendek</p><span class="tag">FILM &amp; KREATIVITAS</span></div>
+      <button class="play" data-channel="Dibalik Layar Bersama Sinta" aria-label="Buka Dibalik Layar Bersama Sinta"><svg viewBox="0 0 24 24"><path d="M6 3.8c0-.8.9-1.3 1.6-.8l12.1 7.9c.7.5.7 1.5 0 2L7.6 20.8c-.7.5-1.6 0-1.6-.8V3.8Z"/></svg></button>
+    </article>
+    <article class="channel" data-name="Tips Kesehatan Chika Program Latihan Nutrisi">
+      <div class="thumb"><svg viewBox="0 0 64 64"><path d="M12 51h40M18 46l4-14 9-5 7 6 8 13"/><circle cx="33" cy="17" r="6"/><path d="m28 24-6 8-10 1M37 25l8 6 7 1M22 32l-4 13M39 34l-5 12M8 31v15M5 31h6M5 46h6M56 31v15M53 31h6M53 46h6"/></svg></div>
+      <div class="channel-copy"><h3>TIPS KESEHATAN CHIKA</h3><p>Program Latihan &amp; Nutrisi</p><span class="tag">HEALTH &amp; FITNESS</span></div>
+      <button class="play" data-channel="Tips Kesehatan Chika" aria-label="Buka Tips Kesehatan Chika"><svg viewBox="0 0 24 24"><path d="M6 3.8c0-.8.9-1.3 1.6-.8l12.1 7.9c.7.5.7 1.5 0 2L7.6 20.8c-.7.5-1.6 0-1.6-.8V3.8Z"/></svg></button>
+    </article>
+    <article class="channel" data-name="Pertunjukan Bakat Fanny Penampilan Musik Seni">
+      <div class="thumb"><svg viewBox="0 0 64 64"><path d="M12 8 3 27h18L12 8ZM52 8 43 27h18L52 8ZM12 27v5M52 27v5"/><circle cx="32" cy="20" r="5"/><path d="M32 25v17m-9-9 9-8 9 8M32 42l-7 12m7-12 7 12M24 54h16"/></svg></div>
+      <div class="channel-copy"><h3>PERTUNJUKAN BAKAT FANNY</h3><p>Penampilan Musik &amp; Seni</p><span class="tag">MUSIC &amp; ENTERTAINMENT</span></div>
+      <button class="play" data-channel="Pertunjukan Bakat Fanny" aria-label="Buka Pertunjukan Bakat Fanny"><svg viewBox="0 0 24 24"><path d="M6 3.8c0-.8.9-1.3 1.6-.8l12.1 7.9c.7.5.7 1.5 0 2L7.6 20.8c-.7.5-1.6 0-1.6-.8V3.8Z"/></svg></button>
+    </article>
+    <article class="channel" data-name="Update Karya Dek Laura Film Pendek Animasi Baru">
+      <div class="thumb"><svg viewBox="0 0 64 64"><rect x="6" y="8" width="34" height="39" rx="2"/><path d="M12 17h22M12 23h8m5 0h7M12 31l5-4 5 4 5-5 5 5M12 39h22"/><circle cx="47" cy="20" r="5"/><path d="M47 25v17m-8-9 8-8 8 8M47 42l-6 11m6-11 6 11"/></svg></div>
+      <div class="channel-copy"><h3>UPDATE KARYA DEK LAURA</h3><p>Film Pendek &amp; Animasi Baru</p><span class="tag">ANIMATION &amp; FILM</span></div>
+      <button class="play" data-channel="Update Karya Dek Laura" aria-label="Buka Update Karya Dek Laura"><svg viewBox="0 0 24 24"><path d="M6 3.8c0-.8.9-1.3 1.6-.8l12.1 7.9c.7.5.7 1.5 0 2L7.6 20.8c-.7.5-1.6 0-1.6-.8V3.8Z"/></svg></button>
+    </article>
+  </section>
+  <div class="empty" id="empty">Saluran tidak ditemukan. Coba kata kunci lain.</div>
+</main>
+<nav class="bottom-nav" aria-label="Navigasi utama">
+  <button class="nav-item active" data-nav="Beranda"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1V10Z" fill="currentColor" stroke="none"/></svg><span>Beranda</span></button>
+  <button class="nav-item" data-nav="Jelajahi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z"/></svg><span>Jelajahi</span></button>
+  <button class="nav-item" data-nav="Langganan"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M7 3h10M9 10l6 3.5L9 17v-7Z"/></svg><span>Langganan</span></button>
+  <button class="nav-item" data-nav="Profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>Profil</span></button>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><div class="modal-top"><h2 id="modalTitle">Saluran pilihan</h2><button class="close" id="closeModal" aria-label="Tutup">×</button></div><p id="modalText">Pilih saluran untuk melanjutkan.</p><button class="primary" id="modalAction">Mengerti</button></div>
+</div>
+<script>
+const toast=document.getElementById('toast');
+let toastTimer;
+function showToast(message){
+  toast.textContent=message;toast.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
+}
+const searchWrap=document.getElementById('searchWrap');
+const searchInput=document.getElementById('searchInput');
+document.getElementById('searchToggle').addEventListener('click',()=>{
+  searchWrap.classList.toggle('open');
+  if(searchWrap.classList.contains('open'))searchInput.focus();
+  else{searchInput.value='';filterChannels('');}
+});
+function filterChannels(value){
+  const cards=[...document.querySelectorAll('.channel')];let shown=0;
+  cards.forEach(card=>{
+    const match=card.dataset.name.toLowerCase().includes(value.trim().toLowerCase());
+    card.style.display=match?'grid':'none';if(match)shown++;
+  });
+  document.getElementById('count').textContent=String(shown).padStart(2,'0')+' SALURAN';
+  document.getElementById('empty').style.display=shown?'none':'block';
+}
+searchInput.addEventListener('input',e=>filterChannels(e.target.value));
+const overlay=document.getElementById('overlay');
+function openModal(title,message,action='Mengerti'){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalText').textContent=message;
+  document.getElementById('modalAction').textContent=action;
+  overlay.classList.add('show');
+}
+function closeModal(){overlay.classList.remove('show')}
+document.getElementById('closeModal').addEventListener('click',closeModal);
+document.getElementById('modalAction').addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.querySelectorAll('.play').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const name=button.dataset.channel;
+    openModal(name,'Tombol saluran sudah aktif. Hubungkan saluran ini ke URL atau halaman video milik Anda agar tombol dapat membuka konten.','Siap');
+  });
+});
+document.getElementById('menuToggle').addEventListener('click',()=>{
+  openModal('Menu Special Edition','Gunakan pencarian untuk menemukan saluran. Tombol navigasi di bawah dapat Anda kembangkan sesuai kebutuhan.','Tutup');
+});
+document.querySelectorAll('.nav-item').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
+    const label=button.dataset.nav;
+    if(label==='Jelajahi'){searchWrap.classList.add('open');searchInput.focus();showToast('Cari saluran yang ingin Anda jelajahi');}
+    else if(label==='Beranda'){searchWrap.classList.remove('open');searchInput.value='';filterChannels('');window.scrollTo({top:0,behavior:'smooth'});}
+    else openModal(label,label==='Langganan'?'Bagian langganan siap disesuaikan dengan sistem Anda.':'Bagian profil siap disesuaikan dengan informasi pengguna.','Mengerti');
+  });
+});
+</script>
+</body>
+</html>
