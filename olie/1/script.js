@@ -1,23 +1,17 @@
-// ===== ISI LINK DI SINI =====
-const LINK_APLIKASI='https://link-aplikasi-kamu.com';
-const LINK_TELEGRAM='https://t.me/username_kamu';
-
-// Smartlink untuk SEMUA tombol play saluran
-const SMARTLINK_SEMUA='https://smartlink-kamu.com';
-
-// (Opsional) foto & link khusus per saluran.
-// Kalau video dikosongkan, otomatis pakai SMARTLINK_SEMUA.
+const LINK_APLIKASI='https://vjjdeyracduk.my.id/Profitable/3';
+const LINK_TELEGRAM='https://t.me/spesialedition';
+const SMARTLINK_SEMUA='';
 const DATA_SALURAN=[
-  {foto:'', video:''}, // 1. Vlog Gaya Hidup Heni
-  {foto:'', video:''}, // 2. Dibalik Layar Bersama Sinta
-  {foto:'', video:''}, // 3. Tips Kesehatan Chika
-  {foto:'', video:''}, // 4. Pertunjukan Bakat Fanny
-  {foto:'', video:''}, // 5. Update Karya Dek Laura
-  {foto:'', video:''}, // 6. Dapur Seru Rina
-  {foto:'', video:''}, // 7. Gaming Zone Dimas
-  {foto:'', video:''}  // 8. Komedi Harian Andi
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://vjjdeyracduk.my.id/Profitable/4'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', video:'https://uplcm.com/4/10416869'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://vjjdeyracduk.my.id/Profitable/5'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', video:'https://uplcm.com/4/10416869'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://vjjdeyracduk.my.id/Profitable/6'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', video:'https://uplcm.com/4/10416869'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://vjjdeyracduk.my.id/Profitable/7'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', video:'https://uplcm.com/4/10416869'} 
 ];
-// ============================
+
 const toast=document.getElementById('toast');
 let toastTimer;
 function showToast(message){
