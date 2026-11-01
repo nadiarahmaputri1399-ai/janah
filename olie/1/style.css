@@ -51,8 +51,8 @@ h1{font-size:clamp(25px,6vw,36px);line-height:1.1;margin:9px 0 10px;letter-spaci
 .search-wrap input:focus{border-color:#00f5a0;box-shadow:0 0 18px rgba(0,245,160,.45)}
 .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:9px 2px 15px}
 .section-head h2{font-size:14px;letter-spacing:1.2px;margin:0;color:#ffb800;text-shadow:0 0 10px rgba(255,184,0,.6)}
-.count{color:#fff;font-size:12px;border:1px solid #ff2bd6;background:rgba(255,43,214,.15
-                                                                          .channels{display:grid;gap:14px}
+.count{color:#fff;font-size:12px;border:1px solid #ff2bd6;background:rgba(255,43,214,.15);padding:6px 10px;border-radius:999px;box-shadow:0 0 12px rgba(255,43,214,.45)}
+.channels{display:grid;gap:14px}
 .channel{
   --c:#ff2bd6;
   position:relative;overflow:hidden;display:grid;grid-template-columns:94px minmax(0,1fr) 48px;gap:14px;align-items:center;
@@ -106,4 +106,5 @@ h1{font-size:clamp(25px,6vw,36px);line-height:1.1;margin:9px 0 10px;letter-spaci
 .close{border:0;color:white;background:#ffffff14;border-radius:10px;width:36px;height:36px;font-size:23px}
 .primary{border:0;border-radius:13px;padding:12px 17px;color:#14062b;background:var(--rainbow);background-size:300% 100%;animation:rainbowFlow 4s linear infinite;font-weight:800;box-shadow:0 0 16px rgba(0,245,160,.5)}
 @media(min-width:600px){main{width:min(100% - 44px,760px)}.intro{padding-top:37px}.channel{grid-template-columns:108px minmax(0,1fr) 52px;padding:15px 17px;min-height:150px}.thumb{width:108px;height:108px}.play{width:50px;height:50px}.channel p{font-size:14px}}
-@media(max-width:370px){.channel{grid-template-columns:75px minmax(0,1fr) 39px;gap:10px;padding:10px;border-radius:20px}.thumb{width:75px;height:75px;border-radius:13px}.play{width:38px;h
+@media(max-width:370px){.channel{grid-template-columns:75px minmax(0,1fr) 39px;gap:10px;padding:10px;border-radius:20px}.thumb{width:75px;height:75px;border-radius:13px}.play{width:38px;height:38px}.channel h3{font-size:14px}.channel p{font-size:12px}.tag{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
