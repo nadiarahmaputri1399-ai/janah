@@ -84,3 +84,9 @@ function pasangLink(id,url,nama){
 }
 pasangLink('installBtn',LINK_APLIKASI,'aplikasi');
 pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
+let scrollTimer;
+window.addEventListener('scroll',()=>{
+  document.body.classList.add('scrolling');
+  clearTimeout(scrollTimer);
+  scrollTimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);
+},{passive:true});
