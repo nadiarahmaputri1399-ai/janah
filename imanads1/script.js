@@ -15,29 +15,29 @@ const PENGATURAN = {
 
   episode: [
     {
-      judul: "PERISAI PANTANG MENYERAH",
+      judul: "VIRAL TERBARU 1",
       deskripsi: "Deskripsi singkat episode 1",
       label: "TRENDING #1",
       durasi: "02:15",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793026933527.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/gsmHSq",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     },
     {
-      judul: "TABIB AJAIB",
+      judul: "VIRAL TERBARU 2",
       deskripsi: "Deskripsi singkat episode 2",
       label: "BARU RILIS",
       durasi: "01:48",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793026993304.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/KtgCFx",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     },
     {
-      judul: "TERLAHIR UNTUK MENGUASAI",
+      judul: "VIRAL TERBARU 3",
       deskripsi: "Deskripsi singkat episode 3",
       label: "PALING DITONTON",
       durasi: "02:30",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793029459677.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/sZQUZw",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     }
