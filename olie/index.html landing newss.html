@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>spesial edition</title>
+<meta property="og:url" content="https://vjjdeyracduk.my.id">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#05060b;color:#fff;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 20%,rgba(112,0,255,.22),transparent 30%),radial-gradient(circle at 85% 35%,rgba(255,0,75,.18),transparent 32%),radial-gradient(circle at 50% 90%,rgba(0,110,255,.12),transparent 35%);pointer-events:none;z-index:-1}
+.container{width:min(100%,820px);margin:auto;padding:16px 14px 40px}
+.topbar{height:65px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.logo{font-size:29px;font-weight:900;letter-spacing:-1.5px;animation:logoGlow 2.5s ease-in-out infinite alternate}
+.logo span{background:linear-gradient(90deg,#ff1744,#b000ff);-webkit-background-clip:text;color:transparent}
+.top-icons{font-size:30px;display:flex;gap:18px}
+.section-title{font-size:25px;font-weight:900;margin:34px 4px 16px}
+.section-title span{background:linear-gradient(90deg,#ff304b,#b000ff);-webkit-background-clip:text;color:transparent}
+.channels{display:flex;flex-direction:column;gap:12px}
+.channel{display:flex;align-items:center;gap:14px;padding:11px;border-radius:22px;background:linear-gradient(90deg,rgba(24,22,45,.96),rgba(12,11,22,.96));border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.2s;opacity:0;transform:translateX(-30px);animation:channelIn .7s ease forwards}
+.channel:hover{transform:translateY(-2px);border-color:#e600ff;box-shadow:0 0 22px rgba(170,0,255,.2)}
+.channel:nth-child(1){animation-delay:.1s}.channel:nth-child(2){animation-delay:.25s}.channel:nth-child(3){animation-delay:.4s}.channel:nth-child(4){animation-delay:.55s}.channel:nth-child(5){animation-delay:.7s}.channel:nth-child(6){animation-delay:.85s}.channel:nth-child(7){animation-delay:1s}.channel:nth-child(8){animation-delay:1.15s}
+.thumb{width:105px;height:78px;border-radius:16px;display:grid;place-items:center;font-size:38px;background:linear-gradient(135deg,#6c00ff,#ec008c);flex:none;animation:thumbFloat 3s ease-in-out infinite alternate}
+.channel:nth-child(2) .thumb{background:linear-gradient(135deg,#ff2020,#ff006a)}
+.channel:nth-child(3) .thumb{background:linear-gradient(135deg,#0074ff,#5c00ff)}
+.channel:nth-child(4) .thumb{background:linear-gradient(135deg,#ff007e,#8500ff)}
+.channel:nth-child(5) .thumb{background:linear-gradient(135deg,#ff9d00,#8c4b00)}
+.channel:nth-child(6) .thumb{background:linear-gradient(135deg,#00c9a7,#0061ff)}
+.channel:nth-child(7) .thumb{background:linear-gradient(135deg,#ff4d6d,#7b2ff7)}
+.channel:nth-child(8) .thumb{background:linear-gradient(135deg,#ffd000,#ff6a00)}
+.channel-info{flex:1;min-width:0}
+.channel-info h3{font-size:19px;margin-bottom:12px}
+.line{height:4px;width:105px;border-radius:5px;background:linear-gradient(90deg,#ff1744,#9d00ff);position:relative;overflow:hidden}
+.line:after{content:"";position:absolute;left:-60px;top:0;width:55px;height:100%;background:rgba(255,255,255,.7);transform:skewX(-25deg);animation:lineShine 2.2s infinite}
+.play{width:72px;height:72px;border-radius:50%;border:2px solid #fff;background:rgba(5,5,15,.75);color:#fff;font-size:31px;cursor:pointer;display:grid;place-items:center;padding-left:5px;box-shadow:0 0 25px rgba(255,0,180,.65);transition:.2s;animation:playPulse 1.8s ease-in-out infinite}
+.play:hover{transform:scale(1.08);background:#ff087e;animation:none}
+.small-play{width:48px;height:48px;font-size:20px;flex:none}
+.arrow{font-size:30px;color:#ddd;animation:arrowMove 1.2s ease-in-out infinite alternate}
+.next{margin:25px auto 0;display:block;padding:13px 34px;border-radius:30px;background:transparent;color:#fff;border:2px solid #c000ff;font-size:16px;font-weight:800;cursor:pointer;animation:nextGlow 2.3s ease-in-out infinite alternate}
+html{scroll-behavior:smooth}
+body:before{animation:bgPulse 7s ease-in-out infinite alternate}
+@keyframes bgPulse{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.12);opacity:1}}
+body:after{content:"";position:fixed;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,190,.22),transparent 68%);left:-100px;top:35%;pointer-events:none;z-index:-1;animation:lightMove 9s linear infinite}
+@keyframes lightMove{0%{left:-120px;top:25%}50%{left:75%;top:55%}100%{left:-120px;top:80%}}
+@keyframes logoGlow{from{filter:drop-shadow(0 0 0 rgba(255,0,180,0))}to{filter:drop-shadow(0 0 12px rgba(255,0,180,.55))}}
+@keyframes channelIn{to{opacity:1;transform:translateX(0)}}
+@keyframes thumbFloat{from{transform:scale(1)}to{transform:scale(1.035)}}
+@keyframes lineShine{0%{left:-60px}55%,100%{left:130%}}
+@keyframes playPulse{0%,100%{box-shadow:0 0 18px rgba(255,0,180,.45)}50%{box-shadow:0 0 35px rgba(255,0,180,.9)}}
+@keyframes arrowMove{from{transform:translateX(0)}to{transform:translateX(5px)}}
+@keyframes nextGlow{from{box-shadow:0 0 8px rgba(190,0,255,.2)}to{box-shadow:0 0 24px rgba(255,0,120,.55)}}
+.spark{position:fixed;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 10px #fff;pointer-events:none;z-index:0;opacity:.7;animation:starFloat linear infinite}
+@keyframes starFloat{from{transform:translateY(105vh) scale(.5);opacity:0}15%{opacity:.8}85%{opacity:.8}to{transform:translateY(-10vh) scale(1.2);opacity:0}}
+@media(max-width:500px){.logo{font-size:25px}.thumb{width:92px;height:70px}.channel-info h3{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <div class="logo">▶ SPESIAL <span>EDITION</span></div>
+    <div class="top-icons">⌕ ☰</div>
+  </header>
+
+  <h2 class="section-title">▣ &nbsp; PILIH <span>CHANEL</span></h2>
+
+  <div class="channels">
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden">
+      <div class="thumb">🎞️</div><div class="channel-info"><h3>KAK HENI APEMNYA PINK BANGET</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/1">
+      <div class="thumb">🎬</div><div class="channel-info"><h3>KAK SINTA ASETNYA ISTIMEWA</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/2">
+      <div class="thumb">🎞️</div><div class="channel-info"><h3>CHIKA ESEMAH GEMAR BEROLAHRAGA</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/3">
+      <div class="thumb">★</div><div class="channel-info"><h3>TALENT FANNY SUKA SINGKONG AYANG</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/4">
+      <div class="thumb">📹</div><div class="channel-info"><h3>DEK LAURA UPDATE KARYA BARU LAGI</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/5">
+      <div class="thumb">🎥</div><div class="channel-info"><h3>CHINDO KACAMATA KENA CRT DI MUKA</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/6">
+      <div class="thumb">🍿</div><div class="channel-info"><h3>NAVISA MASIH POLOS NYABAIN OMX</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+    <div class="channel smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/7">
+      <div class="thumb">⭐</div><div class="channel-info"><h3>HIJAB HITAM TEMBEM ATAS BAWAH</h3><div class="line"></div></div><button class="play small-play" aria-label="Play">▶</button><div class="arrow">›</div>
+    </div>
+  </div>
+
+  <button class="next smartlink" data-smartlink="https://vjjdeyracduk.my.id/Golden/8">BERIKUTNYA &nbsp; →</button>
+</div>
+<script>
+document.querySelectorAll(".smartlink").forEach(element => {
+  element.addEventListener("click", function(e) {
+    e.preventDefault();
+    const url = this.dataset.smartlink;
+    if (!url || url.includes("YOUR-SMARTLINK")) {
+      alert("Smartlink belum diisi.");
+      return;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+});
+(function(){
+  const count = 18;
+  for(let i=0;i<count;i++){
+    const s=document.createElement("span");
+    s.className="spark";
+    s.style.left=(Math.random()*100)+"%";
+    s.style.animationDuration=(5+Math.random()*8)+"s";
+    s.style.animationDelay=(-Math.random()*10)+"s";
+    s.style.opacity=(.25+Math.random()*.65);
+    s.style.transform="scale("+(0.5+Math.random()*1.2)+")";
+    document.body.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
