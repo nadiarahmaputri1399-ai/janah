@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VidioKu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#05050a;--fg:#fff;--muted:rgba(255,255,255,.72);--accent:#fe3c5f;--accent2:#3ee6d6;--gold:#ffc65c;--display:"Sora",system-ui,sans-serif;--body:"Figtree",system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{height:100%;overscroll-behavior:none}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);overflow:hidden}
+.app{height:100%;display:grid;place-items:center}
+.layar{position:relative;height:100%;aspect-ratio:9/16;max-width:100%;overflow:hidden;contain:strict;
+  background:radial-gradient(60% 40% at 30% 30%,#7b2d6b,transparent 70%),radial-gradient(55% 40% at 75% 70%,#1f5a6e,transparent 70%),#120a1c}
+@media (max-width:600px){.layar{aspect-ratio:auto;width:100%}}
+.layar video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:transparent}
+.gelap{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 40%),linear-gradient(to bottom,rgba(0,0,0,.5),transparent 18%)}
+
+.atas{position:absolute;z-index:5;left:0;right:0;top:calc(12px + env(safe-area-inset-top,0px));padding:0 16px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.live{font:800 11px var(--display);letter-spacing:.5px;padding:3px 7px;border-radius:5px;border:1.5px solid #fff}
+.tab{display:flex;gap:18px;font-weight:700;font-size:16px;color:var(--muted)}
+.tab span.on{color:var(--fg);position:relative}
+.tab span.on::after{content:"";position:absolute;left:25%;right:25%;bottom:-6px;height:3px;border-radius:3px;background:var(--fg)}
+.cari svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.4}
+.lencana{position:absolute;z-index:3;top:calc(56px + env(safe-area-inset-top,0px));left:16px;display:flex;gap:6px;pointer-events:none}
+.lencana span{font:700 11px var(--body);padding:4px 8px;border-radius:6px;background:rgba(0,0,0,.5)}
+.lencana .hot{background:var(--accent)}
+
+.tap{position:absolute;inset:0;z-index:2;display:grid;place-items:center;text-decoration:none;cursor:pointer}
+.play{position:relative;width:88px;height:88px;border-radius:50%;background:rgba(0,0,0,.35);display:grid;place-items:center;border:1.5px solid rgba(255,255,255,.4);transition:opacity .2s,transform .2s}
+.play::before{content:"";position:absolute;inset:-8px;border-radius:50%;background:conic-gradient(var(--accent),var(--gold),var(--accent2),var(--accent));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);animation:putar 3s linear infinite;will-change:transform}
+.play svg{width:34px;height:34px;margin-left:5px;fill:#fff}
+.layar.main .play{opacity:0;transform:scale(.8);pointer-events:none}
+.sisa{position:absolute;z-index:3;left:50%;top:calc(50% + 64px);transform:translateX(-50%);font:700 12px var(--body);background:rgba(0,0,0,.55);padding:5px 10px;border-radius:99px;white-space:nowrap;pointer-events:none}
+.suara{position:absolute;z-index:6;left:50%;top:calc(64px + env(safe-area-inset-top,0px));transform:translateX(-50%);border:0;font:700 13px var(--body);color:#fff;background:rgba(0,0,0,.7);padding:8px 14px;border-radius:99px;cursor:pointer}
+
+.rail{position:absolute;z-index:4;right:10px;bottom:110px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.ava{width:50px;height:50px;border-radius:50%;padding:2px;position:relative;margin-bottom:6px;background:conic-gradient(var(--accent),var(--gold),var(--accent2),var(--accent))}
+.ava div{width:100%;height:100%;border-radius:50%;border:2px solid #000;display:grid;place-items:center;background:linear-gradient(135deg,#3a1d55,#1b3a4a);font:800 18px var(--display)}
+.ava b{position:absolute;left:50%;bottom:-9px;margin-left:-10px;width:20px;height:20px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-size:15px;line-height:1}
+.ic{background:none;border:0;color:var(--fg);display:flex;flex-direction:column;align-items:center;gap:2px;font:700 12px var(--body);cursor:pointer;padding:0;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.ic svg{width:36px;height:36px;fill:#fff;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5));transition:transform .15s}
+.ic:active svg{transform:scale(.85)}
+.ic.suka svg{fill:var(--accent)}
+.ic.simpan svg{fill:var(--gold)}
+.disk{width:46px;height:46px;border-radius:50%;margin-top:4px;background:radial-gradient(circle,var(--accent2) 0 18%,#111 19% 30%,#2b2b2b 31% 33%,#111 34% 60%,#2b2b2b 61% 63%,#111 64%);border:2px solid #333;animation:putar 4s linear infinite;animation-play-state:paused;will-change:transform}
+.layar.main .disk{animation-play-state:running}
+@keyframes putar{to{transform:rotate(360deg)}}
+.hati{position:absolute;z-index:6;pointer-events:none;font-size:28px;color:var(--accent);animation:naik 1s ease-out forwards;will-change:transform,opacity}
+@keyframes naik{to{transform:translate(var(--x),-120px) scale(1.4);opacity:0}}
+
+.info{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:0 16px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.teks{padding-right:72px;display:flex;flex-direction:column;gap:5px}
+.user{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:6px}
+.cek{width:16px;height:16px;border-radius:50%;background:var(--accent2);display:grid;place-items:center}
+.cek svg{width:10px;height:10px;fill:none;stroke:#000;stroke-width:3.5}
+.cap{margin:0;font-size:14px;line-height:1.4}
+.cap b{color:var(--accent2)}
+.musik{display:flex;align-items:center;gap:8px;font-size:13px}
+.jalan{overflow:hidden;white-space:nowrap;flex:1;min-width:0}
+.jalan span{display:inline-block;padding-left:100%;animation:marquee 9s linear infinite;will-change:transform}
+@keyframes marquee{to{transform:translateX(-100%)}}
+.progress{height:3px;border-radius:3px;background:rgba(255,255,255,.22);overflow:hidden;margin-top:4px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .25s linear}
+.toast{position:absolute;z-index:7;top:40%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);padding:10px 16px;border-radius:10px;font-size:14px;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.play::before,.disk,.jalan span{animation:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="layar" id="layar">
+    <video id="video" playsinline loop preload="metadata"></video>
+    <div class="gelap"></div>
+
+    <div class="atas">
+      <span class="live">LIVE</span>
+      <div class="tab"><span>Mengikuti</span><span class="on">Untuk Anda</span></div>
+      <span class="cari"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span>
+    </div>
+    <div class="lencana"><span class="hot">🔥 Trending #1</span><span>HD</span></div>
+
+    <a class="tap" id="tap" rel="noopener" aria-label="Putar video">
+      <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+    </a>
+    <div class="sisa" id="sisa">Ketuk untuk memutar</div>
+    <button class="suara" id="suara" type="button" hidden>🔇 Ketuk untuk nyalakan suara</button>
+
+    <div class="rail">
+      <div class="ava"><div id="huruf">V</div><b>+</b></div>
+      <button class="ic" id="btnSuka" type="button" aria-label="Suka">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 5 6.5 5c2 0 3.5 1.1 4.3 2.5h2.4C14 6.1 15.5 5 17.5 5 21 5 23.1 8.5 21.6 11.8 19.5 16.4 12 21 12 21z"/></svg>
+        <span id="jmlSuka"></span>
+      </button>
+      <button class="ic" type="button" aria-label="Komentar">
+        <svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.3 1.1 4.4 2.9 6L4 21l4.2-1.8c1.2.4 2.5.6 3.8.6 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg>
+        <span id="jmlKomen"></span>
+      </button>
+      <button class="ic" id="btnSimpan" type="button" aria-label="Simpan">
+        <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+        <span id="jmlSimpan"></span>
+      </button>
+      <button class="ic" id="btnBagi" type="button" aria-label="Bagikan">
+        <svg viewBox="0 0 24 24"><path d="M14 4l8 7.5-8 7.5v-4.5c-5 0-8.5 1.5-11 5 1-5 4-10 11-11z"/></svg>
+        <span>Bagikan</span>
+      </button>
+      <div class="disk"></div>
+    </div>
+
+    <div class="info">
+      <div class="teks">
+        <div class="user"><span id="nama"></span> <span class="cek"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span></div>
+        <p class="cap"><span id="caption"></span> <b id="tagar"></b></p>
+        <div class="musik"><span>♪</span><div class="jalan"><span id="musik"></span></div></div>
+      </div>
+      <div class="progress"><i id="bar"></i></div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+  </div>
+</div>
+<script>
+const PENGATURAN = {
+  video: "https://contoh.com/video.mp4",
+  sampul: "",
+  smartlinkPlay: "https://link-smartlink.com",
+  jumlahKlikPlay: 2,
+  nama: "@vidioku.official",
+  caption: "Detik-detik terakhir yang bikin semua kaget 😱 Tonton sampai habis!",
+  tagar: "#viral #fyp #drama",
+  musik: "Suara asli · vidioku.official · Detik-Detik Terakhir",
+  suka: "128,4 rb",
+  komentar: "3.912",
+  simpan: "21 rb",
+};
+const $ = (id) => document.getElementById(id);
+const layar = $("layar"), video = $("video"), tap = $("tap");
+const sisa = $("sisa"), suara = $("suara"), bar = $("bar"), toast = $("toast");
+$("nama").textContent = PENGATURAN.nama;
+$("huruf").textContent = PENGATURAN.nama.replace("@", "").charAt(0).toUpperCase();
+$("caption").textContent = PENGATURAN.caption;
+$("tagar").textContent = PENGATURAN.tagar;
+$("musik").textContent = PENGATURAN.musik;
+$("jmlSuka").textContent = PENGATURAN.suka;
+$("jmlKomen").textContent = PENGATURAN.komentar;
+$("jmlSimpan").textContent = PENGATURAN.simpan;
+if (PENGATURAN.sampul) video.poster = PENGATURAN.sampul;
+if (PENGATURAN.video) video.src = PENGATURAN.video;
+function tampil(pesan) {
+  toast.textContent = pesan; toast.hidden = false;
+  clearTimeout(tampil.t);
+  tampil.t = setTimeout(() => (toast.hidden = true), 1800);
+}
+let ke = 0;
+let siap = false;
+let dijeda = false;
+function aturTap() {
+  if (ke < PENGATURAN.jumlahKlikPlay && PENGATURAN.smartlinkPlay) {
+    tap.href = PENGATURAN.smartlinkPlay;
+    tap.target = "_blank";
+  } else {
+    tap.removeAttribute("href");
+    tap.removeAttribute("target");
+    siap = true;
+  }
+}
+aturTap();
+function putar() {
+  if (!video.src) { tampil("Link video belum diisi"); return; }
+  dijeda = false;
+  video.muted = false;
+  video.play().catch(() => {
+    video.muted = true;
+    video.play().then(() => (suara.hidden = false)).catch(() => {});
+  });
+}
+tap.addEventListener("click", (e) => {
+  if (!siap) {
+    ke++;
+    setTimeout(aturTap, 0);
+    if (ke >= PENGATURAN.jumlahKlikPlay) putar();
+    return;
+  }
+  e.preventDefault();
+  if (video.paused) putar();
+  else { dijeda = true; video.pause(); }
+});
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && siap && video.paused && !dijeda) putar();
+});
+suara.addEventListener("click", () => {
+  video.muted = false; suara.hidden = true;
+});
+video.addEventListener("play", () => { layar.classList.add("main"); sisa.hidden = true; });
+video.addEventListener("pause", () => layar.classList.remove("main"));
+video.addEventListener("timeupdate", () => {
+  if (video.duration) bar.style.transform = "scaleX(" + video.currentTime / video.duration + ")";
+});
+const suka = $("btnSuka");
+suka.addEventListener("click", () => {
+  if (!suka.classList.toggle("suka")) return;
+  const r = suka.getBoundingClientRect(), b = layar.getBoundingClientRect();
+  for (let i = 0; i < 4; i++) {
+    const h = document.createElement("span");
+    h.className = "hati"; h.textContent = "❤";
+    h.style.left = r.left - b.left + 6 + "px";
+    h.style.top = r.top - b.top + "px";
+    h.style.setProperty("--x", Math.random() * 60 - 40 + "px");
+    h.style.animationDelay = i * 0.08 + "s";
+    layar.appendChild(h);
+    setTimeout(() => h.remove(), 1300);
+  }
+});
+const simpan = $("btnSimpan");
+simpan.addEventListener("click", () => {
+  tampil(simpan.classList.toggle("simpan") ? "Disimpan" : "Batal disimpan");
+});
+$("btnBagi").addEventListener("click", () => {
+  navigator.clipboard.writeText(location.href)
+    .then(() => tampil("Link tersalin"))
+    .catch(() => tampil(location.href));
+});
+</script>
+</body>
+  </html>
