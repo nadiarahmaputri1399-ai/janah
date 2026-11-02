@@ -28,7 +28,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 2",
       label: "BARU RILIS",
       durasi: "01:48",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793026993304.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/neaxSE",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     },
@@ -37,7 +37,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 3",
       label: "PALING DITONTON",
       durasi: "02:30",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793029459677.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/CP3jfg",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     }
