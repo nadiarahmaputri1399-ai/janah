@@ -65,4 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
   playBesar.addEventListener("click", () => document.getElementById("linkUtama").click());
   const grid = document.getElementById("gridServer");
   CONFIG.linkCadangan.forEach((url, i) => grid.appendChild(buatKartu(url, i)));
+  let timerScroll;
+  window.addEventListener("scroll", () => {
+    if (!document.body.classList.contains("scroll")) document.body.classList.add("scroll");
+    clearTimeout(timerScroll);
+    timerScroll = setTimeout(() => document.body.classList.remove("scroll"), 150);
+  }, { passive: true });
+
+  if ("IntersectionObserver" in window) {
+    const pengamat = new IntersectionObserver(entri => {
+      entri.forEach(e => e.target.classList.toggle("diam", !e.isIntersecting));
+    });
+    document.querySelectorAll(".top, .ticker, .hero, .card, .cta").forEach(el => pengamat.observe(el));
+  }
 });
