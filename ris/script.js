@@ -12,7 +12,7 @@ const PENGATURAN = {
     {
       video: "../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
-      smartlink: "https://asiaso.org/4/5afc0a3a49971d4513337418f527da7e"
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     }
   ]
 };
@@ -39,12 +39,11 @@ const PENGATURAN = {
   try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
   document.addEventListener("click", () => { klikPopunder = false; }, { once: true });
 
-  const KUNCI_SMARTLINK = "smartlinkSudah";
-  function smartlinkSudah() {
-    try { return sessionStorage.getItem(KUNCI_SMARTLINK) === "1"; } catch (e) { return false; }
+  function ambil(kunci) {
+    try { return sessionStorage.getItem(kunci) === "1"; } catch (e) { return false; }
   }
-  function tandaiSmartlink() {
-    try { sessionStorage.setItem(KUNCI_SMARTLINK, "1"); } catch (e) {}
+  function tandai(kunci) {
+    try { sessionStorage.setItem(kunci, "1"); } catch (e) {}
   }
 
   const link = (u) => (u && u.trim()) ? u.trim() : P.smartlinkUtama;
@@ -61,10 +60,12 @@ const PENGATURAN = {
   }
 
   document.addEventListener("click", (e) => {
-    if (!smartlinkSudah()) return;
+    if (!ambil("smartlinkSudah")) return;
+    if (ambil("tombolSudah")) return;
     if (!e.target.closest(".rail, .atas, .lencana")) return;
     e.preventDefault();
     e.stopPropagation();
+    tandai("tombolSudah");
     if (layar.classList.contains("main")) {
       video.pause();
       tulisHash("putar-" + ep + "-" + Math.floor(video.currentTime));
@@ -151,7 +152,7 @@ const PENGATURAN = {
       detikTonton = 0;
       video.pause();
       tulisHash("putar-" + ep + "-" + Math.floor(t));
-      tandaiSmartlink();
+      tandai("smartlinkSudah");
       buka(linkIklan());
     }
   });
@@ -171,7 +172,7 @@ const PENGATURAN = {
     if (sudah < target) {
       klik[ep] = sudah + 1;
       if (sudah + 1 >= target) tulisHash("putar-" + ep);
-      tandaiSmartlink();
+      tandai("smartlinkSudah");
       buka(linkIklan());
       return;
     }
