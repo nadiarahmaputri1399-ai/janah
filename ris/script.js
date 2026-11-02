@@ -2,7 +2,7 @@ const PENGATURAN = {
   smartlinkUtama: "https://uplcm.com/4/11563571",
 
   smartlinkPlay: "https://uplcm.com/4/11563571",
-  jumlahKlikPlay: 1,
+  jumlahKlikPlay: 2,
 
   jedaIklanDetik: 15,
 
