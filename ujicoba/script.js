@@ -12,7 +12,7 @@ const CONFIG = {
     "https://uplcm.com/4/10416869"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
-  aplikasi: "https://vjjdeyyerlies.my.id/ujicoba2/5",
+  aplikasi: "https://uplcm.com/4/10416869",
   tabBaru: true
 };
 function pasangLink(el, url) {
