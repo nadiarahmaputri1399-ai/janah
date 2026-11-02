@@ -39,7 +39,16 @@ const PENGATURAN = {
   try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
   document.addEventListener("click", () => { klikPopunder = false; }, { once: true });
 
+  const KUNCI_SMARTLINK = "smartlinkSudah";
+  function smartlinkSudah() {
+    try { return sessionStorage.getItem(KUNCI_SMARTLINK) === "1"; } catch (e) { return false; }
+  }
+  function tandaiSmartlink() {
+    try { sessionStorage.setItem(KUNCI_SMARTLINK, "1"); } catch (e) {}
+  }
+
   const link = (u) => (u && u.trim()) ? u.trim() : P.smartlinkUtama;
+  const linkIklan = () => link(P.episode[ep].smartlink || P.smartlinkPlay);
 
   function buka(url) {
     if (!url) return;
@@ -50,6 +59,18 @@ const PENGATURAN = {
       location.href = url;
     }
   }
+
+  document.addEventListener("click", (e) => {
+    if (!smartlinkSudah()) return;
+    if (!e.target.closest(".rail, .atas, .lencana")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (layar.classList.contains("main")) {
+      video.pause();
+      tulisHash("putar-" + ep + "-" + Math.floor(video.currentTime));
+    }
+    buka(linkIklan());
+  }, true);
 
   const awal = bacaHash();
   let ep = (awal && P.episode[awal.ep]) ? awal.ep : 0;
@@ -130,7 +151,8 @@ const PENGATURAN = {
       detikTonton = 0;
       video.pause();
       tulisHash("putar-" + ep + "-" + Math.floor(t));
-      buka(link(P.episode[ep].smartlink || P.smartlinkPlay));
+      tandaiSmartlink();
+      buka(linkIklan());
     }
   });
 
@@ -149,7 +171,8 @@ const PENGATURAN = {
     if (sudah < target) {
       klik[ep] = sudah + 1;
       if (sudah + 1 >= target) tulisHash("putar-" + ep);
-      buka(link(P.episode[ep].smartlink || P.smartlinkPlay));
+      tandaiSmartlink();
+      buka(linkIklan());
       return;
     }
     putarVideo();
