@@ -9,7 +9,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<script>(function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>
+(function(){
+  var KUNCI = 'popunderSudah';
+  try { if (sessionStorage.getItem(KUNCI)) return; } catch(e){}
+  var asli = window.open;
+  window.open = function(){
+    var w = asli.apply(window, arguments);
+    try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
+    window.open = function(){ return null; };
+    return w;
+  };
+  (function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+})();
+</script>
 </head>
 <body>
 <div class="hal">
