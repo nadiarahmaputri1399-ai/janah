@@ -35,6 +35,10 @@ const PENGATURAN = {
 
   const klik = {};
 
+  let klikPopunder = false;
+  try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
+  document.addEventListener("click", () => { klikPopunder = false; }, { once: true });
+
   const link = (u) => (u && u.trim()) ? u.trim() : P.smartlinkUtama;
 
   function buka(url) {
@@ -137,6 +141,8 @@ const PENGATURAN = {
   });
 
   tombolPlay.addEventListener("click", () => {
+    if (klikPopunder) { klikPopunder = false; return; }
+
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
 
