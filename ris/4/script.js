@@ -10,7 +10,7 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "../video/Celinee_video_no_watermark.mp4",
       poster: "",
       smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
     }
