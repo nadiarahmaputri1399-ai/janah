@@ -12,17 +12,22 @@
 <script>
 (function(){
   var KUNCI = 'popunderSudah';
-  try { if (sessionStorage.getItem(KUNCI)) return; } catch(e){}
-  var asli = window.open;
-  window.open = function(){
-    var w = asli.apply(window, arguments);
+  function sudah(){
+    try { return sessionStorage.getItem(KUNCI); } catch(e){ return false; }
+  }
+  if (sudah()) return;
+
+  document.addEventListener('click', function(){
     try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
-    window.open = function(){ return null; };
-    return w;
-  };
+  }, { capture: true, once: true });
+
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted && sudah()) location.reload();
+  });
+
   (function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
 })();
-</script>
+      </script>
 </head>
 <body>
 <div class="hal">
