@@ -1,10 +1,6 @@
 const CONFIG = {
   namaSitus: "HARAPAN BANGSA",
-
-  
   linkUtama: "https://vjjdeyyerlies.my.id/den/yar",
-
-  
   linkCadangan: [
     "https://vjjdeyyerlies.my.id/den/yar1",
     "https://vjjdeyycelinari.my.id/den/1",
@@ -15,18 +11,10 @@ const CONFIG = {
     "https://vjjdeyyerlies.my.id/den/yar4",
     "https://vjjdeyycelinari.my.id/den/1"
   ],
-
-
   telegram: "https://t.me/harapanbangsaterbaru",
-
-  
   aplikasi: "https://vjjdeyyerlies.my.id/den/yar5",
-
-  
   tabBaru: true
 };
-
-
 const WARNA = [
   ["#FF5EDF", "#9B4DFF"],
   ["#FFB547", "#FF3B5C"],
@@ -46,7 +34,6 @@ function pasangLink(el, url) {
     el.rel = "noopener";
   }
 }
-
 function buatKartu(url, i) {
   const [a, b] = WARNA[i % WARNA.length];
   const grad = `linear-gradient(135deg,${a},${b})`;
@@ -85,14 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("namaFooter").textContent = CONFIG.namaSitus;
   document.getElementById("tahun").textContent = new Date().getFullYear();
   document.title = CONFIG.namaSitus;
-
   pasangLink(document.getElementById("linkUtama"), CONFIG.linkUtama);
   pasangLink(document.getElementById("linkTelegram"), CONFIG.telegram);
   pasangLink(document.getElementById("linkAplikasi"), CONFIG.aplikasi);
   const playBesar = document.querySelector(".play-big");
   playBesar.style.cursor = "pointer";
   playBesar.addEventListener("click", () => document.getElementById("linkUtama").click());
-
   const grid = document.getElementById("gridServer");
   CONFIG.linkCadangan.forEach((url, i) => grid.appendChild(buatKartu(url, i)));
+  let timerScroll;
+  window.addEventListener("scroll", () => {
+    if (!document.body.classList.contains("scroll")) document.body.classList.add("scroll");
+    clearTimeout(timerScroll);
+    timerScroll = setTimeout(() => document.body.classList.remove("scroll"), 150);
+  }, { passive: true });
+
+  if ("IntersectionObserver" in window) {
+    const pengamat = new IntersectionObserver(entri => {
+      entri.forEach(e => e.target.classList.toggle("diam", !e.isIntersecting));
+    });
+    document.querySelectorAll(".top, .ticker, .hero, .card, .cta").forEach(el => pengamat.observe(el));
+  }
 });
