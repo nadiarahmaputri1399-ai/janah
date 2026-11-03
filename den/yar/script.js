@@ -1,7 +1,7 @@
 const PENGATURAN = {
-  smartlinkUtama: "https://uplcm.com/4/11905857",
+  smartlinkUtama: "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9",
 
-  smartlinkPlay: "https://uplcm.com/4/11905857",
+  smartlinkPlay: "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9",
   jumlahKlikPlay: 1,
 
   jedaIklanDetik: 15,
@@ -10,9 +10,9 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "../../video/Ciaacanti_video_no_watermark.mp4",
       poster: "",
-      smartlink: "https://asiaso.org/4/5afc0a3a49971d4513337418f527da7e"
+      smartlink: "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9"
     }
   ]
 };
