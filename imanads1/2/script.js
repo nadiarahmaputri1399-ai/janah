@@ -21,7 +21,7 @@ const PENGATURAN = {
       durasi: "02:15",
       video: "https://upload.vjjdeyyjinerila.xyz/f/Abb9xZ",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     },
     {
       judul: "TABIB AJAIB",
@@ -30,7 +30,7 @@ const PENGATURAN = {
       durasi: "01:48",
       video: "https://upload.vjjdeyyjinerila.xyz/f/mb6qba",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     },
     {
       judul: "TERLAHIR UNTUK MENGUASAI",
@@ -39,7 +39,7 @@ const PENGATURAN = {
       durasi: "02:30",
       video: "https://upload.vjjdeyyjinerila.xyz/f/WipmqA",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     }
   ]
 };
