@@ -21,7 +21,7 @@ const PENGATURAN = {
       durasi: "02:15",
       video: "https://upload.vjjdeyyjinerila.xyz/f/gsmHSq",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     },
     {
       judul: "VIRAL TERBARU 2",
@@ -30,7 +30,7 @@ const PENGATURAN = {
       durasi: "01:48",
       video: "https://upload.vjjdeyyjinerila.xyz/f/KtgCFx",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     },
     {
       judul: "VIRAL TERBARU 3",
@@ -39,7 +39,7 @@ const PENGATURAN = {
       durasi: "02:30",
       video: "https://upload.vjjdeyyjinerila.xyz/f/sZQUZw",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba"
+      smartlink: "https://vjjdeyyrulina.com/ads"
     }
   ]
 };
