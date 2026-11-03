@@ -3,13 +3,13 @@ const CONFIG = {
   linkUtama: "https://vjjdeyyerlies.my.id/ris",
   linkCadangan: [
     "https://vjjdeyyerlies.my.id/ris/1",
-    "https://uplcm.com/4/10416869",
+    "https://uplcm.com/4/11905857",
     "https://vjjdeyyerlies.my.id/ris/2",
-    "https://uplcm.com/4/10416869",
+    "https://uplcm.com/4/11905857",
     "https://vjjdeyyerlies.my.id/ris/3",
-    "https://uplcm.com/4/10416869",
+    "https://uplcm.com/4/11905857",
     "https://vjjdeyyerlies.my.id/ris/4",
-    "https://uplcm.com/4/10416869"
+    "https://uplcm.com/4/11905857"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
   aplikasi: "https://vjjdeyyerlies.my.id/ris/5",
