@@ -10,7 +10,7 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "../../video/Ciaacanti_video_no_watermark.mp4",
+      video: "../../video/NoName_video_no_watermark.mp4",
       poster: "",
       smartlink: "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9"
     }
