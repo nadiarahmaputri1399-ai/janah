@@ -14,19 +14,19 @@ const PENGATURAN = {
   // smartlink / poster / caption boleh dikosongkan "".
   episode: [
     {
-      video: "../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
       smartlink: "https://asiaso.org/4/5afc0a3a49971d4513337418f527da7e",
       caption: ""
     },
     {
-      video: "../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
       smartlink: "",
       caption: ""
     },
     {
-      video: "../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
       smartlink: "",
       caption: ""
