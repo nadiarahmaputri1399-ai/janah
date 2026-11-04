@@ -48,10 +48,13 @@ document.getElementById('modalAction').addEventListener('click',closeModal);
 overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 document.querySelectorAll('.channel').forEach((card,i)=>{
+  const rb=document.createElement('span');
+  rb.className='rb';
+  card.prepend(rb);
   const d=DATA_SALURAN[i]||{};
   if(d.foto&&d.foto.trim()){
     const thumb=card.querySelector('.thumb');
-    thumb.innerHTML='<img src="'+d.foto.trim()+'" alt="" style="width:100%;height:100%;object-fit:cover;display:block">';
+    thumb.innerHTML='<img src="'+d.foto.trim()+'" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">';
     thumb.style.animation='none';
   }
 });
@@ -90,3 +93,9 @@ window.addEventListener('scroll',()=>{
   clearTimeout(scrollTimer);
   scrollTimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);
 },{passive:true});
+if('IntersectionObserver' in window){
+  const pengamat=new IntersectionObserver(entri=>{
+    entri.forEach(e=>e.target.classList.toggle('diam',!e.isIntersecting));
+  });
+  document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
+                                                                      }
