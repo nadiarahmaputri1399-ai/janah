@@ -9,7 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=4">
-<script data-cfasync="false" src="https://abscloud.org/1/7dc0f51577c92b0e7166a7adf63b7a86"></script>
+<script>
+(function(){
+  var LINK_POPUNDER = 'https://uplcm.com/4/11905857';
+  var KUNCI = 'popunderSudah';
+  function sudah(){
+    try { return sessionStorage.getItem(KUNCI); } catch(e){ return false; }
+  }
+  if (sudah()) return;
+  function jalan(){
+    if (sudah()) return;
+    try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
+    document.removeEventListener('click', jalan, true);
+    window.open(LINK_POPUNDER, '_blank');
+  }
+  document.addEventListener('click', jalan, true);
+})();
+</script>
 </head>
 <body>
 <div class="app">
