@@ -9,7 +9,7 @@ const UTAMA = {
 };
 
 const SALURAN = [
-  { nama: "Saluran Utama", penonton: "12.4K", foto: "", link: "http://vjjdeyyerlies.my.id/imanads1" },
+  { nama: "Saluran Utama", penonton: "12.4K", foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/5" },
   { nama: "Film Pilihan",  penonton: "8.1K",  foto: "", link: "https://uplcm.com/4/10416869" },
   { nama: "Musik Live",    penonton: "6.7K",  foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/1" },
   { nama: "Olahraga",      penonton: "15.2K", foto: "", link: "https://uplcm.com/4/10416869" },
