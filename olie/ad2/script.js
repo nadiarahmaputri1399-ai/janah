@@ -18,37 +18,37 @@ const PENGATURAN = {
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/KtgCFx",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/sZQUZw",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/jg5XZW",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/WipmqA",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/mb6qba",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/Abb9xZ",
       poster: "",
-      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
+      smartlink: "",
       caption: ""
     }
   ]
