@@ -16,15 +16,15 @@ const PENGATURAN = {
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/nDFpWf",
+      video: "",
       poster: "",
-      smartlink: "https://uplcm.com/4/11563571",
+      smartlink: "",
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/2Fvuty",
+      video: "",
       poster: "",
-      smartlink: "https://uplcm.com/4/11563571",
+      smartlink: "",
       caption: ""
     }
   ]
