@@ -1,7 +1,7 @@
 const PENGATURAN = {
-  smartlinkUtama: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+  smartlinkUtama: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
 
-  smartlinkPlay: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+  smartlinkPlay: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
   jumlahKlikPlay: 1,
 
   jedaIklanDetik: 15,
@@ -12,43 +12,43 @@ const PENGATURAN = {
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/gsmHSq",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/KtgCFx",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/sZQUZw",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/jg5XZW",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/WipmqA",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/mb6qba",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/Abb9xZ",
       poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      smartlink: "https://asiaso.org/4/5b2ebc879d26c5fdc3cfc191cfe9aaba",
       caption: ""
     }
   ]
