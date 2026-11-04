@@ -1,34 +1,30 @@
 const PENGATURAN = {
-  smartlinkUtama: "https://uplcm.com/4/11905857",
+  smartlinkUtama: "https://uplcm.com/4/11563571",
 
-  smartlinkPlay: "https://uplcm.com/4/11905857",
+  smartlinkPlay: "https://uplcm.com/4/11563571",
   jumlahKlikPlay: 1,
 
   jedaIklanDetik: 15,
 
   bukaTabBaru: false,
 
-  // ===== DAFTAR VIDEO =====
-  // Banyaknya video = banyaknya blok { } di bawah ini.
-  // Mau nambah: salin satu blok { ... }, tempel di bawahnya, kasih koma di antaranya.
-  // smartlink / poster / caption boleh dikosongkan "".
   episode: [
     {
       video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
-      smartlink: "https://asiaso.org/4/5afc0a3a49971d4513337418f527da7e",
+      smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     },
     {
       video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
-      smartlink: "",
+      smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     },
     {
       video: "../../video/Adel_GeoL_video_no_watermark.mp4",
       poster: "",
-      smartlink: "",
+      smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     }
   ]
