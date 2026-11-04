@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="id">
 <head>
@@ -10,7 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=3">
-<script data-cfasync="false" src="https://abscloud.org/1/7dc0f51577c92b0e7166a7adf63b7a86"></script>
+<script data-cfasync="false">
+(function(){
+  var KUNCI = 'popunderSudah';
+  function sudah(){
+    try { return sessionStorage.getItem(KUNCI); } catch(e){ return false; }
+  }
+  if (sudah()) return;
+
+  document.addEventListener('click', function(){
+    try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
+  }, { capture: true, once: true });
+
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted && sudah()) location.reload();
+  });
+
+  var s = document.createElement('script');
+  s.setAttribute('data-cfasync', 'false');
+  s.src = 'https://benchform.org/1/d101ca05eb20975a6b8c6a27b1417b5f';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
 </head>
 <body>
 <div class="app">
