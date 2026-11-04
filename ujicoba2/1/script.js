@@ -10,19 +10,19 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/4ZYPtr",
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     },
     {
-      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/quXLZF",
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     },
     {
-      video: "../../video/Adel_GeoL_video_no_watermark.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/VpyNfa",
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
