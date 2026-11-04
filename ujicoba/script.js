@@ -1,6 +1,6 @@
 const CONFIG = {
   namaSitus: "SPESIAL EDITION",
-  linkUtama: "https://vjjdeyyerlies.my.id/ujicoba2",
+  linkUtama: "https://vjjdeyyerlies.my.id/ujicoba2/5",
   linkCadangan: [
     "https://vjjdeyyerlies.my.id/ujicoba2/1",
     "https://uplcm.com/4/10416869",
