@@ -4,7 +4,7 @@ const PENGATURAN = {
   smartlinkPlay: "https://uplcm.com/4/11563571",
   jumlahKlikPlay: 1,
 
-  jedaIklanDetik: 15,
+  jedaIklanDetik: 10,
 
   bukaTabBaru: false,
 
