@@ -10,19 +10,19 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/4ZYPtr",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/2Fvuty",
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
     },
     {
-      video: "",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/nDFpWf",
       poster: "",
       smartlink: "",
       caption: ""
     },
     {
-      video: "",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/iTSA23",
       poster: "",
       smartlink: "",
       caption: ""
