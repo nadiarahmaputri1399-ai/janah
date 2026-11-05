@@ -10,19 +10,19 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/2Fvuty",
+      video: "",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/nDFpWf",
+      video: "",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/iTSA23",
+      video: "l",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
