@@ -1,14 +1,14 @@
 var SALURAN = [
-  { nama: "Saluran 1",  foto: "LINK_FOTO_1",  link: "SMARTLINK_1" },
-  { nama: "Saluran 2",  foto: "LINK_FOTO_2",  link: "SMARTLINK_2" },
-  { nama: "Saluran 3",  foto: "LINK_FOTO_3",  link: "SMARTLINK_3" },
-  { nama: "Saluran 4",  foto: "LINK_FOTO_4",  link: "SMARTLINK_4" },
-  { nama: "Saluran 5",  foto: "LINK_FOTO_5",  link: "SMARTLINK_5" },
-  { nama: "Saluran 6",  foto: "LINK_FOTO_6",  link: "SMARTLINK_6" },
-  { nama: "Saluran 7",  foto: "LINK_FOTO_7",  link: "SMARTLINK_7" },
-  { nama: "Saluran 8",  foto: "LINK_FOTO_8",  link: "SMARTLINK_8" },
-  { nama: "Saluran 9",  foto: "LINK_FOTO_9",  link: "SMARTLINK_9" },
-  { nama: "Saluran 10", foto: "LINK_FOTO_10", link: "SMARTLINK_10" }
+  { nama: "Saluran 1",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "SMARTLINK_1" },
+  { nama: "Saluran 2",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "SMARTLINK_2" },
+  { nama: "Saluran 3",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "SMARTLINK_3" },
+  { nama: "Saluran 4",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "SMARTLINK_4" },
+  { nama: "Saluran 5",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "SMARTLINK_5" },
+  { nama: "Saluran 6",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "SMARTLINK_6" },
+  { nama: "Saluran 7",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "SMARTLINK_7" },
+  { nama: "Saluran 8",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "SMARTLINK_8" },
+  { nama: "Saluran 9",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "SMARTLINK_9" },
+  { nama: "Saluran 10", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "SMARTLINK_10" }
 ];
 var LINK_APLIKASI = "LINK_APLIKASI";
 var LINK_TELEGRAM = "https://t.me/USERNAME";
