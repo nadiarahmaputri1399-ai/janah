@@ -4,13 +4,13 @@ const PENGATURAN = {
   smartlinkPlay: "https://uplcm.com/4/11563571",
   jumlahKlikPlay: 1,
 
-  jedaIklanDetik: 15,
+  jedaIklanDetik: 10,
 
   bukaTabBaru: false,
 
   episode: [
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/jg5XZW",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/uQXrQX",
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
