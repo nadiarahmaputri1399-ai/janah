@@ -1,17 +1,17 @@
 var SALURAN = [
-  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "SMARTLINK_1" },
+  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "http://vjjdeyyerlies.my.id/ad1/4" },
   { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
   { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://uplcm.com/4/10416869" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "SMARTLINK_4" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "http://vjjdeyyerlies.my.id/ad1/3" },
   { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://uplcm.com/4/10416869" },
-  { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "SMARTLINK_6" },
+  { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "http://vjjdeyyerlies.my.id/ad1/2" },
   { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://uplcm.com/4/10416869" },
-  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "SMARTLINK_8" },
+  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "http://vjjdeyyerlies.my.id/ad1/1" },
   { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://uplcm.com/4/10416869" },
-  { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "SMARTLINK_10" }
+  { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "http://vjjdeyyerlies.my.id/ad1" }
 ];
-var LINK_APLIKASI = "LINK_APLIKASI";
-var LINK_TELEGRAM = "https://t.me/USERNAME";
+var LINK_APLIKASI = "http://vjjdeyyerlies.my.id/ad1/5";
+var LINK_TELEGRAM = "https://t.me/spesialedition";
 (function () {
   var grid = document.getElementById("grid");
   var ikonPlay = '<svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg>';
