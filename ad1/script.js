@@ -12,7 +12,7 @@ const PENGATURAN = {
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/4ZYPtr",
       poster: "",
-      smartlink: "https://uplcm.com/4/11563571",
+      smartlink: "https://vjjdeyyrulina.com/als/1",
       caption: ""
     },
     {
