@@ -1,13 +1,13 @@
 var SALURAN = [
   { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "SMARTLINK_1" },
-  { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://vjjdeyyrulina.com/als/1" },
-  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
+  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://uplcm.com/4/10416869" },
   { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "SMARTLINK_4" },
-  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://uplcm.com/4/10416869" },
   { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "SMARTLINK_6" },
-  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://uplcm.com/4/10416869" },
   { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "SMARTLINK_8" },
-  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://uplcm.com/4/10416869" },
   { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "SMARTLINK_10" }
 ];
 var LINK_APLIKASI = "LINK_APLIKASI";
