@@ -22,3 +22,13 @@ document.querySelectorAll(".smartlink").forEach(element => {
     document.body.appendChild(s);
   }
 })();
+(function(){
+  let timer;
+  window.addEventListener("scroll", function(){
+    document.body.classList.add("scrolling");
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      document.body.classList.remove("scrolling");
+    }, 200);
+  }, {passive:true});
+})();
