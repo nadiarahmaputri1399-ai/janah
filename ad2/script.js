@@ -33,6 +33,35 @@ const PENGATURAN = {
   const P = PENGATURAN;
   const isi = P.episode.filter((e) => e.video && e.video.trim());
   if (isi.length) P.episode = isi;
+  (function () {
+    const n = P.episode.length;
+    if (n < 2) return;
+    const adaHash = /^#(ep|putar)-\d+/.test(location.hash);
+    let urutan = null;
+    try { urutan = JSON.parse(sessionStorage.getItem("urutanVideo") || "null"); } catch (e) {}
+    const cocok = Array.isArray(urutan) && urutan.length === n &&
+      urutan.slice().sort((a, b) => a - b).every((v, k) => v === k);
+    if (!adaHash || !cocok) {
+      urutan = [];
+      for (let k = 0; k < n; k++) urutan.push(k);
+      for (let k = n - 1; k > 0; k--) {
+        const j = Math.floor(Math.random() * (k + 1));
+        const t = urutan[k]; urutan[k] = urutan[j]; urutan[j] = t;
+      }
+      let terakhir = "";
+      try { terakhir = localStorage.getItem("videoTerakhir") || ""; } catch (e) {}
+      if (P.episode[urutan[0]].video === terakhir) {
+        const j = 1 + Math.floor(Math.random() * (n - 1));
+        const t = urutan[0]; urutan[0] = urutan[j]; urutan[j] = t;
+      }
+      try {
+        sessionStorage.setItem("urutanVideo", JSON.stringify(urutan));
+        localStorage.setItem("videoTerakhir", P.episode[urutan[0]].video);
+      } catch (e) {}
+    }
+    P.episode = urutan.map((k) => P.episode[k]);
+  })();
+
   try { history.scrollRestoration = "manual"; } catch (e) {}
 
   const $ = (id) => document.getElementById(id);
@@ -77,7 +106,6 @@ const PENGATURAN = {
       location.href = url;
     }
   }
-  // ===== BUAT SLIDE VIDEO =====
   const frag = document.createDocumentFragment();
   const slides = P.episode.map((d, i) => {
     const s = tpl.content.firstElementChild.cloneNode(true);
