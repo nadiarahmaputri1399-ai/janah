@@ -1,0 +1,70 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Archivo,system-ui,sans-serif;background:#07070B;color:#F4F4F6;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+img{display:block}
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;transform:translateZ(0);
+background:
+radial-gradient(280px 280px at 0% 0%,rgba(255,59,92,.28),transparent 70%),
+radial-gradient(260px 260px at 100% 45%,rgba(124,77,255,.20),transparent 70%),
+radial-gradient(260px 260px at 0% 100%,rgba(34,158,217,.18),transparent 70%),
+#07070B}
+.wrap{max-width:480px;margin:0 auto;padding:0 16px 32px;display:flex;flex-direction:column;gap:18px}
+.top{display:flex;align-items:center;justify-content:space-between;padding-top:18px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-ic{width:38px;height:38px;border-radius:11px;background:#FF3B5C;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(255,59,92,.5)}
+.logo-tx{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1.5px;line-height:1}
+.logo-tx b{color:#FF3B5C;font-weight:400}
+.live{display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(255,59,92,.14);border:1px solid rgba(255,59,92,.45);font-size:12px;font-weight:800;letter-spacing:1px;color:#FF8197}
+.dot{width:8px;height:8px;border-radius:50%;background:#FF3B5C;animation:blink 1.1s ease-in-out infinite}
+.ticker{overflow:hidden;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid #22222E;padding:10px 0}
+.track{display:flex;gap:26px;width:max-content;white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:1.2px;color:#CFCFDC;animation:marquee 18s linear infinite;will-change:transform}
+.track i{font-style:normal;color:#FF6B84}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{position:relative;display:block;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#1C1C28;border:1.5px solid #262636;transform:translateZ(0);transition:transform .15s}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.card img.ok{opacity:1}
+.shade{position:absolute;left:0;right:0;bottom:0;height:55%;background:linear-gradient(180deg,rgba(7,7,11,0),rgba(7,7,11,.92))}
+.badge{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;background:#FF3B5C;font-size:10px;font-weight:800;letter-spacing:.8px;color:#fff}
+.badge .dot{width:6px;height:6px;background:#fff}
+.hd{position:absolute;top:10px;right:10px;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.6);font-size:10px;font-weight:800}
+.play{position:absolute;top:50%;left:50%;width:58px;height:58px;margin:-29px 0 0 -29px}
+.play .btn{position:absolute;inset:0;border-radius:50%;background:rgba(255,59,92,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(255,59,92,.55)}
+.rip{position:absolute;inset:0;border-radius:50%;border:2px solid #fff;animation:ripple 1.8s ease-out infinite;will-change:transform,opacity}
+.info{position:absolute;left:12px;right:12px;bottom:12px}
+.info b{display:block;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.info small{font-size:11px;color:#C4C4D4}
+.cta-sec{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.sep{display:flex;align-items:center;gap:10px}
+.sep span{flex:1;height:1px;background:#2A2A3A}
+.sep h2{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:22px;letter-spacing:1.5px;white-space:nowrap}
+.sep h2 b{color:#FF3B5C;font-weight:400}
+.cta{position:relative;display:block;padding:2px;border-radius:22px;overflow:hidden;transform:translateZ(0);transition:transform .15s}
+.cta::before{content:"";position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1/1;background:conic-gradient(var(--c1),var(--c2),transparent 60%,var(--c1));animation:spin 3.2s linear infinite;will-change:transform}
+.cta-in{position:relative;display:flex;align-items:center;gap:14px;padding:16px;border-radius:20px;background:#11111A;overflow:hidden}
+.cta-in::before{content:"";position:absolute;left:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--g),transparent 70%);animation:breathe 2.6s ease-in-out infinite}
+.cta-in::after{content:"";position:absolute;top:0;left:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:shine 3s ease-in-out infinite}
+.ic{position:relative;width:60px;height:60px;border-radius:18px;background:var(--c1);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+.ic-arrow{position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%;background:#0B0B10;border:2px solid var(--c1);display:flex;align-items:center;justify-content:center;animation:bob 1.2s ease-in-out infinite}
+.plane{display:flex;animation:fly 2s ease-in-out infinite}
+.txt{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.tag{align-self:flex-start;padding:3px 8px;border-radius:6px;background:var(--c1);font-size:10px;font-weight:800;letter-spacing:.8px;color:#fff}
+.txt b{font-size:18px;font-weight:800;line-height:1.1}
+.txt small{font-size:12px;color:#B4B4C6}
+.go{position:relative;width:42px;height:42px;border-radius:50%;background:var(--c1);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:nudge 1.6s ease-in-out infinite}
+.foot{text-align:center;font-size:11px;color:#8E8EA0}
+.rv:not(.in){opacity:0}
+.rv.in{animation:up .6s cubic-bezier(.2,.8,.2,1) var(--d,0s) backwards}
+.card:active,.cta:active{transform:scale(.97)}
+.off,.off *,.off::before,.off::after,.off *::before,.off *::after{animation-play-state:paused!important}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes ripple{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.9);opacity:0}}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes shine{0%{transform:translateX(-140%) skewX(-20deg)}55%,100%{transform:translateX(380%) skewX(-20deg)}}
+@keyframes breathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+@keyframes bob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(3px,-4px) rotate(-6deg)}}
+@keyframes nudge{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
