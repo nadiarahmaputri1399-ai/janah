@@ -19,7 +19,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 1",
       label: "TRENDING #1",
       durasi: "02:15",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793026933527.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/mb6qba",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385"
     },
@@ -28,7 +28,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 2",
       label: "BARU RILIS",
       durasi: "01:48",
-      video: "https://pub-90b5435915404f77b08fdbcb2b3ca36d.r2.dev/ssstik.io_1793026993304.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/WipmqA",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385"
     },
