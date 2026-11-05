@@ -19,7 +19,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 1",
       label: "TRENDING #1",
       durasi: "02:15",
-      video: "https://upload.vjjdeyyjinerila.xyz/f/mf2asr",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/cASvqa",
       poster: "",
       smartlink: "https://vjjdeyyrulina.com/ads"
     },
@@ -28,7 +28,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 2",
       label: "BARU RILIS",
       durasi: "01:48",
-      video: "https://upload.vjjdeyyjinerila.xyz/f/cASvqa",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/mf2asr",
       poster: "",
       smartlink: "https://vjjdeyyrulina.com/ads"
     },
@@ -37,7 +37,7 @@ const PENGATURAN = {
       deskripsi: "Deskripsi singkat episode 3",
       label: "PALING DITONTON",
       durasi: "02:30",
-      video: "https://upload.vjjdeyyjinerila.xyz/f/Wmmp5k",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/yV9dvc",
       poster: "",
       smartlink: "https://vjjdeyyrulina.com/ads"
     }
