@@ -54,7 +54,15 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
   const d=DATA_SALURAN[i]||{};
   if(d.foto&&d.foto.trim()){
     const thumb=card.querySelector('.thumb');
-    thumb.innerHTML='<img src="'+d.foto.trim()+'" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">';
+    // Semua foto dimuat sekali di awal (tidak lazy) supaya saat scroll tidak muncul/memuat lagi
+    const img=new Image();
+    img.alt='';
+    img.width=108;img.height=108;
+    img.decoding='async';
+    if(i<3)img.fetchPriority='high';
+    img.src=d.foto.trim();
+    thumb.textContent='';
+    thumb.appendChild(img);
     thumb.style.animation='none';
   }
 });
@@ -87,15 +95,10 @@ function pasangLink(id,url,nama){
 }
 pasangLink('installBtn',LINK_APLIKASI,'aplikasi');
 pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
-let scrollTimer;
-window.addEventListener('scroll',()=>{
-  document.body.classList.add('scrolling');
-  clearTimeout(scrollTimer);
-  scrollTimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);
-},{passive:true});
+// Animasi hanya jalan di bagian yang terlihat di layar (hemat & ringan)
 if('IntersectionObserver' in window){
   const pengamat=new IntersectionObserver(entri=>{
     entri.forEach(e=>e.target.classList.toggle('diam',!e.isIntersecting));
-  });
+  },{rootMargin:'100px 0px'});
   document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
-                                                                      }
+}
