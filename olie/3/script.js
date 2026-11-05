@@ -1,14 +1,14 @@
 var SALURAN = [
-  { nama: "Saluran 1",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "SMARTLINK_1" },
-  { nama: "Saluran 2",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "SMARTLINK_2" },
-  { nama: "Saluran 3",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "SMARTLINK_3" },
-  { nama: "Saluran 4",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "SMARTLINK_4" },
-  { nama: "Saluran 5",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "SMARTLINK_5" },
-  { nama: "Saluran 6",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "SMARTLINK_6" },
-  { nama: "Saluran 7",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "SMARTLINK_7" },
-  { nama: "Saluran 8",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "SMARTLINK_8" },
-  { nama: "Saluran 9",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "SMARTLINK_9" },
-  { nama: "Saluran 10", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "SMARTLINK_10" }
+  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "SMARTLINK_1" },
+  { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "SMARTLINK_4" },
+  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "SMARTLINK_6" },
+  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "SMARTLINK_8" },
+  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://vjjdeyyrulina.com/als/1" },
+  { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "SMARTLINK_10" }
 ];
 var LINK_APLIKASI = "LINK_APLIKASI";
 var LINK_TELEGRAM = "https://t.me/USERNAME";
