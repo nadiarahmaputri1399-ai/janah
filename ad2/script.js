@@ -1,7 +1,7 @@
 const PENGATURAN = {
-  smartlinkUtama: "https://uplcm.com/4/11563571",
+  smartlinkUtama: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
 
-  smartlinkPlay: "https://uplcm.com/4/11563571",
+  smartlinkPlay: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
   jumlahKlikPlay: 1,
 
   jedaIklanDetik: 10,
@@ -12,19 +12,19 @@ const PENGATURAN = {
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/2Fvuty",
       poster: "",
-      smartlink: "https://uplcm.com/4/11563571",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/nDFpWf",
       poster: "",
-      smartlink: "",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/iTSA23",
       poster: "",
-      smartlink: "",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     }
   ]
