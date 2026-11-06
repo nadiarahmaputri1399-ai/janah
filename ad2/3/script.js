@@ -22,18 +22,6 @@ const PENGATURAN = {
       caption: ""
     },
     {
-      video: "",
-      poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
-      caption: ""
-    },
-    {
-      video: "",
-      poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
-      caption: ""
-    },
-    {
       video: "https://upload.vjjdeyyjinerila.xyz/f/fKVaXt",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
@@ -41,6 +29,18 @@ const PENGATURAN = {
     },
     {
       video: "https://upload.vjjdeyyjinerila.xyz/f/CvfAUN",
+      poster: "",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      caption: ""
+    },
+    {
+      video: "https://upload.vjjdeyyjinerila.xyz/f/TJmPct",
+      poster: "",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      caption: ""
+    },
+    {
+      video: "https://upload.vjjdeyyjinerila.xyz/f/TKKK7t",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
