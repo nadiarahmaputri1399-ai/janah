@@ -14,18 +14,6 @@ const PENGATURAN = {
       poster: "",
       smartlink: "https://vjjdeyyrulina.com/als/1",
       caption: ""
-    },
-    {
-      video: "",
-      poster: "",
-      smartlink: "",
-      caption: ""
-    },
-    {
-      video: "",
-      poster: "",
-      smartlink: "",
-      caption: ""
     }
   ]
 };
