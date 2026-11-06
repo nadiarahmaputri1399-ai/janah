@@ -14,18 +14,6 @@ const PENGATURAN = {
       poster: "",
       smartlink: "https://uplcm.com/4/11563571",
       caption: ""
-    },
-    {
-      video: "",
-      poster: "",
-      smartlink: "",
-      caption: ""
-    },
-    {
-      video: "",
-      poster: "",
-      smartlink: "",
-      caption: ""
     }
   ]
 };
