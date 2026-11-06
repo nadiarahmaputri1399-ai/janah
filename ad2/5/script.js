@@ -10,37 +10,37 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/g7N3Cx",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/ptwHjL",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/KfbYLn",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/7CvgU7",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
-      video: "https://upload.vjjdeyyjinerila.xyz/f/DdZD3n",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/u6Rxdv",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
-       video: "https://upload.vjjdeyyjinerila.xyz/f/eALMgK",
+       video: "https://upload.vjjdeyyjinerila.xyz/f/N9bXFa",
+      poster: "",
+      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
+      caption: ""
+    },
+    {
+        video: "https://upload.vjjdeyyjinerila.xyz/f/eALMgK",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
     },
     {
         video: "https://upload.vjjdeyyjinerila.xyz/f/dpKe5T",
-      poster: "",
-      smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
-      caption: ""
-    },
-    {
-        video: "https://upload.vjjdeyyjinerila.xyz/f/NSP9Dc",
       poster: "",
       smartlink: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
       caption: ""
