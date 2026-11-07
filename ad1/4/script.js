@@ -4,7 +4,7 @@ const PENGATURAN = {
   smartlinkPlay: "https://uplcm.com/4/11563571",
   jumlahKlikPlay: 1,
 
-  jedaIklanDetik: 10,
+  jedaIklanDetik: 25,
 
   bukaTabBaru: false,
 
@@ -161,9 +161,9 @@ const PENGATURAN = {
   function scrollKe(i, halus) {
     feed.scrollTo({ top: slides[i].offsetTop, behavior: halus ? "smooth" : "auto" });
   }
-
   let detikTonton = 0;
   let waktuTerakhir = 0;
+  const iklanJeda = {};
 
   function putarVideo(mulai) {
     const i = ep, s = slides[i], v = videos[i], d = P.episode[i];
@@ -176,6 +176,7 @@ const PENGATURAN = {
     }
     detikTonton = 0;
     waktuTerakhir = mulai || 0;
+    s.querySelector(".sisa").textContent = "Ketuk untuk memutar";
     s.classList.add("main");
     v.controls = true;
     v.muted = false;
@@ -201,25 +202,35 @@ const PENGATURAN = {
     if (jeda > 0 && detikTonton >= jeda) {
       detikTonton = 0;
       v.pause();
-      tulisHash("putar-" + ep + "-" + Math.floor(t));
-      tandai("smartlinkSudah");
-      buka(linkIklan());
+      v.controls = false;
+      suaras[ep].hidden = true;
+      slides[ep].classList.remove("main");
+      slides[ep].querySelector(".sisa").textContent = "Ketuk untuk lanjut menonton";
+      iklanJeda[ep] = true;
     }
   }, true);
 
   function tekanPlay() {
     if (klikPopunder) { klikPopunder = false; return; }
+    if (iklanJeda[ep]) {
+      iklanJeda[ep] = false;
+      tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
+      tandai("smartlinkSudah");
+      buka(linkIklan());
+      return;
+    }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     if (sudah < target) {
       klik[ep] = sudah + 1;
-      if (sudah + 1 >= target) tulisHash("putar-" + ep);
+      if (sudah + 1 >= target) tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
       tandai("smartlinkSudah");
       buka(linkIklan());
       return;
     }
     putarVideo();
   }
+
   function tampil(pesan) {
     toast.textContent = pesan; toast.hidden = false;
     clearTimeout(tampil.t);
@@ -239,7 +250,6 @@ const PENGATURAN = {
       setTimeout(() => h.remove(), 1300);
     }
   }
-
   feed.addEventListener("click", (e) => {
     const s = e.target.closest(".layar");
     const b = e.target.closest("button");
@@ -270,6 +280,7 @@ const PENGATURAN = {
     const h = bacaHash();
     if (!h || h.jenis !== "putar" || !P.episode[h.ep]) return;
     tertunda.length = 0;
+    klik[h.ep] = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     tulisHash("ep-" + h.ep);
     if (h.ep !== ep) { tujuan = h.ep; scrollKe(h.ep, false); aktifkan(h.ep); }
     putarVideo(h.detik);
