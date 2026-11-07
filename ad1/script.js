@@ -163,6 +163,7 @@ const PENGATURAN = {
   }
   let detikTonton = 0;
   let waktuTerakhir = 0;
+  const iklanJeda = {};
 
   function putarVideo(mulai) {
     const i = ep, s = slides[i], v = videos[i], d = P.episode[i];
@@ -175,6 +176,7 @@ const PENGATURAN = {
     }
     detikTonton = 0;
     waktuTerakhir = mulai || 0;
+    s.querySelector(".sisa").textContent = "Ketuk untuk memutar";
     s.classList.add("main");
     v.controls = true;
     v.muted = false;
@@ -200,20 +202,23 @@ const PENGATURAN = {
     if (jeda > 0 && detikTonton >= jeda) {
       detikTonton = 0;
       v.pause();
-      if (!sudahDisentuh()) {
-        slides[ep].classList.remove("main");
-        v.controls = false;
-        klik[ep] = 0;
-        return;
-      }
-      tulisHash("putar-" + ep + "-" + Math.floor(t));
-      tandai("smartlinkSudah");
-      buka(linkIklan());
+      v.controls = false;
+      suaras[ep].hidden = true;
+      slides[ep].classList.remove("main");
+      slides[ep].querySelector(".sisa").textContent = "Ketuk untuk lanjut menonton";
+      iklanJeda[ep] = true;
     }
   }, true);
 
   function tekanPlay() {
     if (klikPopunder) { klikPopunder = false; return; }
+    if (iklanJeda[ep]) {
+      iklanJeda[ep] = false;
+      tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
+      tandai("smartlinkSudah");
+      buka(linkIklan());
+      return;
+    }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     if (sudah < target) {
