@@ -4,7 +4,7 @@ const PENGATURAN = {
   smartlinkPlay: "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9",
   jumlahKlikPlay: 1,
 
-  jedaIklanDetik: 15,
+  jedaIklanDetik: 105,
 
   bukaTabBaru: false,
 
