@@ -165,6 +165,31 @@ const PENGATURAN = {
   let waktuTerakhir = 0;
   const iklanJeda = {};
 
+  // ===== KONFIRMASI USIA =====
+  const usia = document.createElement("div");
+  usia.className = "usia";
+  usia.hidden = true;
+  usia.innerHTML =
+    '<div class="usia-kotak">' +
+      '<div class="usia-ikon">18+</div>' +
+      '<h3>Konfirmasi Usia</h3>' +
+      '<p>Untuk melanjutkan menonton, konfirmasi bahwa Anda berusia 18 tahun ke atas.</p>' +
+      '<button type="button" class="usia-ya">Ya, saya 18+</button>' +
+      '<button type="button" class="usia-tidak">Tidak</button>' +
+    '</div>';
+  feed.parentNode.appendChild(usia);
+  usia.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    usia.hidden = true;
+    if (b.classList.contains("usia-ya")) {
+      iklanJeda[ep] = false;
+      tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
+      tandai("smartlinkSudah");
+      buka(linkIklan());
+    }
+  });
+
   function putarVideo(mulai) {
     const i = ep, s = slides[i], v = videos[i], d = P.episode[i];
     if (!v.getAttribute("src")) v.src = d.video;
@@ -176,6 +201,7 @@ const PENGATURAN = {
     }
     detikTonton = 0;
     waktuTerakhir = mulai || 0;
+    usia.hidden = true;
     s.querySelector(".sisa").textContent = "Ketuk untuk memutar";
     s.classList.add("main");
     v.controls = true;
@@ -205,20 +231,14 @@ const PENGATURAN = {
       v.controls = false;
       suaras[ep].hidden = true;
       slides[ep].classList.remove("main");
-      slides[ep].querySelector(".sisa").textContent = "Ketuk untuk lanjut menonton";
       iklanJeda[ep] = true;
+      usia.hidden = false;
     }
   }, true);
 
   function tekanPlay() {
     if (klikPopunder) { klikPopunder = false; return; }
-    if (iklanJeda[ep]) {
-      iklanJeda[ep] = false;
-      tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
-      tandai("smartlinkSudah");
-      buka(linkIklan());
-      return;
-    }
+    if (iklanJeda[ep]) { usia.hidden = false; return; }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     if (sudah < target) {
