@@ -4,8 +4,6 @@ const PENGATURAN = {
   smartlinkPlay: "https://asiafilm.org/4/1b597d65e3fa566d005f9a1ec5e6d385",
   jumlahKlikPlay: 1,
 
-  jedaIklanDetik: 10,
-
   bukaTabBaru: false,
 
   episode: [
@@ -211,9 +209,6 @@ const PENGATURAN = {
     window.scrollTo({ top: atas, behavior: halus ? "smooth" : "auto" });
   }
 
-  let detikTonton = 0;
-  let waktuTerakhir = 0;
-
   function putarVideo(mulai) {
     const i = ep, s = slides[i], v = videos[i], d = P.episode[i];
     if (!v.getAttribute("src")) v.src = d.video;
@@ -223,8 +218,6 @@ const PENGATURAN = {
       if (v.readyState >= 1) lompat();
       else v.addEventListener("loadedmetadata", lompat, { once: true });
     }
-    detikTonton = 0;
-    waktuTerakhir = mulai || 0;
     s.classList.add("main");
     v.controls = true;
     v.muted = false;
@@ -241,19 +234,6 @@ const PENGATURAN = {
     const v = e.target;
     if (v !== videos[ep]) return;
     if (v.duration) bars[ep].style.transform = "scaleX(" + v.currentTime / v.duration + ")";
-    if (!slides[ep].classList.contains("main")) return;
-    const t = v.currentTime;
-    const selisih = t - waktuTerakhir;
-    waktuTerakhir = t;
-    if (selisih > 0 && selisih < 2) detikTonton += selisih;
-    const jeda = Number(P.jedaIklanDetik) || 0;
-    if (jeda > 0 && detikTonton >= jeda) {
-      detikTonton = 0;
-      v.pause();
-      tulisHash("putar-" + ep + "-" + Math.floor(t));
-      tandai("smartlinkSudah");
-      buka(linkIklan());
-    }
   }, true);
 
   function tekanPlay() {
