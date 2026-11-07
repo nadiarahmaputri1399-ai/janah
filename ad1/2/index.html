@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=1">
 <script>
 (function(){
   var KUNCI = 'popunderSudah';
@@ -19,9 +19,6 @@
   document.addEventListener('click', function(){
     try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
   }, { capture: true, once: true });
-  window.addEventListener('pageshow', function(e){
-    if (e.persisted && sudah()) location.reload();
-  });
   (function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
 })();
  </script>
@@ -84,6 +81,6 @@
   </section>
 </template>
 
-<script src="script.js?v=17"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
