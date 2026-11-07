@@ -11,20 +11,21 @@
 <link rel="stylesheet" href="style.css?v=3">
 <script>
 (function(){
+  var LINK_POPUNDER = 'https://uplcm.com/4/11905857';
   var KUNCI = 'popunderSudah';
   function sudah(){
     try { return sessionStorage.getItem(KUNCI); } catch(e){ return false; }
   }
   if (sudah()) return;
-  document.addEventListener('click', function(){
+  function jalan(){
+    if (sudah()) return;
     try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
-  }, { capture: true, once: true });
-  window.addEventListener('pageshow', function(e){
-    if (e.persisted && sudah()) location.reload();
-  });
-  (function(s){s.dataset.zone='11563270',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+    document.removeEventListener('click', jalan, true);
+    window.open(LINK_POPUNDER, '_blank');
+  }
+  document.addEventListener('click', jalan, true);
 })();
- </script>
+    </script>
 </head>
 <body>
 <div class="app">
