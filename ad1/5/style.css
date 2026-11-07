@@ -65,3 +65,10 @@ svg{display:block}
 
 .layar:not(.aktif) .play::before,.layar:not(.aktif) .jalan span{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.play::before,.disk,.jalan span{animation:none}}
+.usia{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.usia-kotak{width:100%;max-width:320px;background:#16121f;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:24px 20px;text-align:center;display:flex;flex-direction:column;gap:12px}
+.usia-ikon{margin:0 auto;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:800 20px var(--display);background:var(--accent)}
+.usia h3{font:800 18px var(--display)}
+.usia p{font-size:14px;line-height:1.5;color:var(--muted)}
+.usia-ya{padding:13px;border-radius:12px;background:var(--accent);font-weight:700;font-size:15px}
+.usia-tidak{padding:11px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:600;font-size:14px;color:var(--muted)}
