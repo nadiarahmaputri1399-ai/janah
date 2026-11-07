@@ -161,7 +161,6 @@ const PENGATURAN = {
   function scrollKe(i, halus) {
     feed.scrollTo({ top: slides[i].offsetTop, behavior: halus ? "smooth" : "auto" });
   }
-
   let detikTonton = 0;
   let waktuTerakhir = 0;
 
@@ -201,6 +200,12 @@ const PENGATURAN = {
     if (jeda > 0 && detikTonton >= jeda) {
       detikTonton = 0;
       v.pause();
+      if (!sudahDisentuh()) {
+        slides[ep].classList.remove("main");
+        v.controls = false;
+        klik[ep] = 0;
+        return;
+      }
       tulisHash("putar-" + ep + "-" + Math.floor(t));
       tandai("smartlinkSudah");
       buka(linkIklan());
@@ -213,13 +218,14 @@ const PENGATURAN = {
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     if (sudah < target) {
       klik[ep] = sudah + 1;
-      if (sudah + 1 >= target) tulisHash("putar-" + ep);
+      if (sudah + 1 >= target) tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
       tandai("smartlinkSudah");
       buka(linkIklan());
       return;
     }
     putarVideo();
   }
+
   function tampil(pesan) {
     toast.textContent = pesan; toast.hidden = false;
     clearTimeout(tampil.t);
@@ -239,7 +245,6 @@ const PENGATURAN = {
       setTimeout(() => h.remove(), 1300);
     }
   }
-
   feed.addEventListener("click", (e) => {
     const s = e.target.closest(".layar");
     const b = e.target.closest("button");
@@ -270,6 +275,7 @@ const PENGATURAN = {
     const h = bacaHash();
     if (!h || h.jenis !== "putar" || !P.episode[h.ep]) return;
     tertunda.length = 0;
+    klik[h.ep] = Math.max(0, Number(P.jumlahKlikPlay) || 0);
     tulisHash("ep-" + h.ep);
     if (h.ep !== ep) { tujuan = h.ep; scrollKe(h.ep, false); aktifkan(h.ep); }
     putarVideo(h.detik);
