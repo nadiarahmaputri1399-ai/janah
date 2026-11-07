@@ -36,6 +36,26 @@ const PENGATURAN = {
     try { history.pushState(null, "", "#" + h); } catch (e) {}
   }
 
+  // ===== RIWAYAT TOMBOL KEMBALI =====
+  function sudahDisentuh() {
+    try { return !navigator.userActivation || navigator.userActivation.hasBeenActive; } catch (e) { return true; }
+  }
+  const tertunda = [];
+  function kirimTertunda() {
+    if (!tertunda.length || !sudahDisentuh()) return;
+    while (tertunda.length) dorongHash("ep-" + tertunda.shift());
+  }
+  function cobaKirim() { kirimTertunda(); setTimeout(kirimTertunda, 0); }
+  ["pointerup", "touchend", "click", "keydown"].forEach((n) =>
+    document.addEventListener(n, cobaKirim, true));
+  function catatVideo(i) {
+    const h = bacaHash();
+    const terakhir = tertunda.length ? tertunda[tertunda.length - 1] : (h ? h.ep : -1);
+    if (terakhir === i) return;
+    if (sudahDisentuh() && !tertunda.length) dorongHash("ep-" + i);
+    else { tertunda.push(i); kirimTertunda(); }
+  }
+
   const klik = {};
 
   let klikPopunder = false;
@@ -61,7 +81,6 @@ const PENGATURAN = {
       location.href = url;
     }
   }
-
   // ===== BUAT SLIDE VIDEO =====
   const frag = document.createDocumentFragment();
   const slides = P.episode.map((d, i) => {
@@ -201,7 +220,6 @@ const PENGATURAN = {
     }
     putarVideo();
   }
-
   function tampil(pesan) {
     toast.textContent = pesan; toast.hidden = false;
     clearTimeout(tampil.t);
@@ -251,12 +269,14 @@ const PENGATURAN = {
   function cekKembali() {
     const h = bacaHash();
     if (!h || h.jenis !== "putar" || !P.episode[h.ep]) return;
+    tertunda.length = 0;
     tulisHash("ep-" + h.ep);
     if (h.ep !== ep) { tujuan = h.ep; scrollKe(h.ep, false); aktifkan(h.ep); }
     putarVideo(h.detik);
   }
 
   window.addEventListener("popstate", () => {
+    tertunda.length = 0;
     const h = bacaHash();
     if (h && h.jenis === "putar") { cekKembali(); return; }
     const i = (h && P.episode[h.ep]) ? h.ep : 0;
@@ -275,8 +295,7 @@ const PENGATURAN = {
       if (!sudahAktif) aktifkan(i);
       if (tujuan >= 0) { if (i === tujuan) tujuan = -1; return; }
       if (sudahAktif) return;
-      const h = bacaHash();
-      if (!h || h.ep !== i) dorongHash("ep-" + i);
+      catatVideo(i);
     });
   }, { root: feed, threshold: 0.6 });
 
