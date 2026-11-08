@@ -10,7 +10,7 @@ const PENGATURAN = {
 
   episode: [
     {
-      video: "https://cdn2.videy.co/XHWTkwsx1.mp4",
+      video: "https://upload.vjjdeyyjinerila.xyz/f/neaxSE",
       poster: "",
       smartlink: "https://vjjdeyyrulina.com/als/1",
       caption: ""
