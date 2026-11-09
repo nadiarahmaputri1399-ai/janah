@@ -1,16 +1,16 @@
 var SALURAN = [
-  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "http://vjjdeyyerlies.my.id/ad1/4" },
+  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "http://vjjdeyyerlies.my.id/olie1" },
   { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
   { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://uplcm.com/4/10416869" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "http://vjjdeyyerlies.my.id/ad1/3" },
-  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "http://vjjdeyyerlies.my.id/ad1/5" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "http://vjjdeyyerlies.my.id/olie1/1" },
+  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "http://vjjdeyyerlies.my.id/olie1/2" },
   { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "https://uplcm.com/4/10416869" },
   { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://uplcm.com/4/10416869" },
-  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "http://vjjdeyyerlies.my.id/ad1/2" },
-  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "http://vjjdeyyerlies.my.id/ad1/1" },
+  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "http://vjjdeyyerlies.my.id/olie1/3" },
+  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "http://vjjdeyyerlies.my.id/olie1/4" },
   { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "https://uplcm.com/4/10416869" }
 ];
-var LINK_APLIKASI = "http://vjjdeyyerlies.my.id/ad1";
+var LINK_APLIKASI = "http://vjjdeyyerlies.my.id/olie1/5";
 var LINK_TELEGRAM = "https://t.me/spesialedition";
 (function () {
   var grid = document.getElementById("grid");
