@@ -6,6 +6,9 @@ const PENGATURAN = {
 
   jedaIklanDetik: 15,
 
+  popunderAdsterra: "https://benchform.org/1/d101ca05eb20975a6b8c6a27b1417b5f",
+  socialBarAdsterra: "https://biomanos.org/14/c5546a66062f18eeee5bb3a14c1088be",
+
   bukaTabBaru: false,
 
   episode: [
@@ -60,7 +63,9 @@ const PENGATURAN = {
 
   let klikPopunder = false;
   try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
-  document.addEventListener("click", () => { klikPopunder = false; }, { once: true });
+  document.addEventListener("click", () => {
+    if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
+  }, { once: true });
 
   function ambil(kunci) {
     try { return sessionStorage.getItem(kunci) === "1"; } catch (e) { return false; }
@@ -68,6 +73,23 @@ const PENGATURAN = {
   function tandai(kunci) {
     try { sessionStorage.setItem(kunci, "1"); } catch (e) {}
   }
+
+  let klikAdsterra = false;
+  function muatPopAdsterra() {
+    if (klikAdsterra || ambil("adsterraPopSudah") || !P.popunderAdsterra) return;
+    klikAdsterra = true;
+    const s = document.createElement("script");
+    s.setAttribute("data-cfasync", "false");
+    s.src = P.popunderAdsterra;
+    document.body.appendChild(s);
+    setTimeout(() => {
+      document.addEventListener("click", () => {
+        klikAdsterra = false;
+        tandai("adsterraPopSudah");
+      }, { once: true });
+    }, 0);
+  }
+  if (!klikPopunder) muatPopAdsterra();
 
   const link = (u) => (u && u.trim()) ? u.trim() : P.smartlinkUtama;
   const linkIklan = () => link(P.episode[ep].smartlink || P.smartlinkPlay);
@@ -237,7 +259,8 @@ const PENGATURAN = {
   }, true);
 
   function tekanPlay() {
-    if (klikPopunder) { klikPopunder = false; return; }
+    if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); return; }
+    if (klikAdsterra) { klikAdsterra = false; tandai("adsterraPopSudah"); return; }
     if (iklanJeda[ep]) { usia.hidden = false; return; }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
@@ -336,14 +359,14 @@ const PENGATURAN = {
   slides.forEach((s) => io.observe(s));
   cekKembali();
 })();
-let shuffleSudah = false;
+let socialSudah = false;
 document.addEventListener('play', function (e) {
-  if (shuffleSudah) return;
+  if (socialSudah) return;
   if (!e.target.closest || !e.target.closest('.layar.main')) return;
-  shuffleSudah = true;
+  if (!PENGATURAN.socialBarAdsterra) return;
+  socialSudah = true;
   const s = document.createElement('script');
-  s.async = true;
   s.setAttribute('data-cfasync', 'false');
-  s.src = '//px.carceagrowel.com/sM6c7ZCUm4jBjn/150091';
+  s.src = PENGATURAN.socialBarAdsterra;
   document.body.appendChild(s);
 }, true);
