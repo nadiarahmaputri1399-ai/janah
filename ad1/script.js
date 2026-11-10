@@ -76,7 +76,7 @@ const PENGATURAN = {
 
   let klikAdsterra = false;
   function muatPopAdsterra() {
-    if (klikAdsterra || ambil("adsterraPopSudah") || !P.popunderAdsterra) return;
+    if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
     klikAdsterra = true;
     const s = document.createElement("script");
     s.setAttribute("data-cfasync", "false");
@@ -259,8 +259,9 @@ const PENGATURAN = {
   }, true);
 
   function tekanPlay() {
-    if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); return; }
-    if (klikAdsterra) { klikAdsterra = false; tandai("adsterraPopSudah"); return; }
+    const teks = slides[ep].querySelector(".sisa");
+    if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
+    if (klikAdsterra) { klikAdsterra = false; tandai("adsterraPopSudah"); teks.textContent = "Ketuk lagi untuk memutar"; return; }
     if (iklanJeda[ep]) { usia.hidden = false; return; }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
@@ -268,6 +269,7 @@ const PENGATURAN = {
       klik[ep] = sudah + 1;
       if (sudah + 1 >= target) tulisHash("putar-" + ep + "-" + Math.floor(videos[ep].currentTime || 0));
       tandai("smartlinkSudah");
+      teks.textContent = "Memuat…";
       buka(linkIklan());
       return;
     }
@@ -359,20 +361,20 @@ const PENGATURAN = {
   slides.forEach((s) => io.observe(s));
   cekKembali();
 })();
-let socialSudah = false;
-document.addEventListener('play', function (e) {
-  if (socialSudah) return;
-  if (!e.target.closest || !e.target.closest('.layar.main')) return;
-  if (!PENGATURAN.socialBarAdsterra) return;
-  socialSudah = true;
+// ===== SOCIAL BAR ADSTERRA (muncul setelah iklan selesai & video jalan) =====
+(function () {
+  let sudah = false;
+  try { sudah = sessionStorage.getItem('smartlinkSudah') === '1'; } catch (x) {}
+  if (!sudah || !PENGATURAN.socialBarAdsterra) return;
+  window.__socialDimuat = true;
   const s = document.createElement('script');
   s.setAttribute('data-cfasync', 'false');
   s.src = PENGATURAN.socialBarAdsterra;
-  s.onload = function () {
-    setTimeout(function () {
-      try { document.dispatchEvent(new Event('DOMContentLoaded')); } catch (x) {}
-      try { window.dispatchEvent(new Event('load')); } catch (x) {}
-    }, 300);
-  };
   document.body.appendChild(s);
-}, true);
+})();
+window.addEventListener('pageshow', function (e) {
+  if (!e.persisted || window.__socialDimuat) return;
+  let sudah = false;
+  try { sudah = sessionStorage.getItem('smartlinkSudah') === '1'; } catch (x) {}
+  if (sudah) location.reload();
+});
