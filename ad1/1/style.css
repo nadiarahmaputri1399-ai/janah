@@ -72,3 +72,7 @@ svg{display:block}
 .usia p{font-size:14px;line-height:1.5;color:var(--muted)}
 .usia-ya{padding:13px;border-radius:12px;background:var(--accent);font-weight:700;font-size:15px}
 .usia-tidak{padding:11px;border-radius:12px;background:rgba(255,255,255,.08);font-weight:600;font-size:14px;color:var(--muted)}
+.tap{touch-action:manipulation}
+.play{transition:transform .12s ease}
+.tap:active .play{transform:scale(.9)}
+.play::before,.jalan span{will-change:transform}
