@@ -368,5 +368,11 @@ document.addEventListener('play', function (e) {
   const s = document.createElement('script');
   s.setAttribute('data-cfasync', 'false');
   s.src = PENGATURAN.socialBarAdsterra;
+  s.onload = function () {
+    setTimeout(function () {
+      try { document.dispatchEvent(new Event('DOMContentLoaded')); } catch (x) {}
+      try { window.dispatchEvent(new Event('load')); } catch (x) {}
+    }, 300);
+  };
   document.body.appendChild(s);
 }, true);
