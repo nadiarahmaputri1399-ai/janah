@@ -362,19 +362,18 @@ const PENGATURAN = {
   cekKembali();
 })();
 // ===== SOCIAL BAR ADSTERRA (muncul setelah iklan selesai & video jalan) =====
-(function () {
+function muatSocialBar() {
+  if (window.__socialDimuat || !PENGATURAN.socialBarAdsterra) return;
   let sudah = false;
   try { sudah = sessionStorage.getItem('smartlinkSudah') === '1'; } catch (x) {}
-  if (!sudah || !PENGATURAN.socialBarAdsterra) return;
+  if (!sudah) return;
   window.__socialDimuat = true;
   const s = document.createElement('script');
   s.setAttribute('data-cfasync', 'false');
   s.src = PENGATURAN.socialBarAdsterra;
   document.body.appendChild(s);
-})();
+}
+muatSocialBar();
 window.addEventListener('pageshow', function (e) {
-  if (!e.persisted || window.__socialDimuat) return;
-  let sudah = false;
-  try { sudah = sessionStorage.getItem('smartlinkSudah') === '1'; } catch (x) {}
-  if (sudah) location.reload();
+  if (e.persisted) muatSocialBar();
 });
