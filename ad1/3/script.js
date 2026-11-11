@@ -7,7 +7,6 @@ const PENGATURAN = {
   jedaIklanDetik: 15,
 
   popunderAdsterra: "https://benchform.org/1/d101ca05eb20975a6b8c6a27b1417b5f",
-  socialBarAdsterra: "https://biomanos.org/14/c5546a66062f18eeee5bb3a14c1088be",
 
   bukaTabBaru: false,
 
