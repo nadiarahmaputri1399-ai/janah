@@ -7,7 +7,6 @@ const PENGATURAN = {
   jedaIklanDetik: 15,
 
   popunderAdsterra: "https://benchform.org/1/d101ca05eb20975a6b8c6a27b1417b5f",
-  socialBarAdsterra: "https://biomanos.org/14/c5546a66062f18eeee5bb3a14c1088be",
 
   bukaTabBaru: false,
 
@@ -361,21 +360,3 @@ const PENGATURAN = {
   slides.forEach((s) => io.observe(s));
   cekKembali();
 })();
-// ===== SOCIAL BAR ADSTERRA (muncul setelah ketuk play pertama) =====
-function muatSocialBar() {
-  if (window.__socialDimuat || !PENGATURAN.socialBarAdsterra) return;
-  window.__socialDimuat = true;
-  const s = document.createElement('script');
-  s.setAttribute('data-cfasync', 'false');
-  s.src = PENGATURAN.socialBarAdsterra;
-  document.body.appendChild(s);
-}
-(function () {
-  let sudahKetuk = false;
-  try { sudahKetuk = sessionStorage.getItem('popunderSudah') === '1'; } catch (x) {}
-  if (sudahKetuk) muatSocialBar();
-  else document.addEventListener('click', muatSocialBar, { once: true });
-})();
-window.addEventListener('pageshow', function (e) {
-  if (e.persisted) muatSocialBar();
-});
