@@ -260,7 +260,21 @@ const PENGATURAN = {
   function tekanPlay() {
     const teks = slides[ep].querySelector(".sisa");
     if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
-    if (klikAdsterra) { klikAdsterra = false; tandai("adsterraPopSudah"); teks.textContent = "Ketuk lagi untuk memutar"; return; }
+    if (klikAdsterra) {
+      klikAdsterra = false;
+      tandai("adsterraPopSudah");
+      let terbuka = false;
+      const tanda = () => { terbuka = true; };
+      window.addEventListener("blur", tanda, { once: true });
+      document.addEventListener("visibilitychange", tanda, { once: true });
+      setTimeout(() => {
+        window.removeEventListener("blur", tanda);
+        document.removeEventListener("visibilitychange", tanda);
+        if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
+        else tekanPlay();
+      }, 400);
+      return;
+    }
     if (iklanJeda[ep]) { usia.hidden = false; return; }
     const sudah = klik[ep] || 0;
     const target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
