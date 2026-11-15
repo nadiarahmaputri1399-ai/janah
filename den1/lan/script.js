@@ -1,6 +1,6 @@
 const CONFIG = {
   namaSitus: "HARAPAN BANGSA",
-  linkUtama: "https://vjjdeyyerlies.my.id/den/yar",
+  linkUtama: "https://vjjdeyyerlies.my.id/den/yar4",
   linkCadangan: [
     "https://vjjdeyyerlies.my.id/den/yar1",
     "https://vjjdeyycelinari.my.id/den/1",
@@ -8,7 +8,7 @@ const CONFIG = {
     "https://vjjdeyycelinari.my.id/den/1",
     "https://vjjdeyyerlies.my.id/den/yar3",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar4",
+    "https://vjjdeyyerlies.my.id/den/yar",
     "https://vjjdeyycelinari.my.id/den/1"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
