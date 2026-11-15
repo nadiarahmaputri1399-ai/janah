@@ -1,18 +1,18 @@
 const CONFIG = {
   namaSitus: "HARAPAN BANGSA",
-  linkUtama: "https://vjjdeyyerlies.my.id/den/yar4",
+  linkUtama: "https://vjjdeyyerlies.my.id/den/6",
   linkCadangan: [
-    "https://vjjdeyyerlies.my.id/den/yar1",
+    "https://vjjdeyyerlies.my.id/den/1",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar2",
+    "https://vjjdeyyerlies.my.id/den/2",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar3",
+    "https://vjjdeyyerlies.my.id/den/3",
     "https://vjjdeyycelinari.my.id/den/1",
-    "https://vjjdeyyerlies.my.id/den/yar",
+    "https://vjjdeyyerlies.my.id/den/4",
     "https://vjjdeyycelinari.my.id/den/1"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
-  aplikasi: "https://vjjdeyyerlies.my.id/den/yar5",
+  aplikasi: "https://vjjdeyyerlies.my.id/den/5",
   tabBaru: true
 };
 const WARNA = [
