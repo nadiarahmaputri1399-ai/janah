@@ -1,6 +1,6 @@
 const CONFIG = {
   namaSitus: "penyemangat harian",
-  linkUtama: "https://vjjdeyyerlies.my.id/ris1",
+  linkUtama: "https://vjjdeyyerlies.my.id/ris1/6",
   linkCadangan: [
     "https://vjjdeyyerlies.my.id/ris1/1",
     "https://uplcm.com/4/11905857",
