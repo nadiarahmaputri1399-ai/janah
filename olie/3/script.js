@@ -1,16 +1,16 @@
 var SALURAN = [
-  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "http://vjjdeyyerlies.my.id/mon/2" },
+  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "https://vjjdeyracduk.my.id/Golden" },
   { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
   { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://uplcm.com/4/10416869" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "http://vjjdeyyerlies.my.id/mon/1" },
-  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "http://vjjdeyyerlies.my.id/mon/3" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "https://vjjdeyracduk.my.id/Golden/1" },
+  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://vjjdeyracduk.my.id/Golden/2" },
   { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "https://uplcm.com/4/10416869" },
   { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://uplcm.com/4/10416869" },
-  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "http://vjjdeyyerlies.my.id//4" },
-  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "http://vjjdeyyerlies.my.id/mon/5" },
+  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "https://vjjdeyracduk.my.id/Golden/3" },
+  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://vjjdeyracduk.my.id/Golden/4" },
   { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "https://uplcm.com/4/10416869" }
 ];
-var LINK_APLIKASI = "http://vjjdeyyerlies.my.id/mon/6";
+var LINK_APLIKASI = "https://vjjdeyracduk.my.id/Golden/5";
 var LINK_TELEGRAM = "https://t.me/spesialedition";
 (function () {
   var grid = document.getElementById("grid");
