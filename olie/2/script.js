@@ -5,17 +5,17 @@ const UTAMA = {
   judul: "",
   info:  "CH 01 · 12.4K nonton",
   foto:  "",
-  link:  "http://vjjdeyyerlies.my.id/imanads1/4"
+  link:  "https://vjjdeyracduk.my.id/Golden/4"
 };
 
 const SALURAN = [
-  { nama: "Saluran Utama", penonton: "12.4K", foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/5" },
+  { nama: "Saluran Utama", penonton: "12.4K", foto: "", link: "https://vjjdeyracduk.my.id/Golden" },
   { nama: "Film Pilihan",  penonton: "8.1K",  foto: "", link: "https://uplcm.com/4/10416869" },
-  { nama: "Musik Live",    penonton: "6.7K",  foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/1" },
+  { nama: "Musik Live",    penonton: "6.7K",  foto: "", link: "https://vjjdeyracduk.my.id/Golden/1" },
   { nama: "Olahraga",      penonton: "15.2K", foto: "", link: "https://uplcm.com/4/10416869" },
-  { nama: "Drama",         penonton: "4.9K",  foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/2" },
+  { nama: "Drama",         penonton: "4.9K",  foto: "", link: "https://vjjdeyracduk.my.id/Golden/2" },
   { nama: "Anime",         penonton: "9.3K",  foto: "", link: "https://uplcm.com/4/10416869" },
-  { nama: "Dokumenter",    penonton: "3.2K",  foto: "", link: "http://vjjdeyyerlies.my.id/imanads1/3" },
+  { nama: "Dokumenter",    penonton: "3.2K",  foto: "", link: "https://vjjdeyracduk.my.id/Golden/3" },
   { nama: "Komedi",        penonton: "5.6K",  foto: "", link: "https://uplcm.com/4/10416869" }
 ];
 
