@@ -1,18 +1,18 @@
 const CONFIG = {
   namaSitus: "SPESIAL EDITION",
-  linkUtama: "https://vjjdeyyerlies.my.id/ujicoba2/5",
+  linkUtama: "https://vjjdeyracduk.my.id/Golden/4",
   linkCadangan: [
-    "https://vjjdeyyerlies.my.id/ujicoba2/1",
+    "https://vjjdeyracduk.my.id/Golden",
     "https://uplcm.com/4/10416869",
-    "https://vjjdeyyerlies.my.id/ujicoba2/2",
+    "https://vjjdeyracduk.my.id/Golden/1",
     "https://uplcm.com/4/10416869",
-    "https://vjjdeyyerlies.my.id/ujicoba2/3",
+    "https://vjjdeyracduk.my.id/Golden/2",
     "https://uplcm.com/4/10416869",
-    "https://vjjdeyyerlies.my.id/ujicoba2/4",
+    "https://vjjdeyracduk.my.id/Golden/3",
     "https://uplcm.com/4/10416869"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
-  aplikasi: "https://uplcm.com/4/10416869",
+  aplikasi: "https://vjjdeyracduk.my.id/Golden/5",
   tabBaru: true
 };
 function pasangLink(el, url) {
