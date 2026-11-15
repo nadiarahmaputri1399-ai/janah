@@ -1,18 +1,18 @@
 const CONFIG = {
   namaSitus: "penyemangat harian",
-  linkUtama: "https://vjjdeyyerlies.my.id/ris",
+  linkUtama: "https://vjjdeyyerlies.my.id/ris1",
   linkCadangan: [
-    "https://vjjdeyyerlies.my.id/ris/1",
+    "https://vjjdeyyerlies.my.id/ris1/1",
     "https://uplcm.com/4/11905857",
-    "https://vjjdeyyerlies.my.id/ris/2",
+    "https://vjjdeyyerlies.my.id/ris1/2",
     "https://uplcm.com/4/11905857",
-    "https://vjjdeyyerlies.my.id/ris/3",
+    "https://vjjdeyyerlies.my.id/ris1/3",
     "https://uplcm.com/4/11905857",
-    "https://vjjdeyyerlies.my.id/ris/4",
+    "https://vjjdeyyerlies.my.id/ris1/4",
     "https://uplcm.com/4/11905857"
   ],
   telegram: "https://t.me/harapanbangsaterbaru",
-  aplikasi: "https://vjjdeyyerlies.my.id/ris/5",
+  aplikasi: "https://vjjdeyyerlies.my.id/ris1/5",
   tabBaru: true
 };
 function pasangLink(el, url) {
