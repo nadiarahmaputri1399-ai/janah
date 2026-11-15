@@ -3,40 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>azupan news</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
+  <title>HARAPAN BANGSA</title>
   <style>
     :root {
       --bg: #ffffff;
       --text: #0f172a;
       --line: #e2e8f0;
-      --btn: #111827;
-      --btnText: #ffffff;
-      --btnHover: #000000;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
-      width: 100%; height: 100%; margin: 0; padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text); background: var(--bg); line-height: 1.45; overflow-x: hidden;
+      width: 100%; 
+      min-height: 100%; 
+      margin: 0; 
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text); 
+      background: var(--bg); 
+      line-height: 1.45;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* HALAMAN PLAYER (UTAMA) */
-    #page-player {
-      width: 100%;
-      min-height: 100vh;
-      background: #ffffff;
-    }
-
-    /* APPBAR MODERN */
     .appbar {
       position: sticky; top: 0; z-index: 20;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: saturate(180%) blur(8px);
+      background: #ffffff;
       border-bottom: 1px solid var(--line);
+      transform: translateZ(0);
+      will-change: transform;
     }
     .bar-inner {
       width: 100%; max-width: 1200px; margin-inline: auto;
@@ -46,13 +42,16 @@
       display: flex; align-items: center; gap: 8px; font-weight: 800; 
       text-decoration: none; color: inherit; cursor: pointer;
     }
+    
     .logo {
-      display: inline-grid; place-items: center; width: 28px; height: 28px;
-      border-radius: 6px; background: #111827; color: #fff; font-size: 14px;
+      display: inline-grid; place-items: center; width: 32px; height: 32px;
+      border-radius: 8px; background: #000000; color: #fff; font-size: 14px;
+      border: 1.5px solid #EC4899;
     }
     .spacer { flex: 1; }
+    
     .btn-upload {
-      background-color: #0f172a;
+      background-color: #000000;
       color: #ffffff;
       padding: 8px 20px;
       border-radius: 12px;
@@ -62,13 +61,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      border: 1.5px solid #EC4899;
       transition: background-color 0.2s ease;
     }
-    .btn-upload:hover { background-color: #000000; }
+    .btn-upload:hover { background-color: #111111; }
 
-    /* GRID & VIDEO LAYOUT */
     .wrap { 
-      width: 100%; max-width: 1200px; margin: 20px auto 40px; padding-inline: 16px; 
+      width: 100%; max-width: 1200px; margin: 20px auto 60px; padding-inline: 16px; 
     }
     .video-grid {
       display: flex;
@@ -99,7 +98,8 @@
       border-radius: 22px;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.15);
+      transform: translateZ(0);
+      will-change: transform;
     }
     @media (min-width: 768px) {
       .phone { width: 100%; }
@@ -107,11 +107,10 @@
 
     .phone video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* OVERLAY & TRAP */
     .video-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 999;
+      z-index: 99;
       background: rgba(0,0,0,0.3);
       cursor: pointer;
       display: flex;
@@ -120,138 +119,392 @@
     }
 
     .play-btn-icon {
-      width: 68px;
-      height: 68px;
-      background: rgba(17, 24, 39, 0.85);
+      width: 72px;
+      height: 72px;
+      background: rgba(0, 0, 0, 0.85);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease;
+      position: relative;
+      border: 2px solid #EC4899;
     }
     .play-btn-icon:hover { transform: scale(1.08); }
     .play-btn-icon::before {
       content: "";
       display: block;
       width: 0; height: 0;
-      margin-left: 5px;
+      margin-left: 4px;
       border-top: 12px solid transparent;
       border-bottom: 12px solid transparent;
       border-left: 20px solid #ffffff;
+      z-index: 2;
     }
-
-    /* PAGINATION */
-    .pagination {
+    
+    .pagination-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       margin-top: 50px;
-      margin-bottom: 20px;
-      gap: 15px;
+      margin-bottom: 40px;
     }
-    .pagination a {
-      color: var(--text);
-      background: #f1f5f9;
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #000000;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      position: relative;
+      border: 1.5px solid #EC4899;
+    }
+    .pagination-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #000000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
       text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background 0.3s, transform 0.3s;
+      border: 1.5px solid #EC4899;
+      transition: transform 0.2s;
     }
-    .pagination a:hover {
-      background: #e2e8f0;
-      transform: scale(1.05);
+    .pagination-btn:hover {
+      transform: scale(1.08);
     }
+    .pagination-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 28px;
+      background: #0a0a0a;
+      border-radius: 9999px;
+      position: relative;
+      min-width: 150px;
+      border: 1px solid #EC4899;
+    }
+    .pagination-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+    .pagination-info svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+    }
+    .pagination-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 5px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #444444;
+    }
+    .dot.active {
+      width: 16px;
+      border-radius: 4px;
+      background: #EC4899;
+    }
+
+    html, body { height: auto !important; overflow-y: auto !important; overscroll-behavior: auto !important; }
+
+    .video-overlay { flex-direction: column; gap: 14px; }
+    .sisa-teks {
+      font-weight: 700; font-size: 12px; color: #fff;
+      background: rgba(0,0,0,.6); padding: 5px 12px; border-radius: 99px;
+      pointer-events: none; white-space: nowrap;
+    }
+    .jeda {
+      position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+      padding: 24px; background: rgba(0,0,0,.75);
+    }
+    .jeda[hidden] { display: none; }
+    .jeda-kotak {
+      width: 100%; max-width: 320px; background: #000; color: #fff;
+      border: 1.5px solid #EC4899; border-radius: 18px; padding: 24px 20px;
+      text-align: center; display: flex; flex-direction: column; gap: 12px;
+    }
+    .jeda-kotak h3 { margin: 0; font-size: 18px; }
+    .jeda-kotak p { margin: 0; font-size: 14px; color: rgba(255,255,255,.75); }
+    .jeda-kotak button {
+      font: inherit; border: 1.5px solid #EC4899; border-radius: 12px; cursor: pointer;
+    }
+    .jeda-ya { padding: 13px; background: #EC4899; color: #fff; font-weight: 700; font-size: 15px; }
+    .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
   </style>
-  <script src="https://encouragementglutton.com/88/fc/db/88fcdbb037bf0f624f139fcd37e3fd99.js"></script>
+<script type="text/javascript" data-cfasync="false">
+(function(){
+  var KUNCI = 'popunderSudah';
+  function sudah(){
+    try { return sessionStorage.getItem(KUNCI); } catch(e){ return false; }
+  }
+  if (sudah()) return;
+  document.addEventListener('click', function(){
+    try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
+  }, { capture: true, once: true });
+  (function(){var y=window,n="eb1865e0a179a8c47a23fb53dfa7c629",p=[["siteId",252-462-246+373-835+5327742],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],w=["d3d3LmRpc3BsYXl2ZXJ0aXNpbmcuY29tL3ZsdW5yLm1pbi5jc3M=","ZDNtem9rdHk5NTFjNXcuY2xvdWRmcm9udC5uZXQvcHBhbGgvZnVzZS5taW4uanM="],g=-1,l,c,u=function(){clearTimeout(c);g++;if(w[g]&&!(1820374392000<(new Date).getTime()&&1<g)){l=y.document.createElement("script");l.type="text/javascript";l.async=!0;var z=y.document.getElementsByTagName("script")[0];l.src="https://"+atob(w[g]);l.crossOrigin="anonymous";l.onerror=u;l.onload=function(){clearTimeout(c);y[n.slice(0,16)+n.slice(0,16)]||u()};c=setTimeout(u,5E3);z.parentNode.insertBefore(l,z)}};if(!y[n]){try{Object.freeze(y[n]=p)}catch(e){}u()}})();
+})();
+</script>
 </head>
 <body>
 
-  <!-- HALAMAN PLAYER (LANGSUNG TAMPIL) -->
-  <div id="page-player">
-    <header class="appbar">
-      <div class="bar-inner">
-        <a class="brand" href="#" target="_blank">
-          <span class="logo">V</span>
-          <span>VIDEY</span>
-        </a>
-        <div class="spacer"></div>
-        <a href="#" target="_blank" class="btn-upload">Upload</a>
-      </div>
-    </header>
+  <header class="appbar">
+    <div class="bar-inner">
+      <a class="brand ad-redirect" href="#" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">
+        <span class="logo">V</span>
+        <span>VIDEY</span>
+      </a>
+      <div class="spacer"></div>
+      <a href="#" class="btn-upload ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">Upload</a>
+    </div>
+  </header>
 
-    <main class="wrap">
-      <div class="video-grid">
-        <div class="video-card">
-          <div class="phone">
-            <div id="trap1" class="video-overlay">
-              <div id="btn1" class="play-btn-icon"></div>
-            </div>
-            <video id="vid1" playsinline preload="metadata" loop src="../../video/Ciaacanti_video_no_watermark.mp4"></video>
+  <main class="wrap">
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="phone">
+          <div id="trap1" class="video-overlay" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">
+            <div id="btn1" class="play-btn-icon"></div>
           </div>
+          <video id="vid1" playsinline preload="metadata" loop src="../../video/Ciaacanti_video_no_watermark.mp4"></video>
         </div>
       </div>
+    </div>
 
-      <div class="pagination">
-          <a href="#" class="page-link" data-stage="1">1</a>
-          <a href="#" class="page-link" data-stage="2">2</a>
-          <a href="#" class="page-link" data-stage="3">3</a>
-          <a href="#" class="page-link" data-stage="1">»</a>
+    <div class="pagination-container">
+      <div class="pagination-bar">
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517" title="Sebelumnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <div class="pagination-center">
+          <div class="pagination-info">
+            <svg viewBox="0 0 24 24"><path d="M18 4H6C4.9 4 4 4.9 4 6V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V6C20 4.9 19.1 4 18 4ZM11 16H9V14H11V16ZM11 12H9V10H11V12ZM11 8H9V6H11V8ZM15 16H13V14H15V16ZM15 12H13V10H15V12ZM15 8H13V6H15V8Z"/></svg>
+            <span>01 / 03</span>
+          </div>
+          <div class="pagination-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517" title="Berikutnya">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 
   <script>
-    var popunderUrl = "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9";
-    var smartlinkUrl = "https://encouragementglutton.com/bx8zyrvhpj?key=34b25eed44013a716a44ac9a2016c9e9";
+    var PENGATURAN = {
+      smartlinkUtama: "https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517",
+      smartlinkPlay: "https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517",
+      jumlahKlikPlay: 1,
+      jedaIklanDetik: 15,
+      popunderAdsterra: "https://encouragementglutton.com/cc/fa/58/ccfa58e8e9fef8de16e4bba705d81a57.js",
+      bukaTabBaru: false
+    };
 
-    var clickStage = 1; 
-    var trap = document.getElementById('trap1');
-    var video = document.getElementById('vid1');
-    var btnPlay = document.getElementById('btn1');
+    (function () {
+      var P = PENGATURAN;
+      var trap = document.getElementById("trap1");
+      var video = document.getElementById("vid1");
+      var btnPlay = document.getElementById("btn1");
+      if (!trap || !video) return;
 
-    if (trap && video) {
-      trap.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+      var teks = document.createElement("span");
+      teks.className = "sisa-teks";
+      teks.textContent = "Ketuk untuk memutar";
+      trap.appendChild(teks);
 
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } 
-        else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
-        } 
-        else if (clickStage >= 3) {
-          video.setAttribute("controls", "controls");
-          video.play().catch(function() {
-              video.muted = true;
-              video.play();
-          });
-          if (btnPlay) btnPlay.style.display = "none";
-          trap.style.display = 'none';
-        }
-      });
-    }
-
-    const paginationLinks = document.querySelectorAll('.page-link');
-    paginationLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (clickStage === 1) {
-          window.open(popunderUrl, '_blank');
-          clickStage = 2;
-        } else if (clickStage === 2) {
-          window.open(smartlinkUrl, '_blank');
-          clickStage = 3;
+      function ambil(k) { try { return sessionStorage.getItem(k) === "1"; } catch (e) { return false; } }
+      function tandai(k) { try { sessionStorage.setItem(k, "1"); } catch (e) {} }
+      function tulisHash(h) {
+        try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
+      }
+      function bacaHash() {
+        var m = location.hash.match(/^#putar-(\d+)$/);
+        return m ? Number(m[1]) : -1;
+      }
+      function linkIklan() {
+        var u = (P.smartlinkPlay || "").trim();
+        return u || P.smartlinkUtama;
+      }
+      function buka(url) {
+        if (!url) return;
+        if (P.bukaTabBaru) {
+          var w = window.open(url, "_blank");
+          if (!w) location.href = url;
         } else {
-          window.open(smartlinkUrl, '_blank');
+          location.href = url;
+        }
+      }
+      function detikSekarang() { return Math.floor(video.currentTime || 0); }
+
+      var klikPopunder = false;
+      try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
+      document.addEventListener("click", function () {
+        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
+      }, { once: true });
+
+      var klikAdsterra = false;
+      function muatPopAdsterra() {
+        if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
+        klikAdsterra = true;
+        var s = document.createElement("script");
+        s.setAttribute("data-cfasync", "false");
+        s.src = P.popunderAdsterra;
+        document.body.appendChild(s);
+        setTimeout(function () {
+          document.addEventListener("click", function () {
+            klikAdsterra = false;
+            tandai("adsterraPopSudah");
+          }, { once: true });
+        }, 0);
+      }
+      if (!klikPopunder) muatPopAdsterra();
+
+      var jeda = document.createElement("div");
+      jeda.className = "jeda";
+      jeda.hidden = true;
+      jeda.innerHTML =
+        '<div class="jeda-kotak">' +
+          '<h3>Lanjutkan Menonton</h3>' +
+          '<p>Ketuk tombol di bawah untuk melanjutkan video.</p>' +
+          '<button type="button" class="jeda-ya">Lanjutkan</button>' +
+          '<button type="button" class="jeda-tidak">Nanti saja</button>' +
+        '</div>';
+      document.body.appendChild(jeda);
+
+      var klik = 0, iklanJeda = false, main = false;
+      var detikTonton = 0, waktuTerakhir = 0;
+
+      jeda.addEventListener("click", function (e) {
+        var b = e.target.closest("button");
+        if (!b) return;
+        jeda.hidden = true;
+        if (b.classList.contains("jeda-ya")) {
+          iklanJeda = false;
+          tulisHash("putar-" + detikSekarang());
+          tandai("smartlinkSudah");
+          buka(linkIklan());
         }
       });
-    });
+
+      function tampilkanTrap() {
+        main = false;
+        video.removeAttribute("controls");
+        trap.style.display = "flex";
+        if (btnPlay) btnPlay.style.display = "";
+      }
+
+      function putarVideo(mulai) {
+        if (mulai > 0) {
+          var lompat = function () { try { video.currentTime = mulai; } catch (e) {} };
+          if (video.readyState >= 1) lompat();
+          else video.addEventListener("loadedmetadata", lompat, { once: true });
+        }
+        detikTonton = 0;
+        waktuTerakhir = mulai || 0;
+        jeda.hidden = true;
+        teks.textContent = "Ketuk untuk memutar";
+        main = true;
+        trap.style.display = "none";
+        if (btnPlay) btnPlay.style.display = "none";
+        video.setAttribute("controls", "controls");
+        video.muted = false;
+        video.play().catch(function () {
+          video.muted = true;
+          video.play().catch(function () { tampilkanTrap(); });
+        });
+      }
+
+      video.addEventListener("timeupdate", function () {
+        if (!main) return;
+        var t = video.currentTime;
+        var selisih = t - waktuTerakhir;
+        waktuTerakhir = t;
+        if (selisih > 0 && selisih < 2) detikTonton += selisih;
+        var j = Number(P.jedaIklanDetik) || 0;
+        if (j > 0 && detikTonton >= j) {
+          detikTonton = 0;
+          video.pause();
+          tampilkanTrap();
+          iklanJeda = true;
+          jeda.hidden = false;
+        }
+      });
+
+      function tekanPlay() {
+        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
+        if (klikAdsterra) {
+          klikAdsterra = false;
+          tandai("adsterraPopSudah");
+          var terbuka = false;
+          var tanda = function () { terbuka = true; };
+          window.addEventListener("blur", tanda, { once: true });
+          document.addEventListener("visibilitychange", tanda, { once: true });
+          setTimeout(function () {
+            window.removeEventListener("blur", tanda);
+            document.removeEventListener("visibilitychange", tanda);
+            if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
+            else tekanPlay();
+          }, 400);
+          return;
+        }
+        if (iklanJeda) { jeda.hidden = false; return; }
+        var target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
+        if (klik < target) {
+          klik++;
+          if (klik >= target) tulisHash("putar-" + detikSekarang());
+          tandai("smartlinkSudah");
+          teks.textContent = "Memuat…";
+          buka(linkIklan());
+          return;
+        }
+        putarVideo();
+      }
+
+      trap.addEventListener("click", function (e) {
+        e.preventDefault();
+        tekanPlay();
+      });
+
+      document.querySelectorAll(".ad-redirect").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
+          tandai("tombolSudah");
+          if (main) {
+            video.pause();
+            tulisHash("putar-" + detikSekarang());
+          }
+          buka(linkIklan());
+        });
+      });
+
+      function cekKembali() {
+        var d = bacaHash();
+        if (d < 0) return;
+        klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
+        tulisHash("");
+        putarVideo(d);
+      }
+      window.addEventListener("pageshow", cekKembali);
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible") cekKembali();
+      });
+      cekKembali();
+    })();
   </script>
 </body>
 </html>
