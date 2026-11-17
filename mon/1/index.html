@@ -377,6 +377,12 @@
           }, { once: true });
         }, 0);
       }
+      window.addEventListener("click", function (e) {
+        if (!klikAdsterra || !trap.contains(e.target)) return;
+        tandai("adsterraPopSudah");
+        tandai("putarLangsung");
+        tulisHash("putar-" + detikSekarang());
+      }, true);
       if (!klikPopunder) muatPopAdsterra();
 
       var jeda = document.createElement("div");
@@ -460,6 +466,7 @@
           putarVideo();
           setTimeout(function () {
             if (bacaHash() >= 0) tulisHash("");
+            try { sessionStorage.removeItem("putarLangsung"); } catch (e) {}
           }, 1000);
           return;
         }
@@ -496,7 +503,9 @@
 
       function cekKembali() {
         var d = bacaHash();
+        if (d < 0 && ambil("putarLangsung")) d = 0;
         if (d < 0) return;
+        try { sessionStorage.removeItem("putarLangsung"); } catch (e) {}
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
