@@ -241,54 +241,7 @@
     }
     .jeda-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
     .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
-    .gerbang-usia {
-      position: fixed; inset: 0; z-index: 2147483647; display: grid; place-items: center;
-      padding: 24px; background: rgba(0,0,0,.92);
-    }
-    html.usia-ok .gerbang-usia { display: none; }
-    html:not(.usia-ok) { overflow: hidden; }
-    .usia-kotak {
-      width: 100%; max-width: 320px; background: #000; color: #fff;
-      border: 1.5px solid #431F6F; border-radius: 18px; padding: 24px 20px;
-      text-align: center; display: flex; flex-direction: column; gap: 12px;
-    }
-    .usia-lencana {
-      margin: 0 auto; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #431F6F;
-      display: grid; place-items: center; font-size: 20px; font-weight: 800;
-    }
-    .usia-kotak h3 { margin: 0; font-size: 18px; }
-    .usia-kotak p { margin: 0; font-size: 14px; color: rgba(255,255,255,.75); }
-    .usia-kotak button { font: inherit; border: 1.5px solid #431F6F; border-radius: 12px; cursor: pointer; }
-    .usia-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
-    .usia-keluar { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
   </style>
-<script>
-(function () {
-  var html = document.documentElement;
-  try { if (sessionStorage.getItem("usiaOk") === "1") { html.classList.add("usia-ok"); return; } } catch (e) {}
-  function kena(el, e) {
-    if (!el) return false;
-    var t = (e.changedTouches && e.changedTouches[0]) || e;
-    if (typeof t.clientX !== "number") return el.contains(e.target);
-    var k = el.getBoundingClientRect();
-    return t.clientX >= k.left && t.clientX <= k.right && t.clientY >= k.top && t.clientY <= k.bottom;
-  }
-  ["pointerdown", "pointerup", "touchstart", "touchend", "mousedown", "mouseup", "click"].forEach(function (ev) {
-    window.addEventListener(ev, function (e) {
-      if (html.classList.contains("usia-ok")) return;
-      e.stopImmediatePropagation();
-      if (ev !== "click") return;
-      e.preventDefault();
-      if (kena(document.querySelector(".usia-ya"), e)) {
-        try { sessionStorage.setItem("usiaOk", "1"); } catch (er) {}
-        html.classList.add("usia-ok");
-      } else if (kena(document.querySelector(".usia-keluar"), e)) {
-        location.href = "https://www.google.com";
-      }
-    }, true);
-  });
-})();
-</script>
 <script type="text/javascript" data-cfasync="false">
 (function(){
   var KUNCI = 'popunderSudah';
@@ -305,21 +258,11 @@
 </head>
 <body>
 
-  <div class="gerbang-usia">
-    <div class="usia-kotak">
-      <div class="usia-lencana">18+</div>
-      <h3>Konten Dewasa</h3>
-      <p>Halaman ini berisi konten untuk usia 18 tahun ke atas. Lanjutkan hanya jika kamu sudah dewasa.</p>
-      <button type="button" class="usia-ya">Saya sudah 18+</button>
-      <button type="button" class="usia-keluar">Keluar</button>
-    </div>
-  </div>
-
   <header class="appbar">
     <div class="bar-inner">
       <a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
-        <span class="logo">L</span>
-        <span>Lumio Stream</span>
+        <span class="logo">T</span>
+        <span>VIDEY</span>
       </a>
       <div class="spacer"></div>
       <a href="#" class="btn-upload ad-redirect" data-url="https://uplcm.com/4/11563571">Upload</a>
@@ -365,7 +308,7 @@
     var PENGATURAN = {
       smartlinkUtama: "https://uplcm.com/4/11563571",
       smartlinkPlay: "https://uplcm.com/4/11563571",
-      jumlahKlikPlay: 1,
+      jumlahKlikPlay: 0,
       jedaIklanDetik: 15,
       popunderAdsterra: "https://al5sm.com/tag.min.js",
       zonaMonetag: "11563270",
