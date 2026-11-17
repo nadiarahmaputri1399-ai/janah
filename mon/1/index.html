@@ -241,6 +241,10 @@
     }
     .jeda-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
     .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
+    .jeda-bulat {
+      width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; border: 2px solid #431F6F;
+      display: grid; place-items: center; font-weight: 800; font-size: 20px;
+    }
   </style>
 <script type="text/javascript" data-cfasync="false">
 (function(){
@@ -262,7 +266,7 @@
     <div class="bar-inner">
       <a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
         <span class="logo">T</span>
-        <span>VIDEY</span>
+        <span>Lumio Stream</span>
       </a>
       <div class="spacer"></div>
       <a href="#" class="btn-upload ad-redirect" data-url="https://uplcm.com/4/11563571">Upload</a>
@@ -380,10 +384,11 @@
       jeda.hidden = true;
       jeda.innerHTML =
         '<div class="jeda-kotak">' +
-          '<h3>Lanjutkan Menonton</h3>' +
-          '<p>Ketuk tombol di bawah untuk melanjutkan video.</p>' +
-          '<button type="button" class="jeda-ya">Lanjutkan</button>' +
-          '<button type="button" class="jeda-tidak">Nanti saja</button>' +
+          '<div class="jeda-bulat">18+</div>' +
+          '<h3>Konten Dewasa</h3>' +
+          '<p>Halaman ini berisi konten untuk usia 18 tahun ke atas. Lanjutkan hanya jika kamu sudah dewasa.</p>' +
+          '<button type="button" class="jeda-ya">Saya sudah 18+</button>' +
+          '<button type="button" class="jeda-tidak">Keluar</button>' +
         '</div>';
       document.body.appendChild(jeda);
 
@@ -509,4 +514,4 @@
     })();
   </script>
 </body>
-  </html>
+</html>
