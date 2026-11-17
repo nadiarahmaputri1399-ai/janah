@@ -225,49 +225,66 @@ text-align: center; display: flex; flex-direction: column; gap: 12px;
 font: inherit; border: 1.5px solid #431F6F; border-radius: 12px; cursor: pointer;
 }
 .jeda-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
-.phone video { pointer-events: none; }
 .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
+.gerbang-usia {
+position: fixed; inset: 0; z-index: 2147483647; display: grid; place-items: center;
+padding: 24px; background: rgba(0,0,0,.92);
+}
+html.usia-ok .gerbang-usia { display: none; }
+html:not(.usia-ok) { overflow: hidden; }
+.usia-kotak {
+width: 100%; max-width: 320px; background: #000; color: #fff;
+border: 1.5px solid #431F6F; border-radius: 18px; padding: 24px 20px;
+text-align: center; display: flex; flex-direction: column; gap: 12px;
+}
+.usia-lencana {
+margin: 0 auto; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #431F6F;
+display: grid; place-items: center; font-size: 20px; font-weight: 800;
+}
+.usia-kotak h3 { margin: 0; font-size: 18px; }
+.usia-kotak p { margin: 0; font-size: 14px; color: rgba(255,255,255,.75); }
+.usia-kotak button { font: inherit; border: 1.5px solid #431F6F; border-radius: 12px; cursor: pointer; }
+.usia-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
+.usia-keluar { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
 </style>
 <script>
 (function () {
-function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
-function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
-function ssDel(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+var html = document.documentElement;
+try { if (sessionStorage.getItem("usiaOk") === "1") { html.classList.add("usia-ok"); return; } } catch (e) {}
+function kena(el, e) {
+if (!el) return false;
+var t = (e.changedTouches && e.changedTouches[0]) || e;
+if (typeof t.clientX !== "number") return el.contains(e.target);
+var k = el.getBoundingClientRect();
+return t.clientX >= k.left && t.clientX <= k.right && t.clientY >= k.top && t.clientY <= k.bottom;
+}
+["pointerdown", "pointerup", "touchstart", "touchend", "mousedown", "mouseup", "click"].forEach(function (ev) {
+window.addEventListener(ev, function (e) {
+if (html.classList.contains("usia-ok")) return;
+e.stopImmediatePropagation();
+if (ev !== "click") return;
+e.preventDefault();
+if (kena(document.querySelector(".usia-ya"), e)) {
+try { sessionStorage.setItem("usiaOk", "1"); } catch (er) {}
+html.classList.add("usia-ok");
+} else if (kena(document.querySelector(".usia-keluar"), e)) {
+location.href = "https://www.google.com";
+}
+}, true);
+});
+})();
+</script>
+<script>
+(function () {
 try {
 var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
 var reload = nav ? nav.type === "reload" : (performance.navigation && performance.navigation.type === 1);
-var tanda = null;
-try { tanda = JSON.parse(localStorage.getItem("tahapTab") || "null"); localStorage.removeItem("tahapTab"); } catch (e) {}
-if (reload) {
-ssDel("popunderSudah"); ssDel("tahapIklan"); ssDel("tombolSudah");
+if (!reload) return;
+["popunderSudah", "adsterraPopSudah", "smartlinkSudah", "tombolSudah"].forEach(function (k) {
+sessionStorage.removeItem(k);
+});
 if (/^#putar-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
-} else if (tanda && Date.now() - tanda.w < 60000 && Number(ssGet("tahapIklan") || 0) < tanda.t) {
-ssSet("tahapIklan", String(tanda.t));
-ssSet("popunderSudah", "1");
-if (tanda.t >= 2) window.__mulaiDetik = tanda.d || 0;
-}
 } catch (e) {}
-var jariTurun = false, blokGerak = false;
-["pointerdown", "touchstart", "mousedown"].forEach(function (ev) {
-window.addEventListener(ev, function (e) {
-if (ev !== "mousedown") {
-jariTurun = true;
-blokGerak = !!(window.__blokir && window.__blokir(e));
-if (window.__turun) window.__turun(e);
-}
-if (blokGerak) e.stopImmediatePropagation();
-}, true);
-});
-["pointerup", "touchend", "mouseup", "click"].forEach(function (ev) {
-window.addEventListener(ev, function (e) {
-var blok = blokGerak;
-if (ev !== "mouseup" && jariTurun) {
-jariTurun = false;
-if (window.__ketuk) window.__ketuk(e);
-}
-if (blok) e.stopImmediatePropagation();
-}, true);
-});
 })();
 </script>
 <script type="text/javascript" data-cfasync="false">
@@ -285,21 +302,30 @@ try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
 </script>
 </head>
 <body>
+<div class="gerbang-usia">
+<div class="usia-kotak">
+<div class="usia-lencana">18+</div>
+<h3>Konten Dewasa</h3>
+<p>Halaman ini berisi konten untuk usia 18 tahun ke atas. Lanjutkan hanya jika kamu sudah dewasa.</p>
+<button type="button" class="usia-ya">Saya sudah 18+</button>
+<button type="button" class="usia-keluar">Keluar</button>
+</div>
+</div>
 <header class="appbar">
 <div class="bar-inner">
-<a class="brand ad-redirect" href="#">
-<span class="logo">L</span>
+<a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
+<span class="logo">H</span>
 <span>Lumio Stream</span>
 </a>
 <div class="spacer"></div>
-<a href="#" class="btn-upload ad-redirect">Upload</a>
+<a href="#" class="btn-upload ad-redirect" data-url="https://uplcm.com/4/11563571">Upload</a>
 </div>
 </header>
 <main class="wrap">
 <div class="video-grid">
 <div class="video-card">
 <div class="phone">
-<div id="trap1" class="video-overlay">
+<div id="trap1" class="video-overlay" data-url="https://uplcm.com/4/11563571">
 <div id="btn1" class="play-btn-icon"></div>
 </div>
 <video id="vid1" playsinline preload="metadata" loop src="https://upload.vjjdeyyjinerila.xyz/f/zhGicX"></video>
@@ -308,7 +334,7 @@ try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
 </div>
 <div class="pagination-container">
 <div class="pagination-bar">
-<a href="#" class="pagination-btn ad-redirect" title="Sebelumnya">
+<a href="#" class="pagination-btn ad-redirect" data-url="https://uplcm.com/4/11563571" title="Sebelumnya">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </a>
 <div class="pagination-center">
@@ -322,7 +348,7 @@ try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
 <span class="dot"></span>
 </div>
 </div>
-<a href="#" class="pagination-btn ad-redirect" title="Berikutnya">
+<a href="#" class="pagination-btn ad-redirect" data-url="https://uplcm.com/4/11563571" title="Berikutnya">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
 </a>
 </div>
@@ -330,20 +356,26 @@ try { sessionStorage.setItem(KUNCI, '1'); } catch(e){}
 </main>
 <script>
 var PENGATURAN = {
-smartlink: "https://uplcm.com/4/11563571",
-monetagScript: "https://al5sm.com/tag.min.js",
-monetagZone: "11563270",
-jedaIklanDetik: 15
+smartlinkUtama: "https://uplcm.com/4/11563571",
+smartlinkPlay: "https://uplcm.com/4/11563571",
+jumlahKlikPlay: 1,
+jedaIklanDetik: 15,
+popunderAdsterra: "https://al5sm.com/tag.min.js",
+zonaMonetag: "11563270",
+bukaTabBaru: false
 };
 (function () {
 var P = PENGATURAN;
 var trap = document.getElementById("trap1");
 var video = document.getElementById("vid1");
 var btnPlay = document.getElementById("btn1");
-var kartu = video.closest(".phone");
 if (!trap || !video) return;
-function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
-function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+var teks = document.createElement("span");
+teks.className = "sisa-teks";
+teks.textContent = "Ketuk untuk memutar";
+trap.appendChild(teks);
+function ambil(k) { try { return sessionStorage.getItem(k) === "1"; } catch (e) { return false; } }
+function tandai(k) { try { sessionStorage.setItem(k, "1"); } catch (e) {} }
 function tulisHash(h) {
 try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
 }
@@ -351,21 +383,42 @@ function bacaHash() {
 var m = location.hash.match(/^#putar-(\d+)$/);
 return m ? Number(m[1]) : -1;
 }
-function detik() { return Math.floor(video.currentTime || 0); }
-function tandaiTab(t) {
-try { localStorage.setItem("tahapTab", JSON.stringify({ t: t, w: Date.now(), d: detik() })); } catch (e) {}
+function linkIklan() {
+var u = (P.smartlinkPlay || "").trim();
+return u || P.smartlinkUtama;
 }
-function dalam(el, e) {
-if (!el) return false;
-var t = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]) || e;
-if (typeof t.clientX !== "number") return !!(e.target && el.contains(e.target));
-var k = el.getBoundingClientRect();
-return t.clientX >= k.left && t.clientX <= k.right && t.clientY >= k.top && t.clientY <= k.bottom;
+function buka(url) {
+if (!url) return;
+if (P.bukaTabBaru) {
+var w = window.open(url, "_blank");
+if (!w) location.href = url;
+} else {
+location.href = url;
 }
-var teks = document.createElement("span");
-teks.className = "sisa-teks";
-teks.textContent = "Ketuk untuk memutar";
-trap.appendChild(teks);
+}
+function detikSekarang() { return Math.floor(video.currentTime || 0); }
+var klikPopunder = false;
+try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
+document.addEventListener("click", function () {
+if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
+}, { once: true });
+var klikAdsterra = false;
+function muatPopAdsterra() {
+if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
+klikAdsterra = true;
+var s = document.createElement("script");
+s.setAttribute("data-cfasync", "false");
+if (P.zonaMonetag) s.dataset.zone = P.zonaMonetag;
+s.src = P.popunderAdsterra;
+document.body.appendChild(s);
+setTimeout(function () {
+document.addEventListener("click", function () {
+klikAdsterra = false;
+tandai("adsterraPopSudah");
+}, { once: true });
+}, 0);
+}
+if (!klikPopunder) muatPopAdsterra();
 var jeda = document.createElement("div");
 jeda.className = "jeda";
 jeda.hidden = true;
@@ -377,29 +430,24 @@ jeda.innerHTML =
 '<button type="button" class="jeda-tidak">Nanti saja</button>' +
 '</div>';
 document.body.appendChild(jeda);
-var tombolYa = jeda.querySelector(".jeda-ya");
-var tombolTidak = jeda.querySelector(".jeda-tidak");
-// tahap 0 = belum iklan, 1 = PopAds sudah, 2 = Monetag sudah (video jalan)
-var tahap = Number(ssGet("tahapIklan") || 0);
-if (tahap < 1 && ssGet("popunderSudah")) tahap = 1;
-function setTahap(t) { tahap = t; ssSet("tahapIklan", String(t)); }
-var monetagDimuat = false;
-function muatMonetag() {
-if (monetagDimuat || tahap !== 1 || !P.monetagScript) return;
-monetagDimuat = true;
-var s = document.createElement("script");
-s.setAttribute("data-cfasync", "false");
-s.dataset.zone = P.monetagZone;
-s.src = P.monetagScript;
-document.body.appendChild(s);
+var klik = 0, iklanJeda = false, main = false;
+var detikTonton = 0, waktuTerakhir = 0;
+jeda.addEventListener("click", function (e) {
+var b = e.target.closest("button");
+if (!b) return;
+jeda.hidden = true;
+if (b.classList.contains("jeda-ya")) {
+iklanJeda = false;
+tulisHash("putar-" + detikSekarang());
+tandai("smartlinkSudah");
+buka(linkIklan());
 }
-var main = false, iklanJeda = false, detikTonton = 0, waktuTerakhir = 0;
-var waktuIklan = 0, keluarKarenaIklan = false;
-function tampilkanTrap(pesan) {
+});
+function tampilkanTrap() {
 main = false;
+video.removeAttribute("controls");
 trap.style.display = "flex";
 if (btnPlay) btnPlay.style.display = "";
-teks.textContent = pesan;
 }
 function putarVideo(mulai) {
 if (mulai > 0) {
@@ -407,28 +455,20 @@ var lompat = function () { try { video.currentTime = mulai; } catch (e) {} };
 if (video.readyState >= 1) lompat();
 else video.addEventListener("loadedmetadata", lompat, { once: true });
 }
-if (bacaHash() >= 0) tulisHash("");
-waktuTerakhir = mulai || video.currentTime || 0;
-main = true;
+detikTonton = 0;
+waktuTerakhir = mulai || 0;
 jeda.hidden = true;
-trap.dataset.tutup = "1";
-setTimeout(function () {
-trap.dataset.tutup = "";
-if (!main) return;
+teks.textContent = "Ketuk untuk memutar";
+main = true;
 trap.style.display = "none";
 if (btnPlay) btnPlay.style.display = "none";
-}, 400);
+video.setAttribute("controls", "controls");
 video.muted = false;
 video.play().catch(function () {
 video.muted = true;
-video.play().catch(function () { tampilkanTrap("Ketuk untuk memutar"); });
+video.play().catch(function () { tampilkanTrap(); });
 });
 }
-function jedaVideo() {
-video.pause();
-tampilkanTrap("Ketuk untuk melanjutkan");
-}
-// jeda iklan tiap 15 detik tontonan
 video.addEventListener("timeupdate", function () {
 if (!main) return;
 var t = video.currentTime;
@@ -439,113 +479,68 @@ var j = Number(P.jedaIklanDetik) || 0;
 if (j > 0 && detikTonton >= j) {
 detikTonton = 0;
 video.pause();
-tampilkanTrap("Ketuk untuk melanjutkan");
+tampilkanTrap();
 iklanJeda = true;
 jeda.hidden = false;
 }
 });
-function bukaSmartlink() {
-iklanJeda = false;
-jeda.hidden = true;
-waktuIklan = Date.now();
-tandaiTab(2);
-var d = detik();
-var w = null;
-try { w = window.open(P.smartlink, "_blank"); } catch (e) {}
-if (!w) {
-tulisHash("putar-" + d);
-location.href = P.smartlink;
-return;
-}
-putarVideo(d);
-}
-// Setelah video jalan, ketukan di area video & kotak jeda tidak diteruskan ke script iklan,
-// jadi popunder tidak keluar terus saat menonton.
-window.__blokir = function (e) {
-if (tahap < 2) return false;
-if (!jeda.hidden) return true;
-return dalam(kartu, e);
-};
-window.__turun = function (e) {
-if (tahap === 1 && !iklanJeda && dalam(trap, e) && trap.style.display !== "none") tandaiTab(2);
-else if (tahap === 0 && dalam(trap, e)) tandaiTab(1);
-};
-window.__ketuk = function (e) {
-if (!jeda.hidden) {
-if (dalam(tombolYa, e)) bukaSmartlink();
-else if (dalam(tombolTidak, e)) jeda.hidden = true;
-return;
-}
-if (!dalam(kartu, e) || trap.dataset.tutup === "1") return;
-if (trap.style.display !== "none") {
-if (tahap === 0) {
-if (ssGet("popunderSudah")) {
-setTahap(1);
-} else {
-setTahap(1);
-muatMonetag();
-teks.textContent = "Ketuk sekali lagi";
-return;
-}
-}
-if (tahap === 1) {
-setTahap(2);
-waktuIklan = Date.now();
-putarVideo(detik());
+function tekanPlay() {
+if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
+if (klikAdsterra) {
+klikAdsterra = false;
+tandai("adsterraPopSudah");
+var terbuka = false;
+var tanda = function () { terbuka = true; };
+window.addEventListener("blur", tanda, { once: true });
+document.addEventListener("visibilitychange", tanda, { once: true });
+setTimeout(function () {
+window.removeEventListener("blur", tanda);
+document.removeEventListener("visibilitychange", tanda);
+if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
+else tekanPlay();
+}, 400);
 return;
 }
 if (iklanJeda) { jeda.hidden = false; return; }
-putarVideo(detik());
+var target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
+if (klik < target) {
+klik++;
+if (klik >= target) tulisHash("putar-" + detikSekarang());
+tandai("smartlinkSudah");
+teks.textContent = "Memuat…";
+buka(linkIklan());
 return;
 }
-if (main) {
-if (video.muted) { video.muted = false; return; }
-jedaVideo();
+putarVideo();
 }
-};
-trap.addEventListener("click", function (e) { e.preventDefault(); });
+trap.addEventListener("click", function (e) {
+e.preventDefault();
+tekanPlay();
+});
 document.querySelectorAll(".ad-redirect").forEach(function (el) {
 el.addEventListener("click", function (e) {
 e.preventDefault();
-if (tahap < 2 || ssGet("tombolSudah")) return;
-ssSet("tombolSudah", "1");
+if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
+tandai("tombolSudah");
 if (main) {
 video.pause();
-tulisHash("putar-" + detik());
+tulisHash("putar-" + detikSekarang());
 }
-location.href = P.smartlink;
+buka(linkIklan());
 });
 });
-// kembali dari iklan -> video lanjut sendiri
-function catatKeluar() {
-if (Date.now() - waktuIklan < 10000) keluarKarenaIklan = true;
-}
-document.addEventListener("visibilitychange", function () {
-if (document.visibilityState === "hidden") catatKeluar();
-else lanjutkan();
-});
-window.addEventListener("pagehide", catatKeluar);
-window.addEventListener("blur", catatKeluar);
-window.addEventListener("focus", lanjutkan);
-function lanjutkan() {
-if (document.visibilityState !== "visible") return;
+function cekKembali() {
 var d = bacaHash();
-if (d >= 0) { putarVideo(d); return; }
-if (!keluarKarenaIklan) return;
-keluarKarenaIklan = false;
-if (!main || !video.paused || iklanJeda) return;
-video.play().catch(function () {
-video.muted = true;
-video.play().catch(function () {});
-});
+if (d < 0) return;
+klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
+tulisHash("");
+putarVideo(d);
 }
-window.addEventListener("pageshow", lanjutkan);
-// kondisi awal halaman
-if (tahap === 1) { muatMonetag(); teks.textContent = "Ketuk sekali lagi"; }
-var awal = bacaHash();
-if (awal >= 0) putarVideo(awal);
-else if (typeof window.__mulaiDetik === "number") putarVideo(window.__mulaiDetik);
-else if (tahap >= 2) teks.textContent = "Ketuk untuk memutar";
+window.addEventListener("pageshow", cekKembali);
+document.addEventListener("visibilitychange", function () {
+if (document.visibilityState === "visible") cekKembali();
+});
+cekKembali();
 })();
 </script>
 </body>
