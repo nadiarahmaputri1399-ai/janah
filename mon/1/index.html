@@ -401,6 +401,13 @@ tungguKembali = false;
 putarVideo();
 }
 window.addEventListener("focus", cekTunggu);
+function lanjutkanSaatKembali() {
+if (document.visibilityState !== "visible") return;
+if (main && video.paused && !iklanJeda && jeda.hidden) video.play().catch(function () {});
+}
+document.addEventListener("visibilitychange", lanjutkanSaatKembali);
+window.addEventListener("pageshow", lanjutkanSaatKembali);
+window.addEventListener("focus", lanjutkanSaatKembali);
 window.addEventListener("pageshow", cekTunggu);
 document.addEventListener("visibilitychange", cekTunggu);
 var detikTonton = 0, waktuTerakhir = 0;
@@ -442,7 +449,6 @@ if (btnPlay) btnPlay.style.display = "";
 function putarVideo(mulai) {
 tungguKembali = false;
 window.putarOtomatis = false;
-try { localStorage.removeItem("putarOtomatis"); } catch (e) {}
 if (bacaHash() >= 0) tulisHash("");
 if (mulai > 0) {
 var lompat = function () { try { video.currentTime = mulai; } catch (e) {} };
@@ -484,17 +490,7 @@ if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = 
 if (klikAdsterra) {
 klikAdsterra = false;
 tandai("adsterraPopSudah");
-var terbuka = false;
-var tanda = function () { terbuka = true; };
-window.addEventListener("blur", tanda, { once: true });
-document.addEventListener("visibilitychange", tanda, { once: true });
-setTimeout(function () {
-window.removeEventListener("blur", tanda);
-document.removeEventListener("visibilitychange", tanda);
-if (!terbuka) { tekanPlay(); return; }
-if (document.visibilityState === "visible" && document.hasFocus()) { putarVideo(); return; }
-tungguKembali = true;
-}, 400);
+putarVideo();
 return;
 }
 if (iklanJeda) { jeda.hidden = false; return; }
