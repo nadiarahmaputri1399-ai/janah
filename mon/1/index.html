@@ -312,10 +312,11 @@
     var PENGATURAN = {
       smartlinkUtama: "https://uplcm.com/4/11563571",
       smartlinkPlay: "https://uplcm.com/4/11563571",
-      jumlahKlikPlay: 0,
+      jumlahKlikPlay: 1,
       jedaIklanDetik: 15,
-      popunderAdsterra: "https://al5sm.com/tag.min.js",
+      popunderMonetag: "https://al5sm.com/tag.min.js",
       zonaMonetag: "11563270",
+      peluangPopunder: 70,
       bukaTabBaru: false
     };
 
@@ -332,14 +333,6 @@
       trap.appendChild(teks);
 
       function ambil(k) { try { return sessionStorage.getItem(k) === "1"; } catch (e) { return false; } }
-      function kunci(k) { try { localStorage.setItem(k, String(Date.now())); } catch (e) {} }
-      function adaKunci(k, detik) {
-        try {
-          var t = Number(localStorage.getItem(k)) || 0;
-          return t > 0 && Date.now() - t < detik * 1000;
-        } catch (e) { return false; }
-      }
-      function bukaKunci(k) { try { localStorage.removeItem(k); } catch (e) {} }
       function tandai(k) { try { sessionStorage.setItem(k, "1"); } catch (e) {} }
       function tulisHash(h) {
         try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
@@ -348,6 +341,17 @@
         var m = location.hash.match(/^#putar-(\d+)$/);
         return m ? Number(m[1]) : -1;
       }
+      function simpanLanjut(d) {
+        try { localStorage.setItem("lanjutVideo", Date.now() + "|" + d); } catch (e) {}
+      }
+      function ambilLanjut() {
+        try {
+          var v = (localStorage.getItem("lanjutVideo") || "").split("|");
+          if (v.length === 2 && Date.now() - Number(v[0]) < 20000) return Number(v[1]) || 0;
+        } catch (e) {}
+        return -1;
+      }
+      function hapusLanjut() { try { localStorage.removeItem("lanjutVideo"); } catch (e) {} }
       function linkIklan() {
         var u = (P.smartlinkPlay || "").trim();
         return u || P.smartlinkUtama;
@@ -366,33 +370,19 @@
       var klikPopunder = false;
       try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
       document.addEventListener("click", function () {
-        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
+        if (klikPopunder) { klikPopunder = false; setTimeout(muatMonetag, 0); }
       }, { once: true });
 
-      var klikAdsterra = false;
-      function muatPopAdsterra() {
-        if (klikAdsterra || ambil("adsterraPopSudah") || adaKunci("monetagSudah", 86400) || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
-        klikAdsterra = true;
+      var monetagDimuat = false;
+      function muatMonetag() {
+        if (monetagDimuat || !P.popunderMonetag) return;
+        monetagDimuat = true;
         var s = document.createElement("script");
         s.setAttribute("data-cfasync", "false");
         if (P.zonaMonetag) s.dataset.zone = P.zonaMonetag;
-        s.src = P.popunderAdsterra;
+        s.src = P.popunderMonetag;
         document.body.appendChild(s);
-        setTimeout(function () {
-          document.addEventListener("click", function () {
-            klikAdsterra = false;
-            tandai("adsterraPopSudah");
-          }, { once: true });
-        }, 0);
       }
-      window.addEventListener("click", function (e) {
-        if (!klikAdsterra || !trap.contains(e.target)) return;
-        tandai("adsterraPopSudah");
-        kunci("monetagSudah");
-        kunci("putarLangsung");
-        tulisHash("putar-" + detikSekarang());
-      }, true);
-      if (!klikPopunder) muatPopAdsterra();
 
       var jeda = document.createElement("div");
       jeda.className = "jeda";
@@ -407,19 +397,41 @@
         '</div>';
       document.body.appendChild(jeda);
 
-      var klik = 0, iklanJeda = false, main = false;
+      var klik = 0, iklanJeda = false, main = false, pilihPopunder = false;
       var detikTonton = 0, waktuTerakhir = 0;
 
-      jeda.addEventListener("click", function (e) {
-        var b = e.target.closest("button");
-        if (!b) return;
+      function klikJeda(b) {
         jeda.hidden = true;
-        if (b.classList.contains("jeda-ya")) {
-          iklanJeda = false;
-          tulisHash("putar-" + detikSekarang());
+        if (!b.classList.contains("jeda-ya")) return;
+        iklanJeda = false;
+        var d = detikSekarang();
+        tulisHash("putar-" + d);
+        if (pilihPopunder && monetagDimuat) {
+          simpanLanjut(d);
+          var terbuka = false;
+          var tanda = function () { terbuka = true; };
+          window.addEventListener("blur", tanda, { once: true });
+          document.addEventListener("visibilitychange", tanda, { once: true });
+          setTimeout(function () {
+            window.removeEventListener("blur", tanda);
+            document.removeEventListener("visibilitychange", tanda);
+            if (terbuka) {
+              if (document.visibilityState === "visible") { tulisHash(""); putarVideo(d); }
+            } else {
+              hapusLanjut();
+              tandai("smartlinkSudah");
+              buka(linkIklan());
+            }
+          }, 500);
+        } else {
           tandai("smartlinkSudah");
           buka(linkIklan());
         }
+      }
+
+      jeda.addEventListener("click", function (e) {
+        var b = e.target.closest("button");
+        if (b) klikJeda(b);
       });
 
       function tampilkanTrap() {
@@ -462,22 +474,13 @@
           video.pause();
           tampilkanTrap();
           iklanJeda = true;
+          pilihPopunder = Math.random() * 100 < (Number(P.peluangPopunder) || 0);
           jeda.hidden = false;
         }
       });
 
       function tekanPlay() {
-        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
-        if (klikAdsterra) {
-          klikAdsterra = false;
-          tandai("adsterraPopSudah");
-          tulisHash("putar-" + detikSekarang());
-          putarVideo();
-          setTimeout(function () {
-            if (bacaHash() >= 0) tulisHash("");
-          }, 1000);
-          return;
-        }
+        if (klikPopunder) { klikPopunder = false; setTimeout(muatMonetag, 0); teks.textContent = "Ketuk sekali lagi"; return; }
         if (iklanJeda) { jeda.hidden = false; return; }
         var target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         if (klik < target) {
@@ -496,24 +499,45 @@
         tekanPlay();
       });
 
+      function klikTombol(e) {
+        e.preventDefault();
+        if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
+        tandai("tombolSudah");
+        if (main) {
+          video.pause();
+          tulisHash("putar-" + detikSekarang());
+        }
+        buka(linkIklan());
+      }
       document.querySelectorAll(".ad-redirect").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.preventDefault();
-          if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
-          tandai("tombolSudah");
-          if (main) {
-            video.pause();
-            tulisHash("putar-" + detikSekarang());
+        el.addEventListener("click", klikTombol);
+      });
+
+      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "click"].forEach(function (jenis) {
+        window.addEventListener(jenis, function (e) {
+          if (!monetagDimuat) return;
+          var t = e.target && e.target.closest ? e.target : null;
+          if (!t) return;
+          var tombolYa = t.closest(".jeda-ya");
+          if (tombolYa && pilihPopunder && !jeda.hidden) return;
+          e.stopImmediatePropagation();
+          if (jenis !== "click") return;
+          if (!jeda.hidden) {
+            var b = t.closest("button");
+            if (b && jeda.contains(b)) klikJeda(b);
+            return;
           }
-          buka(linkIklan());
-        });
+          var a = t.closest(".ad-redirect");
+          if (a) { klikTombol(e); return; }
+          if (trap.contains(t)) { e.preventDefault(); tekanPlay(); }
+        }, true);
       });
 
       function cekKembali() {
         var d = bacaHash();
-        if (d < 0 && !main && !iklanJeda && adaKunci("putarLangsung", 20)) d = 0;
+        if (d < 0 && !main && !iklanJeda) d = ambilLanjut();
         if (d < 0) return;
-        bukaKunci("putarLangsung");
+        hapusLanjut();
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
@@ -522,8 +546,9 @@
       document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") cekKembali();
       });
+      if (!klikPopunder) muatMonetag();
       cekKembali();
     })();
   </script>
 </body>
-          </html>
+</html>
