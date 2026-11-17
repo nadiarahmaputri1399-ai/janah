@@ -463,7 +463,10 @@
           setTimeout(function () {
             window.removeEventListener("blur", tanda);
             document.removeEventListener("visibilitychange", tanda);
-            if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
+            if (terbuka) {
+              tulisHash("putar-" + detikSekarang());
+              if (document.visibilityState === "visible") cekKembali();
+            }
             else tekanPlay();
           }, 400);
           return;
