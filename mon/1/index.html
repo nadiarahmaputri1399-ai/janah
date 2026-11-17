@@ -313,7 +313,7 @@
       smartlinkUtama: "https://uplcm.com/4/11563571",
       smartlinkPlay: "https://uplcm.com/4/11563571",
       jumlahKlikPlay: 1,
-      jedaIklanDetik: 15,
+      jedaIklanDetik: 30,
       popunderMonetag: "https://al5sm.com/tag.min.js",
       zonaMonetag: "11563270",
       peluangPopunder: 70,
@@ -373,14 +373,13 @@
         if (klikPopunder) { klikPopunder = false; }
       }, { once: true });
 
-      var monetagDimuat = false, monetagSiap = false;
+      var monetagDimuat = false;
       function muatMonetag() {
         if (monetagDimuat || !P.popunderMonetag) return;
         monetagDimuat = true;
         var s = document.createElement("script");
         s.setAttribute("data-cfasync", "false");
         if (P.zonaMonetag) s.dataset.zone = P.zonaMonetag;
-        s.onload = function () { monetagSiap = true; };
         s.src = P.popunderMonetag;
         document.body.appendChild(s);
       }
@@ -407,11 +406,23 @@
         iklanJeda = false;
         var d = detikSekarang();
         tulisHash("putar-" + d);
-        if (pilihPopunder && monetagSiap) {
+        if (pilihPopunder && monetagDimuat) {
           simpanLanjut(d);
+          var terbuka = false;
+          var tanda = function () { terbuka = true; };
+          window.addEventListener("blur", tanda, { once: true });
+          document.addEventListener("visibilitychange", tanda, { once: true });
           setTimeout(function () {
-            if (document.visibilityState === "visible") { tulisHash(""); putarVideo(d); }
-          }, 300);
+            window.removeEventListener("blur", tanda);
+            document.removeEventListener("visibilitychange", tanda);
+            if (terbuka) {
+              if (document.visibilityState === "visible") { tulisHash(""); putarVideo(d); }
+            } else {
+              hapusLanjut();
+              tandai("smartlinkSudah");
+              buka(linkIklan());
+            }
+          }, 500);
         } else {
           tandai("smartlinkSudah");
           buka(linkIklan());
@@ -540,4 +551,4 @@
     })();
   </script>
 </body>
-  </html>
+</html>
