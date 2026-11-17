@@ -457,20 +457,10 @@
           klikAdsterra = false;
           tandai("adsterraPopSudah");
           tulisHash("putar-" + detikSekarang());
-          var terbuka = false;
-          var tanda = function () { terbuka = true; };
-          window.addEventListener("blur", tanda, { once: true });
-          document.addEventListener("visibilitychange", tanda, { once: true });
+          putarVideo();
           setTimeout(function () {
-            window.removeEventListener("blur", tanda);
-            document.removeEventListener("visibilitychange", tanda);
-            if (terbuka) {
-              if (document.visibilityState === "visible") cekKembali();
-            } else {
-              tulisHash("");
-              tekanPlay();
-            }
-          }, 400);
+            if (bacaHash() >= 0) tulisHash("");
+          }, 1000);
           return;
         }
         if (iklanJeda) { jeda.hidden = false; return; }
