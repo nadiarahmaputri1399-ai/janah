@@ -409,7 +409,11 @@ putarVideo();
 window.addEventListener("focus", cekTunggu);
 function lanjutkanSaatKembali() {
 if (document.visibilityState !== "visible") return;
-if (main && video.paused && !iklanJeda && jeda.hidden) video.play().catch(function () {});
+if (!main || !video.paused || iklanJeda || !jeda.hidden) return;
+video.play().catch(function () {
+video.muted = true;
+video.play().catch(function () {});
+});
 }
 document.addEventListener("visibilitychange", lanjutkanSaatKembali);
 window.addEventListener("pageshow", lanjutkanSaatKembali);
@@ -466,7 +470,11 @@ waktuTerakhir = mulai || 0;
 jeda.hidden = true;
 teks.textContent = "Ketuk untuk memutar";
 main = true;
-trap.style.display = "none";
+trap.dataset.tutup = "1";
+setTimeout(function () {
+trap.dataset.tutup = "";
+if (main) trap.style.display = "none";
+}, 400);
 if (btnPlay) btnPlay.style.display = "none";
 video.setAttribute("controls", "controls");
 video.muted = false;
@@ -511,9 +519,20 @@ return;
 }
 putarVideo();
 }
+var terakhirKetuk = 0;
+function tanganiKetuk(e) {
+if (!e.target || !trap.contains(e.target)) return;
+if (trap.style.display === "none" || trap.dataset.tutup === "1") return;
+var kini = Date.now();
+if (kini - terakhirKetuk < 700) return;
+terakhirKetuk = kini;
+tekanPlay();
+}
+window.addEventListener("pointerup", tanganiKetuk, true);
+window.addEventListener("touchend", tanganiKetuk, true);
 trap.addEventListener("click", function (e) {
 e.preventDefault();
-tekanPlay();
+tanganiKetuk(e);
 });
 ["pointerdown", "touchstart"].forEach(function (ev) {
 trap.addEventListener(ev, function () {
