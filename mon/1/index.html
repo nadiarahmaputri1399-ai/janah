@@ -332,6 +332,14 @@
       trap.appendChild(teks);
 
       function ambil(k) { try { return sessionStorage.getItem(k) === "1"; } catch (e) { return false; } }
+      function kunci(k) { try { localStorage.setItem(k, String(Date.now())); } catch (e) {} }
+      function adaKunci(k, detik) {
+        try {
+          var t = Number(localStorage.getItem(k)) || 0;
+          return t > 0 && Date.now() - t < detik * 1000;
+        } catch (e) { return false; }
+      }
+      function bukaKunci(k) { try { localStorage.removeItem(k); } catch (e) {} }
       function tandai(k) { try { sessionStorage.setItem(k, "1"); } catch (e) {} }
       function tulisHash(h) {
         try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
@@ -363,7 +371,7 @@
 
       var klikAdsterra = false;
       function muatPopAdsterra() {
-        if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
+        if (klikAdsterra || ambil("adsterraPopSudah") || adaKunci("monetagSudah", 86400) || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
         klikAdsterra = true;
         var s = document.createElement("script");
         s.setAttribute("data-cfasync", "false");
@@ -380,7 +388,8 @@
       window.addEventListener("click", function (e) {
         if (!klikAdsterra || !trap.contains(e.target)) return;
         tandai("adsterraPopSudah");
-        tandai("putarLangsung");
+        kunci("monetagSudah");
+        kunci("putarLangsung");
         tulisHash("putar-" + detikSekarang());
       }, true);
       if (!klikPopunder) muatPopAdsterra();
@@ -466,7 +475,6 @@
           putarVideo();
           setTimeout(function () {
             if (bacaHash() >= 0) tulisHash("");
-            try { sessionStorage.removeItem("putarLangsung"); } catch (e) {}
           }, 1000);
           return;
         }
@@ -503,9 +511,9 @@
 
       function cekKembali() {
         var d = bacaHash();
-        if (d < 0 && ambil("putarLangsung")) d = 0;
+        if (d < 0 && !main && !iklanJeda && adaKunci("putarLangsung", 20)) d = 0;
         if (d < 0) return;
-        try { sessionStorage.removeItem("putarLangsung"); } catch (e) {}
+        bukaKunci("putarLangsung");
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
@@ -518,4 +526,4 @@
     })();
   </script>
 </body>
-</html>
+          </html>
