@@ -1,12 +1,12 @@
 var SALURAN = [
   { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "http://vjjdeyyerlies.my.id/mon/1" },
   { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
-  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://uplcm.com/4/10416869" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "http://vjjdeyyerlies.my.id/mon/2" },
+  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "http://vjjdeyyerlies.my.id/mon/2" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "https://uplcm.com/4/10416869" },
   { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "http://vjjdeyyerlies.my.id/mon/3" },
   { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "https://uplcm.com/4/10416869" },
-  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://uplcm.com/4/10416869" },
-  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "http://vjjdeyyerlies.my.id/mon/4" },
+  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "http://vjjdeyyerlies.my.id/mon/4" },
+  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "https://uplcm.com/4/10416869" },
   { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "http://vjjdeyyerlies.my.id/mon/5" },
   { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "https://uplcm.com/4/10416869" }
 ];
