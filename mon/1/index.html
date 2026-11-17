@@ -456,6 +456,7 @@
         if (klikAdsterra) {
           klikAdsterra = false;
           tandai("adsterraPopSudah");
+          tulisHash("putar-" + detikSekarang());
           var terbuka = false;
           var tanda = function () { terbuka = true; };
           window.addEventListener("blur", tanda, { once: true });
@@ -464,10 +465,11 @@
             window.removeEventListener("blur", tanda);
             document.removeEventListener("visibilitychange", tanda);
             if (terbuka) {
-              tulisHash("putar-" + detikSekarang());
               if (document.visibilityState === "visible") cekKembali();
+            } else {
+              tulisHash("");
+              tekanPlay();
             }
-            else tekanPlay();
           }, 400);
           return;
         }
