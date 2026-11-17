@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>HARAPAN BANGSA</title>
+  <title>harapan bangsa</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -183,7 +183,7 @@
       border-radius: 9999px;
       position: relative;
       min-width: 150px;
-      border: 1px solid #EC4899;
+      border: 1px solid #431F6F;
     }
     .pagination-info {
       display: flex;
@@ -241,6 +241,10 @@
     }
     .jeda-ya { padding: 13px; background: #EC4899; color: #fff; font-weight: 700; font-size: 15px; }
     .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
+    .jeda-bulat {
+      width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; border: 2px solid #431F6F;
+      display: grid; place-items: center; font-weight: 800; font-size: 20px;
+    }
   </style>
 <script type="text/javascript" data-cfasync="false">
 (function(){
@@ -260,12 +264,12 @@
 
   <header class="appbar">
     <div class="bar-inner">
-      <a class="brand ad-redirect" href="#" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">
+      <a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
         <span class="logo">V</span>
         <span>VIDEY</span>
       </a>
       <div class="spacer"></div>
-      <a href="#" class="btn-upload ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">Upload</a>
+      <a href="#" class="btn-upload ad-redirect" data-url="https://uplcm.com/4/11563571">Upload</a>
     </div>
   </header>
 
@@ -273,17 +277,17 @@
     <div class="video-grid">
       <div class="video-card">
         <div class="phone">
-          <div id="trap1" class="video-overlay" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517">
+          <div id="trap1" class="video-overlay" data-url="https://uplcm.com/4/11563571">
             <div id="btn1" class="play-btn-icon"></div>
           </div>
-          <video id="vid1" playsinline preload="metadata" loop src="https://upload.vjjdeyyjinerila.xyz/f/Wmmp5k"></video>
+          <video id="vid1" playsinline preload="metadata" loop src="https://upload.vjjdeyyjinerila.xyz/f/zhGicX"></video>
         </div>
       </div>
     </div>
 
     <div class="pagination-container">
       <div class="pagination-bar">
-        <a href="#" class="pagination-btn ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517" title="Sebelumnya">
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://uplcm.com/4/11563571" title="Sebelumnya">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </a>
         <div class="pagination-center">
@@ -297,7 +301,7 @@
             <span class="dot"></span>
           </div>
         </div>
-        <a href="#" class="pagination-btn ad-redirect" data-url="https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517" title="Berikutnya">
+        <a href="#" class="pagination-btn ad-redirect" data-url="https://uplcm.com/4/11563571" title="Berikutnya">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       </div>
@@ -306,11 +310,13 @@
 
   <script>
     var PENGATURAN = {
-      smartlinkUtama: "https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517",
-      smartlinkPlay: "https://encouragementglutton.com/gwi99tevkm?key=a951953f6f752175e8b997858eb81517",
+      smartlinkUtama: "https://uplcm.com/4/11563571",
+      smartlinkPlay: "https://uplcm.com/4/11563571",
       jumlahKlikPlay: 1,
-      jedaIklanDetik: 15,
-      popunderAdsterra: "https://encouragementglutton.com/cc/fa/58/ccfa58e8e9fef8de16e4bba705d81a57.js",
+      jedaIklanDetik: 30,
+      popunderMonetag: "https://al5sm.com/tag.min.js",
+      zonaMonetag: "11563270",
+      peluangPopunder: 70,
       bukaTabBaru: false
     };
 
@@ -335,6 +341,17 @@
         var m = location.hash.match(/^#putar-(\d+)$/);
         return m ? Number(m[1]) : -1;
       }
+      function simpanLanjut(d) {
+        try { localStorage.setItem("lanjutVideo", Date.now() + "|" + d); } catch (e) {}
+      }
+      function ambilLanjut() {
+        try {
+          var v = (localStorage.getItem("lanjutVideo") || "").split("|");
+          if (v.length === 2 && Date.now() - Number(v[0]) < 20000) return Number(v[1]) || 0;
+        } catch (e) {}
+        return -1;
+      }
+      function hapusLanjut() { try { localStorage.removeItem("lanjutVideo"); } catch (e) {} }
       function linkIklan() {
         var u = (P.smartlinkPlay || "").trim();
         return u || P.smartlinkUtama;
@@ -353,51 +370,68 @@
       var klikPopunder = false;
       try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
       document.addEventListener("click", function () {
-        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
+        if (klikPopunder) { klikPopunder = false; }
       }, { once: true });
 
-      var klikAdsterra = false;
-      function muatPopAdsterra() {
-        if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
-        klikAdsterra = true;
+      var monetagDimuat = false;
+      function muatMonetag() {
+        if (monetagDimuat || !P.popunderMonetag) return;
+        monetagDimuat = true;
         var s = document.createElement("script");
         s.setAttribute("data-cfasync", "false");
-        s.src = P.popunderAdsterra;
+        if (P.zonaMonetag) s.dataset.zone = P.zonaMonetag;
+        s.src = P.popunderMonetag;
         document.body.appendChild(s);
-        setTimeout(function () {
-          document.addEventListener("click", function () {
-            klikAdsterra = false;
-            tandai("adsterraPopSudah");
-          }, { once: true });
-        }, 0);
       }
-      if (!klikPopunder) muatPopAdsterra();
 
       var jeda = document.createElement("div");
       jeda.className = "jeda";
       jeda.hidden = true;
       jeda.innerHTML =
         '<div class="jeda-kotak">' +
-          '<h3>Lanjutkan Menonton</h3>' +
-          '<p>Ketuk tombol di bawah untuk melanjutkan video.</p>' +
-          '<button type="button" class="jeda-ya">Lanjutkan</button>' +
-          '<button type="button" class="jeda-tidak">Nanti saja</button>' +
+          '<div class="jeda-bulat">18+</div>' +
+          '<h3>Konten Dewasa</h3>' +
+          '<p>Halaman ini berisi konten untuk usia 18 tahun ke atas. Lanjutkan hanya jika kamu sudah dewasa.</p>' +
+          '<button type="button" class="jeda-ya">Saya sudah 18+</button>' +
+          '<button type="button" class="jeda-tidak">Keluar</button>' +
         '</div>';
       document.body.appendChild(jeda);
 
-      var klik = 0, iklanJeda = false, main = false;
+      var klik = 0, iklanJeda = false, main = false, pilihPopunder = false;
       var detikTonton = 0, waktuTerakhir = 0;
 
-      jeda.addEventListener("click", function (e) {
-        var b = e.target.closest("button");
-        if (!b) return;
+      function klikJeda(b) {
         jeda.hidden = true;
-        if (b.classList.contains("jeda-ya")) {
-          iklanJeda = false;
-          tulisHash("putar-" + detikSekarang());
+        if (!b.classList.contains("jeda-ya")) return;
+        iklanJeda = false;
+        var d = detikSekarang();
+        tulisHash("putar-" + d);
+        if (pilihPopunder && monetagDimuat) {
+          simpanLanjut(d);
+          var terbuka = false;
+          var tanda = function () { terbuka = true; };
+          window.addEventListener("blur", tanda, { once: true });
+          document.addEventListener("visibilitychange", tanda, { once: true });
+          setTimeout(function () {
+            window.removeEventListener("blur", tanda);
+            document.removeEventListener("visibilitychange", tanda);
+            if (terbuka) {
+              if (document.visibilityState === "visible") { tulisHash(""); putarVideo(d); }
+            } else {
+              hapusLanjut();
+              tandai("smartlinkSudah");
+              buka(linkIklan());
+            }
+          }, 500);
+        } else {
           tandai("smartlinkSudah");
           buka(linkIklan());
         }
+      }
+
+      jeda.addEventListener("click", function (e) {
+        var b = e.target.closest("button");
+        if (b) klikJeda(b);
       });
 
       function tampilkanTrap() {
@@ -440,27 +474,14 @@
           video.pause();
           tampilkanTrap();
           iklanJeda = true;
+          pilihPopunder = Math.random() * 100 < (Number(P.peluangPopunder) || 0);
+          if (pilihPopunder) muatMonetag();
           jeda.hidden = false;
         }
       });
 
       function tekanPlay() {
-        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
-        if (klikAdsterra) {
-          klikAdsterra = false;
-          tandai("adsterraPopSudah");
-          var terbuka = false;
-          var tanda = function () { terbuka = true; };
-          window.addEventListener("blur", tanda, { once: true });
-          document.addEventListener("visibilitychange", tanda, { once: true });
-          setTimeout(function () {
-            window.removeEventListener("blur", tanda);
-            document.removeEventListener("visibilitychange", tanda);
-            if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
-            else tekanPlay();
-          }, 400);
-          return;
-        }
+        if (klikPopunder) { klikPopunder = false; teks.textContent = "Ketuk sekali lagi"; return; }
         if (iklanJeda) { jeda.hidden = false; return; }
         var target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         if (klik < target) {
@@ -479,22 +500,45 @@
         tekanPlay();
       });
 
+      function klikTombol(e) {
+        e.preventDefault();
+        if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
+        tandai("tombolSudah");
+        if (main) {
+          video.pause();
+          tulisHash("putar-" + detikSekarang());
+        }
+        buka(linkIklan());
+      }
       document.querySelectorAll(".ad-redirect").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.preventDefault();
-          if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
-          tandai("tombolSudah");
-          if (main) {
-            video.pause();
-            tulisHash("putar-" + detikSekarang());
+        el.addEventListener("click", klikTombol);
+      });
+
+      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "click"].forEach(function (jenis) {
+        window.addEventListener(jenis, function (e) {
+          if (!monetagDimuat) return;
+          var t = e.target && e.target.closest ? e.target : null;
+          if (!t) return;
+          var tombolYa = t.closest(".jeda-ya");
+          if (tombolYa && pilihPopunder && !jeda.hidden) return;
+          e.stopImmediatePropagation();
+          if (jenis !== "click") return;
+          if (!jeda.hidden) {
+            var b = t.closest("button");
+            if (b && jeda.contains(b)) klikJeda(b);
+            return;
           }
-          buka(linkIklan());
-        });
+          var a = t.closest(".ad-redirect");
+          if (a) { klikTombol(e); return; }
+          if (trap.contains(t)) { e.preventDefault(); tekanPlay(); }
+        }, true);
       });
 
       function cekKembali() {
         var d = bacaHash();
+        if (d < 0 && !main && !iklanJeda) d = ambilLanjut();
         if (d < 0) return;
+        hapusLanjut();
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
