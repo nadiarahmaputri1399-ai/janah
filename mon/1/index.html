@@ -237,9 +237,12 @@ if (reload) {
 sessionStorage.removeItem(k);
 });
 localStorage.removeItem("putarOtomatis");
+localStorage.removeItem("popadsWaktu");
 if (/^#putar-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
 return;
 }
+var t1 = Number(localStorage.getItem("popadsWaktu") || 0);
+if (t1 && Date.now() - t1 < 1800000) sessionStorage.setItem("popunderSudah", "1");
 var t = Number(localStorage.getItem("putarOtomatis") || 0);
 if (t && Date.now() - t < 120000) {
 sessionStorage.setItem("popunderSudah", "1");
@@ -382,7 +385,10 @@ tandai("adsterraPopSudah");
 }, { once: true });
 }, 0);
 }
-if (!klikPopunder) muatPopAdsterra();
+if (!klikPopunder) {
+muatPopAdsterra();
+if (klikAdsterra) teks.textContent = "Ketuk sekali lagi";
+}
 var jeda = document.createElement("div");
 jeda.className = "jeda";
 jeda.hidden = true;
@@ -511,6 +517,7 @@ tekanPlay();
 });
 ["pointerdown", "touchstart"].forEach(function (ev) {
 trap.addEventListener(ev, function () {
+if (klikPopunder) { try { localStorage.setItem("popadsWaktu", String(Date.now())); } catch (e) {} return; }
 if (!klikAdsterra || iklanJeda) return;
 tulisHash("putar-" + detikSekarang());
 try { localStorage.setItem("putarOtomatis", String(Date.now())); } catch (e) {}
