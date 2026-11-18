@@ -393,7 +393,7 @@
         '</div>';
       document.body.appendChild(jeda);
 
-      var klik = 0, iklanJeda = false, main = false;
+      var klik = ambil("smartlinkSudah") ? Math.max(0, Number(P.jumlahKlikPlay) || 0) : 0, iklanJeda = false, main = false;
       var detikTonton = 0, waktuTerakhir = 0;
 
       jeda.addEventListener("click", function (e) {
@@ -502,13 +502,19 @@
 
       function cekKembali() {
         var d = bacaHash();
-        if (d < 0) return;
+        if (d < 0) {
+          var simpan = null;
+          try { simpan = sessionStorage.getItem("lanjutDetik"); sessionStorage.removeItem("lanjutDetik"); } catch (e) {}
+          if (simpan === null) return;
+          d = Number(simpan) || 0;
+        }
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
       }
       window.addEventListener("pageshow", function (e) {
         if (e.persisted && ambil("smartlinkSudah")) {
+          try { sessionStorage.setItem("lanjutDetik", String(Math.max(bacaHash(), detikSekarang(), 0))); } catch (er) {}
           location.reload();
           return;
         }
@@ -521,4 +527,4 @@
     })();
   </script>
 </body>
-</html>
+  </html>
