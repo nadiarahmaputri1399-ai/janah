@@ -247,6 +247,20 @@
       font-weight: 800; font-size: 20px; color: #fff;
     }
   </style>
+<script>
+(function(){
+  try {
+    if (sessionStorage.getItem("reloadSendiri") === "1") { sessionStorage.removeItem("reloadSendiri"); return; }
+    var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    var reload = nav ? nav.type === "reload" : (performance.navigation && performance.navigation.type === 1);
+    if (!reload) return;
+    ["popunderSudah", "adsterraPopSudah", "smartlinkSudah", "tombolSudah", "lanjutDetik"].forEach(function (k) {
+      sessionStorage.removeItem(k);
+    });
+    if (/^#putar-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+  } catch (e) {}
+})();
+</script>
 <script type="text/javascript" data-cfasync="false">
 (function(){
   var KUNCI = 'popunderSudah';
@@ -266,7 +280,7 @@
   <header class="appbar">
     <div class="bar-inner">
       <a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
-        <span class="logo">T</span>
+        <span class="logo">V</span>
         <span>VIDEY</span>
       </a>
       <div class="spacer"></div>
@@ -314,7 +328,7 @@
       smartlinkUtama: "https://uplcm.com/4/11563571",
       smartlinkPlay: "https://uplcm.com/4/11563571",
       jumlahKlikPlay: 1,
-      jedaIklanDetik: 15,
+      jedaIklanDetik: 25,
       popunderAdsterra: "https://al5sm.com/tag.min.js",
       zonaMonetag: "11563270",
       bukaTabBaru: false
@@ -514,7 +528,10 @@
       }
       window.addEventListener("pageshow", function (e) {
         if (e.persisted && ambil("smartlinkSudah")) {
-          try { sessionStorage.setItem("lanjutDetik", String(Math.max(bacaHash(), detikSekarang(), 0))); } catch (er) {}
+          try {
+            sessionStorage.setItem("lanjutDetik", String(Math.max(bacaHash(), detikSekarang(), 0)));
+            sessionStorage.setItem("reloadSendiri", "1");
+          } catch (er) {}
           location.reload();
           return;
         }
@@ -527,4 +544,4 @@
     })();
   </script>
 </body>
-  </html>
+                                                                                                                                                              </html>
