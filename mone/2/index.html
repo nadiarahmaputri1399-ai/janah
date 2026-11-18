@@ -241,11 +241,26 @@
     }
     .jeda-ya { padding: 13px; background: #431F6F; color: #fff; font-weight: 700; font-size: 15px; }
     .jeda-tidak { padding: 11px; background: #111; color: rgba(255,255,255,.75); font-size: 14px; }
-    .jeda-bulat {
-      width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; border: 2px solid #431F6F;
-      display: grid; place-items: center; font-weight: 800; font-size: 20px;
+    .jeda-umur {
+      width: 64px; height: 64px; margin: 0 auto; border-radius: 50%;
+      border: 2px solid #431F6F; display: grid; place-items: center;
+      font-weight: 800; font-size: 20px; color: #fff;
     }
   </style>
+<script>
+(function(){
+  try {
+    if (sessionStorage.getItem("reloadSendiri") === "1") { sessionStorage.removeItem("reloadSendiri"); return; }
+    var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    var reload = nav ? nav.type === "reload" : (performance.navigation && performance.navigation.type === 1);
+    if (!reload) return;
+    ["popunderSudah", "adsterraPopSudah", "smartlinkSudah", "tombolSudah", "lanjutDetik"].forEach(function (k) {
+      sessionStorage.removeItem(k);
+    });
+    if (/^#putar-\d+$/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+  } catch (e) {}
+})();
+</script>
 <script type="text/javascript" data-cfasync="false">
 (function(){
   var KUNCI = 'popunderSudah';
@@ -266,7 +281,7 @@
     <div class="bar-inner">
       <a class="brand ad-redirect" href="#" data-url="https://uplcm.com/4/11563571">
         <span class="logo">T</span>
-        <span>Lumio Stream</span>
+        <span>VIDEY</span>
       </a>
       <div class="spacer"></div>
       <a href="#" class="btn-upload ad-redirect" data-url="https://uplcm.com/4/11563571">Upload</a>
@@ -313,10 +328,9 @@
       smartlinkUtama: "https://uplcm.com/4/11563571",
       smartlinkPlay: "https://uplcm.com/4/11563571",
       jumlahKlikPlay: 1,
-      jedaIklanDetik: 30,
-      popunderMonetag: "https://al5sm.com/tag.min.js",
+      jedaIklanDetik: 15,
+      popunderAdsterra: "https://al5sm.com/tag.min.js",
       zonaMonetag: "11563270",
-      peluangPopunder: 70,
       bukaTabBaru: false
     };
 
@@ -341,17 +355,6 @@
         var m = location.hash.match(/^#putar-(\d+)$/);
         return m ? Number(m[1]) : -1;
       }
-      function simpanLanjut(d) {
-        try { localStorage.setItem("lanjutVideo", Date.now() + "|" + d); } catch (e) {}
-      }
-      function ambilLanjut() {
-        try {
-          var v = (localStorage.getItem("lanjutVideo") || "").split("|");
-          if (v.length === 2 && Date.now() - Number(v[0]) < 20000) return Number(v[1]) || 0;
-        } catch (e) {}
-        return -1;
-      }
-      function hapusLanjut() { try { localStorage.removeItem("lanjutVideo"); } catch (e) {} }
       function linkIklan() {
         var u = (P.smartlinkPlay || "").trim();
         return u || P.smartlinkUtama;
@@ -370,26 +373,33 @@
       var klikPopunder = false;
       try { klikPopunder = !sessionStorage.getItem("popunderSudah"); } catch (e) {}
       document.addEventListener("click", function () {
-        if (klikPopunder) { klikPopunder = false; }
+        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); }
       }, { once: true });
 
-      var monetagDimuat = false;
-      function muatMonetag() {
-        if (monetagDimuat || !P.popunderMonetag) return;
-        monetagDimuat = true;
+      var klikAdsterra = false;
+      function muatPopAdsterra() {
+        if (klikAdsterra || ambil("adsterraPopSudah") || ambil("smartlinkSudah") || !P.popunderAdsterra) return;
+        klikAdsterra = true;
         var s = document.createElement("script");
         s.setAttribute("data-cfasync", "false");
         if (P.zonaMonetag) s.dataset.zone = P.zonaMonetag;
-        s.src = P.popunderMonetag;
+        s.src = P.popunderAdsterra;
         document.body.appendChild(s);
+        setTimeout(function () {
+          document.addEventListener("click", function () {
+            klikAdsterra = false;
+            tandai("adsterraPopSudah");
+          }, { once: true });
+        }, 0);
       }
+      if (!klikPopunder) muatPopAdsterra();
 
       var jeda = document.createElement("div");
       jeda.className = "jeda";
       jeda.hidden = true;
       jeda.innerHTML =
         '<div class="jeda-kotak">' +
-          '<div class="jeda-bulat">18+</div>' +
+          '<div class="jeda-umur">18+</div>' +
           '<h3>Konten Dewasa</h3>' +
           '<p>Halaman ini berisi konten untuk usia 18 tahun ke atas. Lanjutkan hanya jika kamu sudah dewasa.</p>' +
           '<button type="button" class="jeda-ya">Saya sudah 18+</button>' +
@@ -397,41 +407,19 @@
         '</div>';
       document.body.appendChild(jeda);
 
-      var klik = 0, iklanJeda = false, main = false, pilihPopunder = false;
+      var klik = ambil("smartlinkSudah") ? Math.max(0, Number(P.jumlahKlikPlay) || 0) : 0, iklanJeda = false, main = false;
       var detikTonton = 0, waktuTerakhir = 0;
-
-      function klikJeda(b) {
-        jeda.hidden = true;
-        if (!b.classList.contains("jeda-ya")) return;
-        iklanJeda = false;
-        var d = detikSekarang();
-        tulisHash("putar-" + d);
-        if (pilihPopunder && monetagDimuat) {
-          simpanLanjut(d);
-          var terbuka = false;
-          var tanda = function () { terbuka = true; };
-          window.addEventListener("blur", tanda, { once: true });
-          document.addEventListener("visibilitychange", tanda, { once: true });
-          setTimeout(function () {
-            window.removeEventListener("blur", tanda);
-            document.removeEventListener("visibilitychange", tanda);
-            if (terbuka) {
-              if (document.visibilityState === "visible") { tulisHash(""); putarVideo(d); }
-            } else {
-              hapusLanjut();
-              tandai("smartlinkSudah");
-              buka(linkIklan());
-            }
-          }, 500);
-        } else {
-          tandai("smartlinkSudah");
-          buka(linkIklan());
-        }
-      }
 
       jeda.addEventListener("click", function (e) {
         var b = e.target.closest("button");
-        if (b) klikJeda(b);
+        if (!b) return;
+        jeda.hidden = true;
+        if (b.classList.contains("jeda-ya")) {
+          iklanJeda = false;
+          tulisHash("putar-" + detikSekarang());
+          tandai("smartlinkSudah");
+          buka(linkIklan());
+        }
       });
 
       function tampilkanTrap() {
@@ -474,14 +462,27 @@
           video.pause();
           tampilkanTrap();
           iklanJeda = true;
-          pilihPopunder = Math.random() * 100 < (Number(P.peluangPopunder) || 0);
-          if (pilihPopunder) muatMonetag();
           jeda.hidden = false;
         }
       });
 
       function tekanPlay() {
-        if (klikPopunder) { klikPopunder = false; teks.textContent = "Ketuk sekali lagi"; return; }
+        if (klikPopunder) { klikPopunder = false; muatPopAdsterra(); teks.textContent = "Ketuk sekali lagi"; return; }
+        if (klikAdsterra) {
+          klikAdsterra = false;
+          tandai("adsterraPopSudah");
+          var terbuka = false;
+          var tanda = function () { terbuka = true; };
+          window.addEventListener("blur", tanda, { once: true });
+          document.addEventListener("visibilitychange", tanda, { once: true });
+          setTimeout(function () {
+            window.removeEventListener("blur", tanda);
+            document.removeEventListener("visibilitychange", tanda);
+            if (terbuka) teks.textContent = "Ketuk lagi untuk memutar";
+            else tekanPlay();
+          }, 400);
+          return;
+        }
         if (iklanJeda) { jeda.hidden = false; return; }
         var target = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         if (klik < target) {
@@ -500,50 +501,42 @@
         tekanPlay();
       });
 
-      function klikTombol(e) {
-        e.preventDefault();
-        if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
-        tandai("tombolSudah");
-        if (main) {
-          video.pause();
-          tulisHash("putar-" + detikSekarang());
-        }
-        buka(linkIklan());
-      }
       document.querySelectorAll(".ad-redirect").forEach(function (el) {
-        el.addEventListener("click", klikTombol);
-      });
-
-      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "click"].forEach(function (jenis) {
-        window.addEventListener(jenis, function (e) {
-          if (!monetagDimuat) return;
-          var t = e.target && e.target.closest ? e.target : null;
-          if (!t) return;
-          var tombolYa = t.closest(".jeda-ya");
-          if (tombolYa && pilihPopunder && !jeda.hidden) return;
-          e.stopImmediatePropagation();
-          if (jenis !== "click") return;
-          if (!jeda.hidden) {
-            var b = t.closest("button");
-            if (b && jeda.contains(b)) klikJeda(b);
-            return;
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (!ambil("smartlinkSudah") || ambil("tombolSudah")) return;
+          tandai("tombolSudah");
+          if (main) {
+            video.pause();
+            tulisHash("putar-" + detikSekarang());
           }
-          var a = t.closest(".ad-redirect");
-          if (a) { klikTombol(e); return; }
-          if (trap.contains(t)) { e.preventDefault(); tekanPlay(); }
-        }, true);
+          buka(linkIklan());
+        });
       });
 
       function cekKembali() {
         var d = bacaHash();
-        if (d < 0 && !main && !iklanJeda) d = ambilLanjut();
-        if (d < 0) return;
-        hapusLanjut();
+        if (d < 0) {
+          var simpan = null;
+          try { simpan = sessionStorage.getItem("lanjutDetik"); sessionStorage.removeItem("lanjutDetik"); } catch (e) {}
+          if (simpan === null) return;
+          d = Number(simpan) || 0;
+        }
         klik = Math.max(0, Number(P.jumlahKlikPlay) || 0);
         tulisHash("");
         putarVideo(d);
       }
-      window.addEventListener("pageshow", cekKembali);
+      window.addEventListener("pageshow", function (e) {
+        if (e.persisted && ambil("smartlinkSudah")) {
+          try {
+            sessionStorage.setItem("lanjutDetik", String(Math.max(bacaHash(), detikSekarang(), 0)));
+            sessionStorage.setItem("reloadSendiri", "1");
+          } catch (er) {}
+          location.reload();
+          return;
+        }
+        cekKembali();
+      });
       document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") cekKembali();
       });
@@ -551,4 +544,4 @@
     })();
   </script>
 </body>
-  </html>
+</html>
