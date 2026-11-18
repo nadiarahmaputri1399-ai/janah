@@ -6,9 +6,9 @@ const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/KXFcGi', video:'https://uplcm.com/4/11905857'}, 
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/zzRuMM', video:'https://vjjdeyyerlies.my.id/ris1/3'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/ketais', video:'https://uplcm.com/4/11905857'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/7GGFDf', video:'https://vjjdeyyerlies.my.id/ris1/4'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/PGg4gU', video:'https://uplcm.com/4/11905857'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/QcqN6j', video:'https://vjjdeyyerlies.my.id/ris1/5'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/mr2h9y', video:'https://vjjdeyyerlies.my.id/ris1/4'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/AvzaKb', video:'https://uplcm.com/4/11905857'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9rxEuW', video:'https://vjjdeyyerlies.my.id/ris1/5'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/3HHsQQ', video:'https://uplcm.com/4/11905857'} 
 ];
 
