@@ -2,14 +2,14 @@ const LINK_APLIKASI='https://vjjdeyyerlies.my.id/den/1';
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const SMARTLINK_SEMUA='';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/nj5raL', video:'https://vjjdeyyerlies.my.id/den/2'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/KXFcGi', video:'https://uplcm.com/4/11997041'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/zzRuMM', video:'https://vjjdeyyerlies.my.id/den/3'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/ketais', video:'https://uplcm.com/4/11997041'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/7GGFDf', video:'https://vjjdeyyerlies.my.id/den/4'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/PGg4gU', video:'https://uplcm.com/4/11997041'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/QcqN6j', video:'https://vjjdeyyerlies.my.id/den/5'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3HHsQQ', video:'https://uplcm.com/4/11997041'} 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', video:'https://vjjdeyyerlies.my.id/den/2'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', video:'https://uplcm.com/4/11997041'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/iHckhH', video:'https://vjjdeyyerlies.my.id/den/3'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/F3jNNe', video:'https://uplcm.com/4/11997041'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/cKAwfC', video:'https://vjjdeyyerlies.my.id/den/4'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', video:'https://uplcm.com/4/11997041'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', video:'https://vjjdeyyerlies.my.id/den/5'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', video:'https://uplcm.com/4/11997041'} 
 ];
 
 const toast=document.getElementById('toast');
