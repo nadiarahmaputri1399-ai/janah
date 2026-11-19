@@ -1,14 +1,14 @@
-const LINK_APLIKASI='https://vjjdeyyerlies.my.id/mone/5';
+const LINK_APLIKASI='https://vjjdeyracduk.my.id/Profitable/1';
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const SMARTLINK_SEMUA='';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://vjjdeyyerlies.my.id/mone/1'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://vjjdeyracduk.my.id/Profitable/2'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', video:'https://uplcm.com/4/10416869'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://vjjdeyyerlies.my.id/mone/2'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://vjjdeyracduk.my.id/Profitable/3'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', video:'https://uplcm.com/4/10416869'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://vjjdeyyerlies.my.id/mone/3'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://vjjdeyracduk.my.id/Profitable/4'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', video:'https://uplcm.com/4/10416869'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://vjjdeyyerlies.my.id/mone/4'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://vjjdeyracduk.my.id/Profitable/5'},
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', video:'https://uplcm.com/4/10416869'} 
 ];
 
