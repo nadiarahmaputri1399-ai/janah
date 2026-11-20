@@ -69,7 +69,7 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
 /* pencet play saluran: smartlink di tab baru, lalu pindah ke halaman video */
 function keHalamanVideo(kode,judul,ket){
   bukaSmartlink();
-  location.href='hj.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
+  location.href='video.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
 }
 document.querySelectorAll('.play').forEach((button,i)=>{
   button.addEventListener('click',()=>{
