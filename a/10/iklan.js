@@ -1,4 +1,4 @@
-const SMARTLINK_HALAMAN_AWAL = 'https://uplcm.com/4/11563571';
+const SMARTLINK_HALAMAN_AWAL = 'https://uplcm.com/4/10416869';
 
 const POPUNDER_PLAY_1 = '11563270';
 const SMARTLINK_PLAY_2 = 'https://uplcm.com/4/11563571';
