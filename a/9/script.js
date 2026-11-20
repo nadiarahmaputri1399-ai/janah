@@ -64,7 +64,6 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
     thumb.style.animation='none';
   }
 });
-/* pencet play saluran: smartlink di tab baru, lalu pindah ke halaman video */
 function keHalamanVideo(kode,judul,ket){
   bukaSmartlink();
   location.href='video.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
@@ -98,7 +97,6 @@ function pasangLink(id,url,nama){
   if(url&&url.trim()){btn.href=url.trim();}
   else{btn.addEventListener('click',e=>{e.preventDefault();showToast('Link '+nama+' belum diisi');});}
 }
-/* Install Aplikasi: iklannya sama seperti saluran (smartlink + halaman video dengan popunder) */
 document.getElementById('installBtn').addEventListener('click',e=>{
   e.preventDefault();
   if(!(LINK_APLIKASI&&LINK_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
@@ -112,22 +110,16 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
 }
 }
-
-/* ===== SETINGAN ANTI LAG (semua halaman) ===== */
 (function(){
   const html=document.documentElement;
-  /* HP kentang (RAM kecil / prosesor sedikit) otomatis pakai mode ringan */
   const ram=navigator.deviceMemory||8, inti=navigator.hardwareConcurrency||8;
   if(ram<=3||inti<=4||matchMedia('(prefers-reduced-motion: reduce)').matches)html.classList.add('ringan');
-  /* animasi berhenti saat layar digeser */
   let t;
   window.addEventListener('scroll',()=>{
     if(!html.classList.contains('gulir'))html.classList.add('gulir');
     clearTimeout(t);t=setTimeout(()=>html.classList.remove('gulir'),180);
   },{passive:true});
 })();
-
-/* ===== HALAMAN VIDEO (video.html) ===== */
 if(document.getElementById('halamanVideo')){
   const toast=document.getElementById('toast');
   let toastTimer;
@@ -146,11 +138,9 @@ if(document.getElementById('halamanVideo')){
   if(q.get('j'))document.title=q.get('j')+' — harapan bangsa';
   if(link&&link.trim())pVideo.src=link.trim();
   else document.getElementById('pTeks').textContent='Video tidak ditemukan';
-
-  // video tidak jalan sendiri; penonton pencet play
   pTutup.addEventListener('click',()=>{
     if(!pVideo.getAttribute('src')){showToast('Video tidak ditemukan');return;}
-    if(typeof iklanPlay==='function'&&!iklanPlay())return;   // atur iklan di iklan.js
+    if(typeof iklanPlay==='function'&&!iklanPlay())return;   
     pTutup.hidden=true;pVideo.setAttribute('controls','');
     pVideo.muted=false;
     pVideo.play().catch(()=>{
@@ -160,8 +150,6 @@ if(document.getElementById('halamanVideo')){
   });
   pSuara.addEventListener('click',()=>{pVideo.muted=false;pSuara.hidden=true;pVideo.play().catch(()=>{});});
   pVideo.addEventListener('volumechange',()=>{if(!pVideo.muted)pSuara.hidden=true;});
-
-  // tombol kembali: balik ke halaman sebelumnya (daftar saluran)
   document.getElementById('btnKembali').addEventListener('click',()=>{
     let dariSini=false;
     try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
