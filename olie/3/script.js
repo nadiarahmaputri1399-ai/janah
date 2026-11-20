@@ -1,14 +1,14 @@
 var SALURAN = [
-  { nama: "Rima",         foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi", video: "https://upload.vjjdeyyjinerila.xyz/f/zhGicX", link: "http://vjjdeyyerlies.my.id/mon/1" },
-  { nama: "jahra",        foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv", video: "https://upload.vjjdeyyjinerila.xyz/f/bBFeRY", link: "https://uplcm.com/4/10416869" },
-  { nama: "reva nara",    foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq", video: "https://upload.vjjdeyyjinerila.xyz/f/VRUMwy", link: "http://vjjdeyyerlies.my.id/mon/2" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF", video: "https://upload.vjjdeyyjinerila.xyz/f/L3dxCv", link: "https://uplcm.com/4/10416869" },
-  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf", video: "https://upload.vjjdeyyjinerila.xyz/f/QRcaZx", link: "http://vjjdeyyerlies.my.id/mon/3" },
-  { nama: "sarah nurlia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh", video: "https://upload.vjjdeyyjinerila.xyz/f/HgRkkk", link: "https://uplcm.com/4/10416869" },
-  { nama: "novita rahma", foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u", video: "https://upload.vjjdeyyjinerila.xyz/f/DrYMAq", link: "http://vjjdeyyerlies.my.id/mon/4" },
-  { nama: "aurellia",     foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx", video: "https://upload.vjjdeyyjinerila.xyz/f/PYmUx6", link: "https://uplcm.com/4/10416869" },
-  { nama: "kadita",       foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u", video: "https://upload.vjjdeyyjinerila.xyz/f/BsNzmB", link: "http://vjjdeyyerlies.my.id/mon/5" },
-  { nama: "dea novia",    foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", video: "https://upload.vjjdeyyjinerila.xyz/f/BxaBFw", link: "https://uplcm.com/4/10416869" }
+  { nama: "Rima",         foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi", video: "https://upload.vjjdeyyjinerila.xyz/f/zhGicX", link: "" },
+  { nama: "jahra",        foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv", video: "https://upload.vjjdeyyjinerila.xyz/f/bBFeRY", link: "" },
+  { nama: "reva nara",    foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq", video: "https://upload.vjjdeyyjinerila.xyz/f/VRUMwy", link: "" },
+  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF", video: "https://upload.vjjdeyyjinerila.xyz/f/L3dxCv", link: "" },
+  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf", video: "https://upload.vjjdeyyjinerila.xyz/f/QRcaZx", link: "" },
+  { nama: "sarah nurlia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh", video: "https://upload.vjjdeyyjinerila.xyz/f/HgRkkk", link: "" },
+  { nama: "novita rahma", foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u", video: "https://upload.vjjdeyyjinerila.xyz/f/DrYMAq", link: "" },
+  { nama: "aurellia",     foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx", video: "https://upload.vjjdeyyjinerila.xyz/f/PYmUx6", link: "" },
+  { nama: "kadita",       foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u", video: "https://upload.vjjdeyyjinerila.xyz/f/BsNzmB", link: "" },
+  { nama: "dea novia",    foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", video: "https://upload.vjjdeyyjinerila.xyz/f/BxaBFw", link: "" }
 ];
 
 var VIDEO_APLIKASI = "https://upload.vjjdeyyjinerila.xyz/f/cASvqa";
