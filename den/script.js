@@ -1,7 +1,6 @@
 const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/mf2asr';
 const LINK_TELEGRAM='https://t.me/spesialedition';
-const LINK_SMARTLINK='https://uplcm.com/4/12287945';
-const ZONA_POPUNDER='12287942';
+// pengaturan iklan ada di file iklan.js
 const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', video:'https://upload.vjjdeyyjinerila.xyz/f/cASvqa'}, 
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', video:'https://upload.vjjdeyyjinerila.xyz/f/Wmmp5k'},   
@@ -13,6 +12,7 @@ const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', video:'https://upload.vjjdeyyjinerila.xyz/f/rzLjv7'}, 
 ];
 
+if(document.getElementById('channels')){
 const toast=document.getElementById('toast');
 let toastTimer;
 function showToast(message){
@@ -47,7 +47,7 @@ function closeModal(){overlay.classList.remove('show')}
 document.getElementById('closeModal').addEventListener('click',closeModal);
 document.getElementById('modalAction').addEventListener('click',closeModal);
 overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();tutupPemutar(false);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 document.querySelectorAll('.channel').forEach((card,i)=>{
   const rb=document.createElement('span');
   rb.className='rb';
@@ -66,56 +66,11 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
     thumb.style.animation='none';
   }
 });
-const pemutar=document.getElementById('pemutar');
-const pVideo=document.getElementById('pVideo');
-const pTutup=document.getElementById('pTutup');
-const pTeks=document.getElementById('pTeks');
-const pSuara=document.getElementById('pSuara');
-let popunderDimuat=false;
-function muatPopunder(){
-  if(popunderDimuat||!ZONA_POPUNDER)return;
-  popunderDimuat=true;
-  const s=document.createElement('script');
-  s.src='https://al5sm.com/tag.min.js';s.async=true;s.dataset.zone=ZONA_POPUNDER;
-  document.body.appendChild(s);
+/* pencet play saluran: smartlink di tab baru, lalu pindah ke halaman video */
+function keHalamanVideo(kode,judul,ket){
+  bukaSmartlink();
+  location.href='hj.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
 }
-function bukaPemutar(i,catat){
-  const d=DATA_SALURAN[i]||{};
-  const kartu=document.querySelectorAll('.channel')[i];
-  document.getElementById('pJudul').textContent=kartu?kartu.querySelector('h3').textContent.trim():'Video';
-  document.getElementById('pKet').textContent=kartu?kartu.querySelector('p').textContent.trim():'';
-  pVideo.removeAttribute('controls');
-  pVideo.preload='metadata';
-  pVideo.src=(d.video||'').trim();
-  pTutup.hidden=false;pSuara.hidden=true;pTeks.textContent='Ketuk untuk memutar';
-  pemutar.classList.add('buka');document.body.classList.add('nonton');
-  if(catat)history.pushState({saluran:i},'','#saluran-'+(i+1));
-  muatPopunder();
-}
-function tutupPemutar(dariKembali){
-  if(!pemutar.classList.contains('buka'))return;
-  pVideo.pause();pVideo.removeAttribute('src');pVideo.load();   
-  pemutar.classList.remove('buka');document.body.classList.remove('nonton');
-  if(!dariKembali&&history.state&&history.state.saluran!==undefined)history.back();
-}
-pTutup.addEventListener('click',()=>{
-  if(!pVideo.getAttribute('src')){showToast('Link video belum diisi');return;}
-  pTutup.hidden=true;pVideo.setAttribute('controls','');
-  pVideo.muted=false;
-  pVideo.play().catch(()=>{
-    pVideo.muted=true;
-    pVideo.play().then(()=>{pSuara.hidden=false;}).catch(()=>{pTutup.hidden=false;pVideo.removeAttribute('controls');});
-  });
-});
-pSuara.addEventListener('click',()=>{pVideo.muted=false;pSuara.hidden=true;pVideo.play().catch(()=>{});});
-pVideo.addEventListener('volumechange',()=>{if(!pVideo.muted)pSuara.hidden=true;});
-document.getElementById('btnKembali').addEventListener('click',()=>tutupPemutar(false));
-window.addEventListener('popstate',e=>{
-  const st=e.state||{};
-  if(st.saluran===undefined)tutupPemutar(true);else bukaPemutar(st.saluran,false);
-});
-history.replaceState(null,'',location.pathname+location.search);
-
 document.querySelectorAll('.play').forEach((button,i)=>{
   button.addEventListener('click',()=>{
     const d=DATA_SALURAN[i]||{};
@@ -123,8 +78,8 @@ document.querySelectorAll('.play').forEach((button,i)=>{
       openModal(button.dataset.channel,'Link video saluran ini belum diisi.','Mengerti');
       return;
     }
-    bukaPemutar(i,true);                                   
-    if(LINK_SMARTLINK)window.open(LINK_SMARTLINK,'_blank','noopener');
+    const kartu=button.closest('.channel');
+    keHalamanVideo(i+1,kartu.querySelector('h3').textContent.trim(),kartu.querySelector('p').textContent.trim());
   });
 });
 document.getElementById('menuToggle').addEventListener('click',()=>{
@@ -145,7 +100,12 @@ function pasangLink(id,url,nama){
   if(url&&url.trim()){btn.href=url.trim();}
   else{btn.addEventListener('click',e=>{e.preventDefault();showToast('Link '+nama+' belum diisi');});}
 }
-pasangLink('installBtn',LINK_APLIKASI,'aplikasi');
+/* Install Aplikasi: iklannya sama seperti saluran (smartlink + halaman video dengan popunder) */
+document.getElementById('installBtn').addEventListener('click',e=>{
+  e.preventDefault();
+  if(!(LINK_APLIKASI&&LINK_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
+  keHalamanVideo('app','Install Aplikasi','Video spesial');
+});
 pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
 if('IntersectionObserver' in window){
   const pengamat=new IntersectionObserver(entri=>{
@@ -153,3 +113,45 @@ if('IntersectionObserver' in window){
   },{rootMargin:'100px 0px'});
   document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
 }
+}
+
+/* ===== HALAMAN VIDEO (video.html) ===== */
+if(document.getElementById('halamanVideo')){
+  const toast=document.getElementById('toast');
+  let toastTimer;
+  function showToast(message){
+    toast.textContent=message;toast.classList.add('show');
+    clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
+  }
+  const q=new URLSearchParams(location.search);
+  const kode=q.get('s')||'';
+  const link=kode==='app'?LINK_APLIKASI:((DATA_SALURAN[Number(kode)-1]||{}).video||'');
+  const pVideo=document.getElementById('pVideo');
+  const pTutup=document.getElementById('pTutup');
+  const pSuara=document.getElementById('pSuara');
+  document.getElementById('pJudul').textContent=q.get('j')||'Video';
+  document.getElementById('pKet').textContent=q.get('k')||'';
+  if(q.get('j'))document.title=q.get('j')+' — harapan bangsa';
+  if(link&&link.trim())pVideo.src=link.trim();
+  else document.getElementById('pTeks').textContent='Video tidak ditemukan';
+
+  // video tidak jalan sendiri; penonton pencet play
+  pTutup.addEventListener('click',()=>{
+    if(!pVideo.getAttribute('src')){showToast('Video tidak ditemukan');return;}
+    pTutup.hidden=true;pVideo.setAttribute('controls','');
+    pVideo.muted=false;
+    pVideo.play().catch(()=>{
+      pVideo.muted=true;
+      pVideo.play().then(()=>{pSuara.hidden=false;}).catch(()=>{pTutup.hidden=false;pVideo.removeAttribute('controls');});
+    });
+  });
+  pSuara.addEventListener('click',()=>{pVideo.muted=false;pSuara.hidden=true;pVideo.play().catch(()=>{});});
+  pVideo.addEventListener('volumechange',()=>{if(!pVideo.muted)pSuara.hidden=true;});
+
+  // tombol kembali: balik ke halaman sebelumnya (daftar saluran)
+  document.getElementById('btnKembali').addEventListener('click',()=>{
+    let dariSini=false;
+    try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
+    if(dariSini&&history.length>1)history.back();else location.href='index.html';
+  });
+  }
