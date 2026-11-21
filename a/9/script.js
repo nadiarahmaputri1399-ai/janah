@@ -1,14 +1,14 @@
-const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/VRUMwy';
+const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/NMwFjc';
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://upload.vjjdeyyjinerila.xyz/f/QRcaZx'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', video:'https://upload.vjjdeyyjinerila.xyz/f/DrYMAq'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://upload.vjjdeyyjinerila.xyz/f/httwvr'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', video:'https://upload.vjjdeyyjinerila.xyz/f/ZKvqtm'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://upload.vjjdeyyjinerila.xyz/f/L3dxCv'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', video:'https://upload.vjjdeyyjinerila.xyz/f/XteVpz'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://upload.vjjdeyyjinerila.xyz/f/HgRkkk'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', video:'https://upload.vjjdeyyjinerila.xyz/f/zhGicX'} 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://upload.vjjdeyyjinerila.xyz/f/bBFeRY'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', video:'https://upload.vjjdeyyjinerila.xyz/f/QRcaZx'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://upload.vjjdeyyjinerila.xyz/f/PYmUx6'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', video:'https://upload.vjjdeyyjinerila.xyz/f/9vGfyB'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://upload.vjjdeyyjinerila.xyz/f/NcMedy'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', video:'https://upload.vjjdeyyjinerila.xyz/f/7jrCfc'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://upload.vjjdeyyjinerila.xyz/f/QCD4vB'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', video:'https://upload.vjjdeyyjinerila.xyz/f/jLrdem'} 
 ];
 if(document.getElementById('channels')){
 const toast=document.getElementById('toast');
