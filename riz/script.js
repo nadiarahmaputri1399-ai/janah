@@ -1,14 +1,14 @@
 const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/mb6qba';
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/nj5raL', video:'https://upload.vjjdeyyjinerila.xyz/f/WipmqA'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/KXFcGi', video:'https://upload.vjjdeyyjinerila.xyz/f/gsmHSq'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/zzRuMM', video:'https://upload.vjjdeyyjinerila.xyz/f/sZQUZw'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/ketais', video:'https://upload.vjjdeyyjinerila.xyz/f/KtgCFx'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/mr2h9y', video:'https://upload.vjjdeyyjinerila.xyz/f/jg5XZW'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/AvzaKb', video:'https://upload.vjjdeyyjinerila.xyz/f/neaxSE'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9rxEuW', video:'https://upload.vjjdeyyjinerila.xyz/f/CP3jfg'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3HHsQQ', video:'https://upload.vjjdeyyjinerila.xyz/f/Abb9xZ'} 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/nj5raL', video:'https://upload.vjjdeyyjinerila.xyz/f/CCSzeJ'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/KXFcGi', video:'https://upload.vjjdeyyjinerila.xyz/f/sT8pUg'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/zzRuMM', video:'https://upload.vjjdeyyjinerila.xyz/f/gk54wZ'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/ketais', video:'https://upload.vjjdeyyjinerila.xyz/f/eramSc'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/mr2h9y', video:'https://upload.vjjdeyyjinerila.xyz/f/Cwn86g'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/AvzaKb', video:'https://upload.vjjdeyyjinerila.xyz/f/k4nJMD'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9rxEuW', video:'https://upload.vjjdeyyjinerila.xyz/f/TxXdxQ'},
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3HHsQQ', video:'https://upload.vjjdeyyjinerila.xyz/f/FVXtyL'} 
 ];
 if(document.getElementById('channels')){
 const toast=document.getElementById('toast');
