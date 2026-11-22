@@ -10,8 +10,7 @@ const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', video:'https://upload.vjjdeyyjinerila.xyz/f/2Fvuty'},   
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', video:'https://upload.vjjdeyyjinerila.xyz/f/yV9dvc'},  
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', video:'https://upload.vjjdeyyjinerila.xyz/f/rzLjv7'}, 
-];
-
+]
 if(document.getElementById('channels')){
 const toast=document.getElementById('toast');
 let toastTimer;
@@ -155,4 +154,4 @@ if(document.getElementById('halamanVideo')){
     try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
     if(dariSini&&history.length>1)history.back();else location.href='index.html';
   });
-}
+  }
