@@ -1,15 +1,15 @@
-const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/mf2asr';
 const LINK_TELEGRAM='https://t.me/spesialedition';
+const SITUS_APLIKASI='https://vjjdeyyerlies.my.id/den/9';
 // pengaturan iklan ada di file iklan.js
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', video:'https://upload.vjjdeyyjinerila.xyz/f/cASvqa'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', video:'https://upload.vjjdeyyjinerila.xyz/f/Wmmp5k'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/iHckhH', video:'https://upload.vjjdeyyjinerila.xyz/f/2TTTWv'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/F3jNNe', video:'https://upload.vjjdeyyjinerila.xyz/f/8eCjyJ'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/cKAwfC', video:'https://upload.vjjdeyyjinerila.xyz/f/8eCjyJ'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', video:'https://upload.vjjdeyyjinerila.xyz/f/2Fvuty'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', video:'https://upload.vjjdeyyjinerila.xyz/f/yV9dvc'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', video:'https://upload.vjjdeyyjinerila.xyz/f/rzLjv7'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', situs:'https://vjjdeyyerlies.my.id/den/1'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', situs:'https://vjjdeyyerlies.my.id/den/2'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/iHckhH', situs:'https://vjjdeyyerlies.my.id/den/3'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/F3jNNe', situs:'https://vjjdeyyerlies.my.id/den/4'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/cKAwfC', situs:'https://vjjdeyyerlies.my.id/den/5'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', situs:'https://vjjdeyyerlies.my.id/den/6'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', situs:'https://vjjdeyyerlies.my.id/den/7'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', situs:'https://vjjdeyyerlies.my.id/den/8'}, 
 ];
 
 if(document.getElementById('channels')){
@@ -66,20 +66,20 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
     thumb.style.animation='none';
   }
 });
-/* pencet play saluran: smartlink di tab baru, lalu pindah ke halaman video */
-function keHalamanVideo(kode,judul,ket){
+/* pencet play saluran: smartlink di tab baru, lalu pindah ke website video */
+function keHalamanVideo(kode){
+  const d=kode==='app'?{situs:SITUS_APLIKASI}:(DATA_SALURAN[Number(kode)-1]||{});
   bukaSmartlink();
-  location.href='video.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
+  location.href=d.situs.trim();
 }
 document.querySelectorAll('.play').forEach((button,i)=>{
   button.addEventListener('click',()=>{
     const d=DATA_SALURAN[i]||{};
-    if(!(d.video&&d.video.trim())){
-      openModal(button.dataset.channel,'Link video saluran ini belum diisi.','Mengerti');
+    if(!(d.situs&&d.situs.trim())){
+      openModal(button.dataset.channel,'Link saluran ini belum diisi.','Mengerti');
       return;
     }
-    const kartu=button.closest('.channel');
-    keHalamanVideo(i+1,kartu.querySelector('h3').textContent.trim(),kartu.querySelector('p').textContent.trim());
+    keHalamanVideo(i+1);
   });
 });
 document.getElementById('menuToggle').addEventListener('click',()=>{
@@ -100,11 +100,11 @@ function pasangLink(id,url,nama){
   if(url&&url.trim()){btn.href=url.trim();}
   else{btn.addEventListener('click',e=>{e.preventDefault();showToast('Link '+nama+' belum diisi');});}
 }
-/* Install Aplikasi: iklannya sama seperti saluran (smartlink + halaman video dengan popunder) */
+/* Install Aplikasi: iklannya sama seperti saluran (smartlink + website video) */
 document.getElementById('installBtn').addEventListener('click',e=>{
   e.preventDefault();
-  if(!(LINK_APLIKASI&&LINK_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
-  keHalamanVideo('app','Install Aplikasi','Video spesial');
+  if(!(SITUS_APLIKASI&&SITUS_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
+  keHalamanVideo('app');
 });
 pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
 if('IntersectionObserver' in window){
@@ -113,45 +113,4 @@ if('IntersectionObserver' in window){
   },{rootMargin:'100px 0px'});
   document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
 }
-}
-
-/* ===== HALAMAN VIDEO (video.html) ===== */
-if(document.getElementById('halamanVideo')){
-  const toast=document.getElementById('toast');
-  let toastTimer;
-  function showToast(message){
-    toast.textContent=message;toast.classList.add('show');
-    clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
-  }
-  const q=new URLSearchParams(location.search);
-  const kode=q.get('s')||'';
-  const link=kode==='app'?LINK_APLIKASI:((DATA_SALURAN[Number(kode)-1]||{}).video||'');
-  const pVideo=document.getElementById('pVideo');
-  const pTutup=document.getElementById('pTutup');
-  const pSuara=document.getElementById('pSuara');
-  document.getElementById('pJudul').textContent=q.get('j')||'Video';
-  document.getElementById('pKet').textContent=q.get('k')||'';
-  if(q.get('j'))document.title=q.get('j')+' — harapan bangsa';
-  if(link&&link.trim())pVideo.src=link.trim();
-  else document.getElementById('pTeks').textContent='Video tidak ditemukan';
-
-  // video tidak jalan sendiri; penonton pencet play
-  pTutup.addEventListener('click',()=>{
-    if(!pVideo.getAttribute('src')){showToast('Video tidak ditemukan');return;}
-    pTutup.hidden=true;pVideo.setAttribute('controls','');
-    pVideo.muted=false;
-    pVideo.play().catch(()=>{
-      pVideo.muted=true;
-      pVideo.play().then(()=>{pSuara.hidden=false;}).catch(()=>{pTutup.hidden=false;pVideo.removeAttribute('controls');});
-    });
-  });
-  pSuara.addEventListener('click',()=>{pVideo.muted=false;pSuara.hidden=true;pVideo.play().catch(()=>{});});
-  pVideo.addEventListener('volumechange',()=>{if(!pVideo.muted)pSuara.hidden=true;});
-
-  // tombol kembali: balik ke halaman sebelumnya (daftar saluran)
-  document.getElementById('btnKembali').addEventListener('click',()=>{
-    let dariSini=false;
-    try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
-    if(dariSini&&history.length>1)history.back();else location.href='index.html';
-  });
-  }
+    }
