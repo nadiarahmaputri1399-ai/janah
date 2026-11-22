@@ -1,4 +1,4 @@
-const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/NMwFjc';
+const LINK_APLIKASI='https://cdn2.videy.co/eR0efv9B1.mp4';
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://cdn2.videy.co/Fi63GGiP1.mp4'},
