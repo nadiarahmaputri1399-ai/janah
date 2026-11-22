@@ -138,6 +138,7 @@ if(document.getElementById('halamanVideo')){
   // video tidak jalan sendiri; penonton pencet play
   pTutup.addEventListener('click',()=>{
     if(!pVideo.getAttribute('src')){showToast('Video tidak ditemukan');return;}
+    if(typeof iklanPlay==='function'&&!iklanPlay())return;
     pTutup.hidden=true;pVideo.setAttribute('controls','');
     pVideo.muted=false;
     pVideo.play().catch(()=>{
@@ -154,4 +155,4 @@ if(document.getElementById('halamanVideo')){
     try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
     if(dariSini&&history.length>1)history.back();else location.href='index.html';
   });
-       }
+}
