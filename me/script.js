@@ -2,11 +2,11 @@ const LINK_TELEGRAM='https://t.me/spesialedition';
 const SITUS_APLIKASI='https://vjjdeyracduk.my.id/Golden';
 const LINK_SMARTLINK='https://uplcm.com/4/10416869';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', situs:'https://vjjdeyracduk.my.id/Profitable'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', situs:'https://vjjdeyracduk.my.id/Profitable/1'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/iHckhH', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/F3jNNe', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/cKAwfC', situs:'https://vjjdeyracduk.my.id/Profitable/4'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', situs:'https://vjjdeyracduk.my.id/Profitable'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', situs:'https://vjjdeyracduk.my.id/Profitable/1'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', situs:'https://vjjdeyracduk.my.id/Profitable/4'},   
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', situs:'https://vjjdeyracduk.my.id/Profitable/5'},   
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', situs:'https://vjjdeyracduk.my.id/Profitable/6'},  
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', situs:'https://vjjdeyracduk.my.id/Profitable/7'}, 
