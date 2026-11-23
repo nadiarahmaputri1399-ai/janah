@@ -1,15 +1,17 @@
-const LINK_APLIKASI='https://upload.vjjdeyyjinerila.xyz/f/NMwFjc';
 const LINK_TELEGRAM='https://t.me/spesialedition';
+const SITUS_APLIKASI='https://vjjdeyracduk.my.id/Golden';
+const LINK_SMARTLINK='https://uplcm.com/4/10416869';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', video:'https://upload.vjjdeyyjinerila.xyz/f/bBFeRY'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', video:'https://upload.vjjdeyyjinerila.xyz/f/QRcaZx'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', video:'https://upload.vjjdeyyjinerila.xyz/f/PYmUx6'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', video:'https://upload.vjjdeyyjinerila.xyz/f/9vGfyB'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', video:'https://upload.vjjdeyyjinerila.xyz/f/NcMedy'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', video:'https://upload.vjjdeyyjinerila.xyz/f/7jrCfc'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', video:'https://upload.vjjdeyyjinerila.xyz/f/QCD4vB'},
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', video:'https://upload.vjjdeyyjinerila.xyz/f/jLrdem'} 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', situs:'https://vjjdeyracduk.my.id/Profitable'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', situs:'https://vjjdeyracduk.my.id/Profitable/1'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/iHckhH', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/F3jNNe', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/cKAwfC', situs:'https://vjjdeyracduk.my.id/Profitable/4'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', situs:'https://vjjdeyracduk.my.id/Profitable/5'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', situs:'https://vjjdeyracduk.my.id/Profitable/6'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', situs:'https://vjjdeyracduk.my.id/Profitable/7'}, 
 ];
+
 if(document.getElementById('channels')){
 const toast=document.getElementById('toast');
 let toastTimer;
@@ -64,19 +66,20 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
     thumb.style.animation='none';
   }
 });
-function keHalamanVideo(kode,judul,ket){
-  bukaSmartlink();
-  location.href='video.html?s='+encodeURIComponent(kode)+'&j='+encodeURIComponent(judul||'')+'&k='+encodeURIComponent(ket||'');
+/* pencet play saluran: smartlink di tab baru, lalu pindah ke website video */
+function keHalamanVideo(kode){
+  const d=kode==='app'?{situs:SITUS_APLIKASI}:(DATA_SALURAN[Number(kode)-1]||{});
+  if(LINK_SMARTLINK&&LINK_SMARTLINK.trim())window.open(LINK_SMARTLINK.trim(),'_blank','noopener');
+  location.href=d.situs.trim();
 }
 document.querySelectorAll('.play').forEach((button,i)=>{
   button.addEventListener('click',()=>{
     const d=DATA_SALURAN[i]||{};
-    if(!(d.video&&d.video.trim())){
-      openModal(button.dataset.channel,'Link video saluran ini belum diisi.','Mengerti');
+    if(!(d.situs&&d.situs.trim())){
+      openModal(button.dataset.channel,'Link saluran ini belum diisi.','Mengerti');
       return;
     }
-    const kartu=button.closest('.channel');
-    keHalamanVideo(i+1,kartu.querySelector('h3').textContent.trim(),kartu.querySelector('p').textContent.trim());
+    keHalamanVideo(i+1);
   });
 });
 document.getElementById('menuToggle').addEventListener('click',()=>{
@@ -97,10 +100,11 @@ function pasangLink(id,url,nama){
   if(url&&url.trim()){btn.href=url.trim();}
   else{btn.addEventListener('click',e=>{e.preventDefault();showToast('Link '+nama+' belum diisi');});}
 }
+/* Install Aplikasi: iklannya sama seperti saluran (smartlink + website video) */
 document.getElementById('installBtn').addEventListener('click',e=>{
   e.preventDefault();
-  if(!(LINK_APLIKASI&&LINK_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
-  keHalamanVideo('app','Install Aplikasi','Video spesial');
+  if(!(SITUS_APLIKASI&&SITUS_APLIKASI.trim())){showToast('Link aplikasi belum diisi');return;}
+  keHalamanVideo('app');
 });
 pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
 if('IntersectionObserver' in window){
@@ -109,50 +113,4 @@ if('IntersectionObserver' in window){
   },{rootMargin:'100px 0px'});
   document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
 }
-}
-(function(){
-  const html=document.documentElement;
-  const ram=navigator.deviceMemory||8, inti=navigator.hardwareConcurrency||8;
-  if(ram<=3||inti<=4||matchMedia('(prefers-reduced-motion: reduce)').matches)html.classList.add('ringan');
-  let t;
-  window.addEventListener('scroll',()=>{
-    if(!html.classList.contains('gulir'))html.classList.add('gulir');
-    clearTimeout(t);t=setTimeout(()=>html.classList.remove('gulir'),180);
-  },{passive:true});
-})();
-if(document.getElementById('halamanVideo')){
-  const toast=document.getElementById('toast');
-  let toastTimer;
-  function showToast(message){
-    toast.textContent=message;toast.classList.add('show');
-    clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
   }
-  const q=new URLSearchParams(location.search);
-  const kode=q.get('s')||'';
-  const link=kode==='app'?LINK_APLIKASI:((DATA_SALURAN[Number(kode)-1]||{}).video||'');
-  const pVideo=document.getElementById('pVideo');
-  const pTutup=document.getElementById('pTutup');
-  const pSuara=document.getElementById('pSuara');
-  document.getElementById('pJudul').textContent=q.get('j')||'Video';
-  document.getElementById('pKet').textContent=q.get('k')||'';
-  if(q.get('j'))document.title=q.get('j')+' — harapan bangsa';
-  if(link&&link.trim())pVideo.src=link.trim();
-  else document.getElementById('pTeks').textContent='Video tidak ditemukan';
-  pTutup.addEventListener('click',()=>{
-    if(!pVideo.getAttribute('src')){showToast('Video tidak ditemukan');return;}
-    if(typeof iklanPlay==='function'&&!iklanPlay())return;   
-    pTutup.hidden=true;pVideo.setAttribute('controls','');
-    pVideo.muted=false;
-    pVideo.play().catch(()=>{
-      pVideo.muted=true;
-      pVideo.play().then(()=>{pSuara.hidden=false;}).catch(()=>{pTutup.hidden=false;pVideo.removeAttribute('controls');});
-    });
-  });
-  pSuara.addEventListener('click',()=>{pVideo.muted=false;pSuara.hidden=true;pVideo.play().catch(()=>{});});
-  pVideo.addEventListener('volumechange',()=>{if(!pVideo.muted)pSuara.hidden=true;});
-  document.getElementById('btnKembali').addEventListener('click',()=>{
-    let dariSini=false;
-    try{dariSini=document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
-    if(dariSini&&history.length>1)history.back();else location.href='index.html';
-  });
-                              }
