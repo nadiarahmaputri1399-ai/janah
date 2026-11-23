@@ -7,9 +7,9 @@ const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', situs:'https://vjjdeyracduk.my.id/Profitable/4'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3qcZMd', situs:'https://vjjdeyracduk.my.id/Profitable/5'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/y7rgcx', situs:'https://vjjdeyracduk.my.id/Profitable/6'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/YzPd3f', situs:'https://vjjdeyracduk.my.id/Profitable/7'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', situs:'https://vjjdeyracduk.my.id/Profitable/5'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', situs:'https://vjjdeyracduk.my.id/Profitable/6'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', situs:'https://vjjdeyracduk.my.id/Profitable/7'}, 
 ];
 
 if(document.getElementById('channels')){
