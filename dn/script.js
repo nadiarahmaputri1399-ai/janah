@@ -1,6 +1,6 @@
 const LINK_TELEGRAM='https://t.me/spesialedition';
 const SITUS_APLIKASI='https://vjjdeyyerlies.my.id/dn/9';
-// pengaturan iklan ada di file iklan.js
+const LINK_SMARTLINK='https://uplcm.com/4/12287945';
 const DATA_SALURAN=[
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/fbYLEg', situs:'https://vjjdeyyerlies.my.id/dn/1'}, 
   {foto:'https://upload.vjjdeyyjinerila.xyz/f/DbFyNV', situs:'https://vjjdeyyerlies.my.id/dn/2'},   
@@ -69,7 +69,7 @@ document.querySelectorAll('.channel').forEach((card,i)=>{
 /* pencet play saluran: smartlink di tab baru, lalu pindah ke website video */
 function keHalamanVideo(kode){
   const d=kode==='app'?{situs:SITUS_APLIKASI}:(DATA_SALURAN[Number(kode)-1]||{});
-  bukaSmartlink();
+  if(LINK_SMARTLINK&&LINK_SMARTLINK.trim())window.open(LINK_SMARTLINK.trim(),'_blank','noopener');
   location.href=d.situs.trim();
 }
 document.querySelectorAll('.play').forEach((button,i)=>{
