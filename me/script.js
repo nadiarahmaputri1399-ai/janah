@@ -1,15 +1,15 @@
 const LINK_TELEGRAM='https://t.me/spesialedition';
-const SITUS_APLIKASI='https://vjjdeyracduk.my.id/Golden';
+const SITUS_APLIKASI='https://vjjdeyracduk.my.id/Profitable/4';
 const LINK_SMARTLINK='https://uplcm.com/4/10416869';
 const DATA_SALURAN=[
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', situs:'https://vjjdeyracduk.my.id/Profitable'}, 
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', situs:'https://vjjdeyracduk.my.id/Profitable/1'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', situs:'https://vjjdeyracduk.my.id/Profitable/4'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', situs:'https://vjjdeyracduk.my.id/Profitable/5'},   
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', situs:'https://vjjdeyracduk.my.id/Profitable/6'},  
-  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', situs:'https://vjjdeyracduk.my.id/Profitable/7'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/kzgghx', situs:'https://vjjdeyyerlies.my.id/me/1'}, 
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/UtgTb5', situs:'https://vjjdeyyerlies.my.id/me/2'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/9irwmq', situs:'https://vjjdeyyerlies.my.id/me/3'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/xap2vr', situs:'https://vjjdeyyerlies.my.id/me/4'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/3M8jDt', situs:'https://vjjdeyracduk.my.id/Profitable/1'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/HzPNWK', situs:'https://vjjdeyracduk.my.id/Profitable/2'},   
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/GDjuwQ', situs:'https://vjjdeyracduk.my.id/Profitable/3'},  
+  {foto:'https://upload.vjjdeyyjinerila.xyz/f/r8apY8', situs:'https://vjjdeyracduk.my.id/Profitable/5'}, 
 ];
 
 if(document.getElementById('channels')){
