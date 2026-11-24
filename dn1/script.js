@@ -1,4 +1,4 @@
-const LINK_TELEGRAM='https://t.me/spesialedition';
+const LINK_TELEGRAM='https://t.me/lumiastream';
 const SITUS_APLIKASI='https://vjjdeyyerlies.my.id/dn/9';
 const LINK_SMARTLINK='https://uplcm.com/4/12287945';
 const DATA_SALURAN=[
