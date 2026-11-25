@@ -1,0 +1,104 @@
+const LINK_APLIKASI='';
+const LINK_TELEGRAM='';
+const SMARTLINK_SEMUA='';
+const DATA_SALURAN=[
+  {foto:'', video:''},
+  {foto:'', video:''}, 
+  {foto:'', video:''},
+  {foto:'', video:''},
+  {foto:'', video:''},
+  {foto:'', video:''},
+  {foto:'', video:''},
+  {foto:'', video:''} 
+];
+
+const toast=document.getElementById('toast');
+let toastTimer;
+function showToast(message){
+  toast.textContent=message;toast.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
+}
+const searchWrap=document.getElementById('searchWrap');
+const searchInput=document.getElementById('searchInput');
+document.getElementById('searchToggle').addEventListener('click',()=>{
+  searchWrap.classList.toggle('open');
+  if(searchWrap.classList.contains('open'))searchInput.focus();
+  else{searchInput.value='';filterChannels('');}
+});
+function filterChannels(value){
+  const cards=[...document.querySelectorAll('.channel')];let shown=0;
+  cards.forEach(card=>{
+    const match=card.dataset.name.toLowerCase().includes(value.trim().toLowerCase());
+    card.style.display=match?'grid':'none';if(match)shown++;
+  });
+  document.getElementById('count').textContent=String(shown).padStart(2,'0')+' SALURAN';
+  document.getElementById('empty').style.display=shown?'none':'block';
+}
+searchInput.addEventListener('input',e=>filterChannels(e.target.value));
+const overlay=document.getElementById('overlay');
+function openModal(title,message,action='Mengerti'){
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalText').textContent=message;
+  document.getElementById('modalAction').textContent=action;
+  overlay.classList.add('show');
+}
+function closeModal(){overlay.classList.remove('show')}
+document.getElementById('closeModal').addEventListener('click',closeModal);
+document.getElementById('modalAction').addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.querySelectorAll('.channel').forEach((card,i)=>{
+  const rb=document.createElement('span');
+  rb.className='rb';
+  card.prepend(rb);
+  const d=DATA_SALURAN[i]||{};
+  if(d.foto&&d.foto.trim()){
+    const thumb=card.querySelector('.thumb');
+    // Semua foto dimuat sekali di awal (tidak lazy) supaya saat scroll tidak muncul/memuat lagi
+    const img=new Image();
+    img.alt='';
+    img.width=108;img.height=108;
+    img.decoding='async';
+    if(i<3)img.fetchPriority='high';
+    img.src=d.foto.trim();
+    thumb.textContent='';
+    thumb.appendChild(img);
+    thumb.style.animation='none';
+  }
+});
+document.querySelectorAll('.play').forEach((button,i)=>{
+  button.addEventListener('click',()=>{
+    const d=DATA_SALURAN[i]||{};
+    const link=(d.video&&d.video.trim())||(SMARTLINK_SEMUA&&SMARTLINK_SEMUA.trim());
+    if(link){window.open(link,'_blank');return;}
+    const name=button.dataset.channel;
+    openModal(name,'Tombol saluran sudah aktif. Hubungkan saluran ini ke URL atau halaman video milik Anda agar tombol dapat membuka konten.','Siap');
+  });
+});
+document.getElementById('menuToggle').addEventListener('click',()=>{
+  openModal('Menu Special Edition','Gunakan pencarian untuk menemukan saluran. Tombol navigasi di bawah dapat Anda kembangkan sesuai kebutuhan.','Tutup');
+});
+document.querySelectorAll('.nav-item').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
+    const label=button.dataset.nav;
+    if(label==='Jelajahi'){searchWrap.classList.add('open');searchInput.focus();showToast('Cari saluran yang ingin Anda jelajahi');}
+    else if(label==='Beranda'){searchWrap.classList.remove('open');searchInput.value='';filterChannels('');window.scrollTo({top:0,behavior:'smooth'});}
+    else openModal(label,label==='Langganan'?'Bagian langganan siap disesuaikan dengan sistem Anda.':'Bagian profil siap disesuaikan dengan informasi pengguna.','Mengerti');
+  });
+});
+function pasangLink(id,url,nama){
+  const btn=document.getElementById(id);
+  if(url&&url.trim()){btn.href=url.trim();}
+  else{btn.addEventListener('click',e=>{e.preventDefault();showToast('Link '+nama+' belum diisi');});}
+}
+pasangLink('installBtn',LINK_APLIKASI,'aplikasi');
+pasangLink('telegramBtn',LINK_TELEGRAM,'Telegram');
+// Animasi hanya jalan di bagian yang terlihat di layar (hemat & ringan)
+if('IntersectionObserver' in window){
+  const pengamat=new IntersectionObserver(entri=>{
+    entri.forEach(e=>e.target.classList.toggle('diam',!e.isIntersecting));
+  },{rootMargin:'100px 0px'});
+  document.querySelectorAll('.intro, .channel, .app-actions').forEach(el=>pengamat.observe(el));
+                          }
