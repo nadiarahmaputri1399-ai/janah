@@ -1,17 +1,17 @@
 var SALURAN = [
-  { nama: "Rima",  foto: "https://upload.vjjdeyyjinerila.xyz/f/J7dEEi",  link: "https://vjjdeyracduk.my.id/Golden" },
-  { nama: "jahra ",  foto: "https://upload.vjjdeyyjinerila.xyz/f/NeAAPv",  link: "https://uplcm.com/4/10416869" },
-  { nama: "reva nara",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ELMzrq",  link: "https://vjjdeyracduk.my.id/Golden/1" },
-  { nama: "syifa aulia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/QhqTvF",  link: "https://uplcm.com/4/10416869" },
-  { nama: "vina yunita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/mBF4Gf",  link: "https://vjjdeyracduk.my.id/Golden/2" },
-  { nama: "sarah nurlia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/Pnxxhh",  link: "https://uplcm.com/4/10416869" },
-  { nama: "novita rahma",  foto: "https://upload.vjjdeyyjinerila.xyz/f/XDqK5u",  link: "https://vjjdeyracduk.my.id/Golden/3" },
-  { nama: "aurellia",  foto: "https://upload.vjjdeyyjinerila.xyz/f/5uiZTx",  link: "https://uplcm.com/4/10416869" },
-  { nama: "kadita",  foto: "https://upload.vjjdeyyjinerila.xyz/f/ZDCW2u",  link: "https://vjjdeyracduk.my.id/Golden/4" },
-  { nama: "dea novia", foto: "https://upload.vjjdeyyjinerila.xyz/f/Reb2y4", link: "https://uplcm.com/4/10416869" }
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "",  link: "" },
+  { nama: "",  foto: "", link: "" }
 ];
-var LINK_APLIKASI = "https://vjjdeyracduk.my.id/Golden/5";
-var LINK_TELEGRAM = "https://t.me/spesialedition";
+var LINK_APLIKASI = "";
+var LINK_TELEGRAM = "";
 (function () {
   var grid = document.getElementById("grid");
   var ikonPlay = '<svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg>';
